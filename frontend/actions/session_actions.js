@@ -5,19 +5,19 @@ export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 
 
 export const signup = formUser => dispatch => (
-  SessionApiUtil.postUser(formUser).then(user => (
+  SessionApiUtil.signup(formUser).then(user => (
     dispatch({ type: RECEIVE_CURRENT_USER, user })
   ))
 );
 
 export const login = formUser => dispatch => (
-  SessionApiUtil.postSession(formUser).then(user => (
+  SessionApiUtil.login(formUser).then(user => (
     dispatch({ type: RECEIVE_CURRENT_USER, user })
   ))
 );
 
 export const logout = () => dispatch => (
-  SessionApiUtil.deleteSession().then(() => (
+  SessionApiUtil.logout().then(() => (
     dispatch({ type: LOGOUT_CURRENT_USER })
   ))
 );
