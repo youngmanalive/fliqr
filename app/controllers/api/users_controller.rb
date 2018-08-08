@@ -3,9 +3,6 @@ class Api::UsersController < ApplicationController
     @user = User.new(user_params)
   end
 
-  # def destroy
-  # end
-
   private
   def user_params
     params.require(:user).permit(
@@ -16,5 +13,4 @@ class Api::UsersController < ApplicationController
       :lname
     )
   end
-
 end

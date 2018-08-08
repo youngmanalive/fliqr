@@ -1,5 +1,3 @@
-# == Schema Information
-#
 # Table name: users
 #
 #  id              :bigint(8)        not null, primary key
@@ -22,8 +20,8 @@ class User < ApplicationRecord
 
   attr_reader :password
 
-  def self.find_by_credentials(username, password)
-    user = User.find_by(username: username)
+  def self.find_by_credentials(email, password)
+    user = User.find_by(email: email)
     user && user.is_password?(password) ? user : nil
   end
 
