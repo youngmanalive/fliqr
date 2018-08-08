@@ -4,7 +4,7 @@ export const RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
 export const LOGOUT_CURRENT_USER = 'LOGOUT_CURRENT_USER';
 
 
-export const createUser = formUser => dispatch => (
+export const signup = formUser => dispatch => (
   SessionApiUtil.postUser(formUser).then(user => (
     dispatch({ type: RECEIVE_CURRENT_USER, user })
   ))
@@ -16,7 +16,7 @@ export const login = formUser => dispatch => (
   ))
 );
 
-export const logut = () => dispatch => (
+export const logout = () => dispatch => (
   SessionApiUtil.deleteSession().then(() => (
     dispatch({ type: LOGOUT_CURRENT_USER })
   ))

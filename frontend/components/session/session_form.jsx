@@ -1,6 +1,6 @@
 import React from 'react';
 
-class SignUp extends React.Component {
+class SessionForm extends React.Component {
   constructor(props) {
     super(props);
     this.sate = {
@@ -18,13 +18,13 @@ class SignUp extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    this.props.createUser(this.state);
+    this.props.signup(this.state);
       // .then(() => this.props.history.push('/users'));
   }
 
   render() {
     return (
-      <div className='signup-form'>
+      <div className='session-form'>
         <h2>Sign Up</h2>
         <form onSubmit={this.submit.bind(this)}>
 
@@ -73,4 +73,4 @@ class SignUp extends React.Component {
 }
 
 
-export default SignUp;
+export default SessionForm;
