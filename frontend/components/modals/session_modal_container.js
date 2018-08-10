@@ -7,7 +7,8 @@ const msp = state => ({
 });
 
 const mdp = dispatch => ({
-  close: () => dispatch(setModal('closed'))
+  close: () => dispatch(setModal('closed')),
+  changeForm: (type) => dispatch(setModal(type))
 });
 
 export default connect(msp, mdp)(SessionModal);

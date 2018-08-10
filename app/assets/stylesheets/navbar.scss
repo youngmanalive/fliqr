@@ -1,0 +1,56 @@
+.navbar-main {
+  display: flex;
+  justify-content: space-between;
+  background: black;
+  height: 64px;
+  opacity: 0.75;
+  padding-left: 25px;
+  padding-right: 25px;
+  align-items: center;
+}
+
+.navbar-logo {
+  color: white;
+  font-size: 32px;
+  font-family: 'Maven Pro', sans-serif;
+
+}
+
+.navbar-session > * {
+  font-family: 'Rubik', sans-serif;
+  font-weight: 800;
+  font-size: 16px;
+}
+
+[class^="navbar-session-"]:hover, .navbar-logo:hover {
+  cursor: pointer;
+}
+
+.navbar-session-login {
+  color: white;
+  padding: 5px 20px;
+  justify-content: center;
+}
+
+.navbar-session-signup, .navbar-session-logout {
+  background: white;
+  padding: 6px 20px;
+  border-radius: 3px;
+  transition: 0.2s;
+}
+
+.navbar-session-signup:hover, .navbar-session-logout:hover {
+  color: grey;
+}
+
+.navbar-user-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar-user-name {
+  color: white;
+  font-size: 16px;
+  padding: 20px;
+}
