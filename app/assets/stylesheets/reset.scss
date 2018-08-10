@@ -1,5 +1,5 @@
 html, body, h1, h2, h3, h4, h5, h6, p,
-div, span, button, a {
+div, span, button, a, ul, li, input {
   margin: 0;
   border: 0;
   padding: 0;
@@ -11,7 +11,7 @@ div, span, button, a {
 }
 
 body {
-  font-family: Proxima Nova,helvetica neue,helvetica,arial,sans-serif;
+  font-family: 'Roboto', sans-serif;
 }
 
 button:focus {outline:0;}

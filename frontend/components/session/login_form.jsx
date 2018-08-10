@@ -22,25 +22,34 @@ class LoginForm extends React.Component {
       // .then(() => this.props.history.push('/users'));
   }
 
+  renderErrors() {
+    if (this.props.errors) {
+      return(
+        <ul>
+          {this.props.errors.map((err, i) => <li key={`error-${i}`}>{err}</li>)}
+        </ul>
+      );
+    }
+  }
+
   render() {
     return (
-      <div className='signup-form'>
+      <div className='user-session-form'>
         <h2>Log In</h2>
         <form onSubmit={this.handleSubmit}>
+          <input
+            type='text'
+            value={this.state.email}
+            onChange={this.update('email')}
+            placeholder='Email' />
 
-          <label>Email
-            <input
-              type='text'
-              value={this.state.email}
-              onChange={this.update('email')} />
-          </label>
+          <input
+            type='text'
+            value={this.state.password}
+            onChange={this.update('password')}
+            placeholder='Password' />
 
-          <label>Password
-            <input
-              type='text'
-              value={this.state.password}
-              onChange={this.update('password')} />
-          </label>
+          {this.renderErrors()}
 
           <input type="submit" value="Log In" />
 

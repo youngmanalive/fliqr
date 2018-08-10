@@ -37,44 +37,39 @@ class SignupForm extends React.Component {
 
   render() {
     return (
-      <div className='signup-form'>
+      <div className='user-session-form'>
         <h2>Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
 
-          <label>First Name
-            <input
-              type='text'
-              value={this.state.fname}
-              onChange={this.update('fname')} />
-          </label>
+          <input
+            type='text'
+            value={this.state.fname}
+            onChange={this.update('fname')}
+            placeholder='First Name'/>
 
-          <label>Last Name
-            <input
-              type='text'
-              value={this.state.lname}
-              onChange={this.update('lname')} />
-          </label>
+          <input
+            type='text'
+            value={this.state.lname}
+            onChange={this.update('lname')}
+            placeholder='Last Name'/>
 
-          <label>Username
-            <input
-              type='text'
-              value={this.state.username}
-              onChange={this.update('username')} />
-          </label>
+          <input
+            type='text'
+            value={this.state.username}
+            onChange={this.update('username')}
+            placeholder='Username'/>
 
-          <label>Email
-            <input
-              type='text'
-              value={this.state.email}
-              onChange={this.update('email')} />
-          </label>
+          <input
+            type='text'
+            value={this.state.email}
+            onChange={this.update('email')}
+            placeholder='Email'/>
 
-          <label>Password
-            <input
-              type='text'
-              value={this.state.password}
-              onChange={this.update('password')} />
-          </label>
+          <input
+            type='text'
+            value={this.state.password}
+            onChange={this.update('password')}
+            placeholder='Password'/>
 
           {this.renderErrors()}
 

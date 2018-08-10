@@ -21,12 +21,7 @@ const greetingNav = (currentUser, logout) => (
 const splashNav = () => (
   <div className='navbar-main'>
     {logo}
-    <form onSubmit={() => window.alert('SIKE!!!!!!!')}>
-      <input
-        className='navbar-search'
-        type='text'
-        placeholder='Search...' />
-    </form>
+
     <SplashContainer />
   </div>
 );
@@ -37,3 +32,11 @@ const NavBar = ({ currentUser, logout }) => (
 
 
 export default NavBar;
+
+
+// <form onSubmit={() => window.alert('SIKE!!!!!!!')}>
+//   <input
+//     className='navbar-search'
+//     type='text'
+//     placeholder='Search...' />
+// </form>

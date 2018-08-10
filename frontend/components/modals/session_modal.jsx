@@ -5,18 +5,38 @@ import LoginFormContainer from '../session/login_form_container';
 
 class SessionModal extends React.Component {
 
-  formType() {
+  userForm() {
     return (this.props.status === 'signup') ? (
       <div>
         <SignupFormContainer />
-        <p>Already a member? </p>
-        <button onClick={() => this.props.changeForm('login')}>Log In</button>
+        <div className='modal-options-container'>
+
+          <p>Already a member? <a
+            onClick={() => this.props.changeForm('login')}>
+            Log In</a>
+          </p>
+        </div>
       </div>
     ) : (
       <div>
         <LoginFormContainer />
-        <p>Need an account? </p>
-        <button onClick={() => this.props.changeForm('signup')}>Sign Up</button>
+        <div className='modal-options-container'>
+          <p>Not Registered? <a
+            onClick={() => this.props.changeForm('signup')}>
+            Sign Up</a>
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  modalHeader() {
+    return (
+      <div className='modal-header'>
+        <p className='modal-logo'>fliqr</p>
+        <button
+          className='modal-header-button'
+          onClick={this.props.close}>x</button>
       </div>
     );
   }
@@ -27,8 +47,9 @@ class SessionModal extends React.Component {
 
     return (
       <div className='modal-background' onClick={this.props.close}>
-        <div className='modal-child' onClick={e => e.stopPropagation()}>
-          <div className='modal-child-form'>{this.formType()}</div>
+        <div className='modal-user-form' onClick={e => e.stopPropagation()}>
+          {this.modalHeader()}
+          {this.userForm()}
         </div>
       </div>
     );

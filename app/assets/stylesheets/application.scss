@@ -16,7 +16,10 @@
 @import './reset';
 @import './navbar';
 @import './modal';
+@import './splash_welcome';
 
 body {
-  background-image: url('https://images.pexels.com/photos/163550/landscape-scenic-going-to-the-sun-road-rocky-mountains-163550.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-image: url('https://images.pexels.com/photos/446280/pexels-photo-446280.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260');
+  background-repeat: no-repeat;
+  background-size: cover;
 }

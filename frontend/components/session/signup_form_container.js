@@ -10,4 +10,4 @@ const mdp = dispatch => ({
   signup: formUser => dispatch(signup(formUser))
 });
 
-export default connect(null, mdp)(SignupForm);
+export default connect(msp, mdp)(SignupForm);

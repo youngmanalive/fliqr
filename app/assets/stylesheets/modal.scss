@@ -8,17 +8,121 @@
   z-index: 10;
 }
 
-.modal-child {
- position: absolute;
- background: white;
- top: 50%;
- left: 50%;
- transform: translate(-50%, -50%);
- width: 300px;
- height: 400px;
- transition: 1s;
+.modal-user-form {
+  position: absolute;
+  background: white;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  padding: 20px;
+  height: auto;
+  display: block;
+  border-radius: 7px;
+  text-align: center;
+  box-shadow: 0 0 30px;
+  overflow: hidden;
+  border: 1px solid grey;
+
+  h2 {
+    padding: 13px 0 20px 0;
+  }
+
+  a {
+    font-weight: 700;
+  }
+
+  ul {
+    position: relative;
+    top: 20px;
+    list-style: none;
+    color: red;
+    list-style-position: outside;
+    font-size: 14px;
+  }
+
+  input:focus{
+    outline-width: 0px;
+  }
+
+  input[type=submit] {
+    color: white;
+    padding: 8px 15px;
+    width: 120px;
+    height: 35px;
+    margin: 40px 0 30px 0;
+    background: #68a7e2;
+    border-radius: 3px;
+    transition: 0.2s;
+
+  }
+
+  input[type=submit]:hover {
+    background: #81beef
+  }
+
+  input[type=submit]:hover, button:hover, a:hover, {
+    cursor: pointer;
+  }
 }
 
-.modal-child-form > * > * {
-  display: block;
+.modal-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0px;
+  position: relative;
+  bottom: 20px;
+  width: auto;
+  z-index: 100;
 }
+
+.modal-header-button {
+  color: white;
+  background: lightgrey;
+  width: 23px;
+  border-radius: 4px;
+  transition: 0.2s;
+
+}
+.modal-header-button:hover {
+  color: grey;
+}
+
+.modal-logo {
+  color: black;
+  font-size: 20px;
+  font-family: 'Maven Pro', sans-serif;
+}
+
+.modal-user-form input[type=text] {
+  width: 80%;
+  margin: 5px;
+  padding: 8px;
+  border-bottom: 1px solid lightgrey;
+  text-align: left;
+  font-size: 16px;
+}
+
+.modal-options-container {
+  position: relative;
+  bottom: 60px;
+}
+.user-session-form {
+  position: relative;
+  bottom: 68px;
+}
+
+
+// .modal-demo {
+//   margin: 30px;
+//   background: #7a99e8;
+//   width: 80px;
+//   color: white;
+//   padding: 6px 20px;
+//   border-radius: 3px;
+//   transition: 0.2s;
+// }
+
+// .modal-demo:hover {
+//   transform: scale(1.05);
+// }

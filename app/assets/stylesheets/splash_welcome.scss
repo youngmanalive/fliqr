@@ -1,0 +1,32 @@
+.splash-welcome {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Open Sans', sans-serif;
+  color: white;
+  text-align: center;
+
+  h1 { font-size: 56px; padding-bottom: 10px; }
+  p { font-size: 26px; }
+
+  h1, p { text-shadow: 0 0 5px black}
+
+  button {
+    margin: 30px;
+    width: 150px;
+    height: 50px;
+    border-radius: 5px;
+    background: white;
+    color: black;
+    font-family: 'Rubik', sans-serif;
+    font-weight: 600;
+    font-size: 20px;
+    transition: 0.3s;
+  }
+
+  button:hover {
+    color: grey;
+    cursor: pointer;
+  }
+}
