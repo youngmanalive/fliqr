@@ -5,3 +5,15 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+
+
+
+## Demo Account
+User.create(
+  fname: "Friend",
+  lname: "Account",
+  email: "demo@fliqr.com",
+  username: "demo",
+  password: "starwars"
+)
