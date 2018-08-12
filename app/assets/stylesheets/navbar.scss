@@ -4,6 +4,7 @@
   background: black;
   opacity: 0.75;
   align-items: center;
+  transition: .2s;
 }
 
 .navbar-main-splash {
@@ -16,7 +17,6 @@
   height: 50px;
   padding-left: 130px;
   padding-right: 130px;
-  transition: .2s;
 
   a { transition: .2s; }
   a:hover { opacity: .75; }

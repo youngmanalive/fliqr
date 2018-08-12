@@ -28,7 +28,10 @@ const splashNav = (signup) => (
   <div className='navbar-main-splash'>
     {logo}
     <div className='navbar-search'>
-      <form onSubmit={() => signup()}>
+      <form onSubmit={(e) => {
+          e.preventDefault();
+          signup();
+        }}>
         <input
           type='text'
           placeholder='Search...' />
