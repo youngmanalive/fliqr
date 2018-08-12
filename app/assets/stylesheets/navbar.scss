@@ -1,17 +1,27 @@
-.navbar-main {
+[class^='navbar-main-'] {
   display: flex;
   justify-content: space-between;
   background: black;
-  height: 64px;
   opacity: 0.75;
-  padding-left: 25px;
-  padding-right: 25px;
   align-items: center;
+}
+
+.navbar-main-splash {
+  height: 64px;
+  padding-left: 23px;
+  padding-right: 23px;
+}
+
+.navbar-main-user {
+  height: 50px;
+  padding-left: 130px;
+  padding-right: 130px;
 }
 
 .navbar-logo {
   color: white;
   font-size: 32px;
+  margin-bottom: 3px;
   font-family: 'Maven Pro', sans-serif;
 }
 
@@ -48,6 +58,20 @@
   align-items: center;
 }
 
+.navbar-upload-icon {
+  background-image: url(/assets/upload-icon.png);
+  background-size: cover;
+  background-color: inherit;
+  display: inline-block;
+  width: 30px;
+  height: 20px;
+}
+
+.navbar-upload-icon:hover {
+  opacity: .75;
+  cursor: pointer;
+}
+
 .navbar-user-name {
   color: white;
   font-size: 16px;
@@ -63,9 +87,16 @@
   }
 }
 
-
-
 .navbar-search {
-  opacity: 0;
-  background-color: white;
+  margin-left: 10px;
+  width: 57%;
+  box-sizing: border-box;
+
+  input {
+    background-color: white;
+    padding: 7px;
+    width: 100%;
+    border-radius: 2px;
+  }
+
 }

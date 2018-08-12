@@ -1,13 +1,5 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { setModal } from '../../actions/session_modal_actions';
-import { login } from '../../actions/session_actions';
 
-
-const mdp = dispatch => ({
-  setModal: () => dispatch(setModal('signup')),
-  demo: () => dispatch(login({ email: 'demo@fliqr.com', password: 'starwars'}))
-});
 
 class SplashWelcome extends React.Component {
   render() {
@@ -30,4 +22,4 @@ class SplashWelcome extends React.Component {
   }
 }
 
-export default connect(null, mdp)(SplashWelcome);
+export default SplashWelcome;

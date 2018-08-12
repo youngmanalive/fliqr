@@ -1,6 +1,6 @@
 import React from 'react';
 
-class Splash extends React.Component {
+class SplashSession extends React.Component {
 
   render() {
     return (
@@ -21,4 +21,4 @@ class Splash extends React.Component {
   }
 }
 
-export default Splash;
+export default SplashSession;

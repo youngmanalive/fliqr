@@ -1,9 +1,9 @@
 import { connect } from 'react-redux';
-import Splash from './splash';
+import SplashSession from './splash_session';
 import { setModal } from '../../actions/session_modal_actions';
 
 const mdp = dispatch => ({
   setModal: type => dispatch(setModal(type))
 });
 
-export default connect(null, mdp)(Splash);
+export default connect(null, mdp)(SplashSession);

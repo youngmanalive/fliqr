@@ -1,18 +1,19 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
-import SplashContainer from '../splash/splash_container';
+import SplashSessionContainer from '../splash/splash_session_container';
 
 const logo = <NavLink to='/' className='navbar-logo'>fliqr</NavLink>;
 
 const userNav = (currentUser, logout) => (
-  <div className='navbar-main'>
+  <div className='navbar-main-user'>
     {logo}
     <div className='navbar-user-links'>
       <NavLink to='/home' activeClassName="active" >Explore</NavLink>
-      <a>My Photos</a>
-      <a>Albums</a>
+      <a href='#'>My Photos</a>
+      <a href='#'>Albums</a>
     </div>
     <div className='navbar-user-info'>
+      <div className='navbar-upload-icon' />
       <h3 className='navbar-user-name'>Hello, {currentUser.fname}</h3>
       <button
         className='navbar-session-logout'
@@ -24,15 +25,16 @@ const userNav = (currentUser, logout) => (
 );
 
 const splashNav = (signup) => (
-  <div className='navbar-main'>
+  <div className='navbar-main-splash'>
     {logo}
-    <form onSubmit={() => signup()}>
-      <input
-        className='navbar-search'
-        type='text'
-        placeholder='Search...' />
-    </form>
-    <SplashContainer />
+    <div className='navbar-search'>
+      <form onSubmit={() => signup()}>
+        <input
+          type='text'
+          placeholder='Search...' />
+      </form>
+    </div>
+    <SplashSessionContainer />
   </div>
 );
 
