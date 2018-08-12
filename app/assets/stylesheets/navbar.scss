@@ -16,6 +16,10 @@
   height: 50px;
   padding-left: 130px;
   padding-right: 130px;
+  transition: .2s;
+
+  a { transition: .2s; }
+  a:hover { opacity: .75; }
 }
 
 .navbar-logo {
@@ -25,11 +29,6 @@
   font-family: 'Maven Pro', sans-serif;
 }
 
-.navbar-session > * {
-  font-family: 'Rubik', sans-serif;
-  font-weight: 800;
-  font-size: 16px;
-}
 
 [class^="navbar-session-"]:hover, .navbar-logo:hover {
   cursor: pointer;
@@ -83,7 +82,7 @@
 
   a {
     color: white;
-    padding: 15px;
+    padding: 5px 15px;
   }
 }
 
