@@ -4,7 +4,7 @@ import SplashContainer from '../splash/splash_container';
 
 const logo = <Link to='/' className='navbar-logo'>fliqr</Link>;
 
-const greetingNav = (currentUser, logout) => (
+const userNav = (currentUser, logout) => (
   <div className='navbar-main'>
     {logo}
     <div className='navbar-user-info'>
@@ -27,7 +27,7 @@ const splashNav = () => (
 );
 
 const NavBar = ({ currentUser, logout }) => (
-  currentUser ? greetingNav(currentUser, logout) : splashNav()
+  currentUser ? userNav(currentUser, logout) : splashNav()
 );
 
 

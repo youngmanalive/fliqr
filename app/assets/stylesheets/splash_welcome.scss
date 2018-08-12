@@ -6,11 +6,12 @@
   font-family: 'Open Sans', sans-serif;
   color: white;
   text-align: center;
+  max-width: 640px;
+  min-width: 640px;
 
   h1 { font-size: 56px; padding-bottom: 10px; }
   p { font-size: 26px; }
 
-  h1, p { text-shadow: 0 0 5px black}
 
   button {
     margin: 30px;
@@ -29,4 +30,47 @@
     color: grey;
     cursor: pointer;
   }
+}
+
+
+.splash-slides li span {
+  position: absolute;
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  opacity: 0;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: 50% 50%;
+  backface-visibility: hidden;
+  animation: slideShow 28s linear infinite 0s;
+}
+
+.splash-slides li:nth-child(1) span {
+  background-image: url(/assets/1.jpg);
+}
+
+.splash-slides li:nth-child(2) span {
+  background-image: url(/assets/2.jpeg);
+  animation-delay: 7s;
+}
+
+.splash-slides li:nth-child(3) span {
+  background-image: url(/assets/3.jpeg);
+  animation-delay: 14s;
+}
+
+.splash-slides li:nth-child(4) span {
+  background-image: url(/assets/4.jpeg);
+  animation-delay: 21s;
+}
+
+@keyframes slideShow {
+  0% { opacity: 0; animation-timing-function: ease-in; }
+  12% { opacity: 1; animation-timing-function: ease-out; }
+  25% { opacity: 1; }
+  37% { opacity: 0; }
+  100% { opacity: 0; }
 }
