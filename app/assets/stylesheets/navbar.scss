@@ -13,7 +13,6 @@
   color: white;
   font-size: 32px;
   font-family: 'Maven Pro', sans-serif;
-
 }
 
 .navbar-session > * {
@@ -53,4 +52,20 @@
   color: white;
   font-size: 16px;
   padding: 20px;
+}
+
+.navbar-user-links {
+  margin: 0 auto 0 20px;
+
+  a {
+    color: white;
+    padding: 15px;
+  }
+}
+
+
+
+.navbar-search {
+  opacity: 0;
+  background-color: white;
 }

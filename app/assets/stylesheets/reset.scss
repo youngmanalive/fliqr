@@ -14,4 +14,4 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-button:focus {outline:0;}
+input:focus, button:focus {outline:0;}
