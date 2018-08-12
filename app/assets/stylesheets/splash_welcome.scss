@@ -48,21 +48,21 @@
 }
 
 .splash-slides li:nth-child(1) span {
-  background-image: url(/assets/1.jpg);
+  background-image: image-url('1.jpg');
 }
 
 .splash-slides li:nth-child(2) span {
-  background-image: url(/assets/2.jpeg);
+  background-image: image-url('2.jpeg');
   animation-delay: 7s;
 }
 
 .splash-slides li:nth-child(3) span {
-  background-image: url(/assets/3.jpeg);
+  background-image: image-url('3.jpeg');
   animation-delay: 14s;
 }
 
 .splash-slides li:nth-child(4) span {
-  background-image: url(/assets/4.jpeg);
+  background-image: image-url('4.jpeg');
   animation-delay: 21s;
 }
 
