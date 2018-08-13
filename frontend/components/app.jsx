@@ -1,10 +1,13 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
+
 import SessionModalContainer from './modals/session_modal_container';
 import NavBarContainer from './nav_bar/nav_bar_container';
 import SplashWelcomeContainer from './splash/splash_welcome_container';
 import Home from './home/home';
-import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import PhotoUpload from './photos/photo_upload';
+
 
 const App = () => (
   <div>
@@ -13,6 +16,7 @@ const App = () => (
 
     <Switch>
       <ProtectedRoute path='/home' component={Home} />
+      <ProtectedRoute path='/upload' component={PhotoUpload} />
       <AuthRoute path="/" component={SplashWelcomeContainer} />
     </Switch>
   </div>

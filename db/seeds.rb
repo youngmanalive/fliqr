@@ -17,3 +17,12 @@ User.create(
   username: "demo",
   password: "starwars"
 )
+
+## Photos
+# path1 = ["/Users/nate/Desktop/fliqr_photos/", "mountain.jpeg"]
+# photo2
+# photo3
+#
+# photo1 = File.open("/Users/nate/Desktop/fliqr_photos/mountain.jpeg")
+#
+# Photo.create(user_id: User.first, photo: )

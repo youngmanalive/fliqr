@@ -11,6 +11,17 @@
 #  updated_at      :datetime         not null
 #
 
+# class UserValidator < ActiveModel::Validator
+#   def validate(record)
+#     if record.fname.empty?
+#       record.errors[:first] << "name can't be blank"
+#     end
+#   end
+# end
+# include ActiveModel::Validations
+# validates_with UserValidator
+
+
 class User < ApplicationRecord
   validates :username, :email, :session_token, presence: true, uniqueness: true
   validates :password, length: { minimum: 6, allow_nil: true }
