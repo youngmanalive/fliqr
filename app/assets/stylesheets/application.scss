@@ -18,16 +18,40 @@
 @import './modal';
 @import './splash_welcome';
 
+
+
+
 body {
-  min-width: 650px;
+  min-width: 900px;
+  background-color: black;
 }
 
 .home-page {
-  text-align: center;
-  padding: 20px;
-  font-size: 30px;
-}
+  background: white;
+  padding: 20px 0 0 0;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  margin: 0;
 
-// body {
-//   background-color: black;
-// }
+
+  ul {
+    list-style: none;
+    margin: 0 100px;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  li {
+    flex: auto;
+    width: 300px;
+    margin: 3px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+}

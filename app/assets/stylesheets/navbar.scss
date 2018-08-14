@@ -1,10 +1,14 @@
+.navbar {
+
+}
+
 [class^='navbar-main-'] {
   display: flex;
   justify-content: space-between;
-  background: black;
-  opacity: 0.75;
+  background-color: rgba(0, 0, 0, .7);
   align-items: center;
   transition: 1s;
+  position: relative;
 }
 
 .navbar-main-splash {
@@ -22,7 +26,10 @@
   a:hover { opacity: .75; }
 }
 
+
+
 .navbar-logo {
+  opacity: 1;
   color: white;
   font-size: 32px;
   margin-bottom: 3px;

@@ -12,7 +12,7 @@ const receiveErrors = errors => ({ type: RECEIVE_PHOTO_ERRORS, errors });
 
 export const fetchAllPhotos = () => dispatch => (
   PhotoApiUtil.fetchAllPhotos().then(
-    photos => dispatch(receiveAllPhotos()),
+    photos => dispatch(receiveAllPhotos(photos)),
     err => dispatch(receiveErrors(err.responseJSON))
   )
 );

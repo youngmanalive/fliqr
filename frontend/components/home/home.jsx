@@ -1,10 +1,14 @@
 import React from 'react';
+import PhotoIndexContainer from '../photos/photo_index_container';
 
 class Home extends React.Component {
 
   render() {
     return (
-      <h1 className='home-page'>Coming Soon!...</h1>
+      <div className='home-page'>
+        <h1>Explore!</h1>
+        <PhotoIndexContainer />
+      </div>
     );
   }
 }

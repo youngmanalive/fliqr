@@ -12,7 +12,9 @@ import PhotoUpload from './photos/photo_upload';
 const App = () => (
   <div>
     <Route path='/' component={SessionModalContainer} />
-    <NavBarContainer />
+    <div className='navbar'>
+      <NavBarContainer />
+    </div>
 
     <Switch>
       <ProtectedRoute path='/home' component={Home} />

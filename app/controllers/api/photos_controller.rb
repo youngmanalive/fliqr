@@ -1,0 +1,57 @@
+class Api::PhotosController < ApplicationController
+  def create
+    @photo = Photo.new(photo_params)
+
+    if @photo.save
+      render :show
+    else
+      render json: @photos.errors.full_messages, status: 422
+    end
+  end
+
+  def index
+    @photos = Photo.all
+    render :index
+  end
+
+  def show
+    @photo = Photo.find(params[:id])
+
+    if @photo
+      render :show
+    else
+      render json: ['Photo not found!'], status: 404
+    end
+  end
+
+  def update
+    @photo = current_user.photos.find(params[:id])
+
+    if @photo.update(photo_params)
+      render :show
+    else
+      render json: ['Photo not found!'], status: 404
+    end
+  end
+
+  def destroy
+    @photo = current_user.photos.find(params[:id])
+
+    if @photo
+      @photo.destroy
+      render :show
+    else
+      render json: ['Photo not found!'], status: 404
+    end
+  end
+
+  private
+  def photo_params
+    params.require(:photo).permit(
+      :user_id,
+      :img_title,
+      :img_description,
+      :photo
+    )
+  end
+end

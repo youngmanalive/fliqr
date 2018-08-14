@@ -16,6 +16,8 @@ class Photo < ApplicationRecord
 
   has_one_attached :photo
 
+  belongs_to :user
+
   def ensure_photo
     unless self.photo.attached?
       errors[:photo] << "must be attached!"

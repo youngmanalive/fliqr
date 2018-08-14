@@ -10,10 +10,16 @@ class Api::UsersController < ApplicationController
     end
   end
 
-  # def edit
+  # def index
+  # end
+  #
+  # def show
   # end
 
-  # def delete
+  # def update
+  # end
+
+  # def destroy
   # end
 
   private
