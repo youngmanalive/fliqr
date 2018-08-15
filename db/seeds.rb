@@ -82,12 +82,17 @@ end
 user_ids = User.all.pluck(:id)
 
 ## Photo Seeds
-path = '/Users/nate/Desktop/fliqr_photos/'
+
+## Local Path
+# path = '/Users/nate/Desktop/fliqr_photos/'
+
+## Asset path
+path = 'app/assets/images/seeds/'
 
 34.times do |i|
   pic = Photo.new(img_title: 'my photo', user_id: user_ids.sample)
   photofile = File.open(path + "seed#{i+1}.jpeg")
-  pic.file.attach(io: photofile, filename: 'seed#{i+1}.jpeg')
+  pic.file.attach(io: photofile, filename: "seed#{i+1}.jpeg")
   pic.save!
 end
 
