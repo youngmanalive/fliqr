@@ -6,7 +6,7 @@ import SessionModalContainer from './modals/session_modal_container';
 import NavBarContainer from './nav_bar/nav_bar_container';
 import SplashWelcomeContainer from './splash/splash_welcome_container';
 import Home from './home/home';
-import PhotoUpload from './photos/photo_upload';
+import PhotoUploadContainer from './photos/photo_upload_container';
 
 
 const App = () => (
@@ -16,7 +16,7 @@ const App = () => (
 
     <Switch>
       <ProtectedRoute path='/home' component={Home} />
-      <ProtectedRoute path='/upload' component={PhotoUpload} />
+      <ProtectedRoute path='/upload' component={PhotoUploadContainer} />
       <AuthRoute path="/" component={SplashWelcomeContainer} />
     </Switch>
   </div>

@@ -8,7 +8,7 @@ class PhotoIndex extends React.Component {
 
   render() {
     return (
-      <ul className='photo-index-container'>
+      <ul className='photo-index'>
         {this.props.photos.map(photo => (
           <PhotoIndexItem key={photo.id} photo={photo} />
         ))}

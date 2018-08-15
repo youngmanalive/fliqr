@@ -16,9 +16,9 @@ export const createPhoto = formData => (
   $.ajax({
     method: 'POST',
     url: `api/photos`,
+    data: formData,
     processData: false,
-    contentData: false,
-    data: formData
+    contentType: false
   })
 );
 

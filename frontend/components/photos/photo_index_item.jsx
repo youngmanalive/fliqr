@@ -2,8 +2,12 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 
 const PhotoIndexItem = ({ photo }) => (
-  <li>
-    <img src={photo.photoUrl} />
+  <li className='photo-container'>
+    <div className='info-container'>
+      <p className='title'>{photo.img_title}</p>
+      <p className='username'>{photo.username}</p>
+    </div>
+    <a href='#' className='photo'><img src={photo.photoUrl}/></a>
   </li>
 );
 

@@ -86,8 +86,8 @@ path = '/Users/nate/Desktop/fliqr_photos/'
 
 34.times do |i|
   pic = Photo.new(img_title: 'my photo', user_id: user_ids.sample)
-  file = File.open(path + "seed#{i+1}.jpeg")
-  pic.photo.attach(io: file, filename: 'seed#{i+1}.jpeg')
+  photofile = File.open(path + "seed#{i+1}.jpeg")
+  pic.file.attach(io: photofile, filename: 'seed#{i+1}.jpeg')
   pic.save!
 end
 
