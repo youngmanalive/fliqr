@@ -5,7 +5,7 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
-ruby '2.3.1p112'
+ruby '2.4.4'
 
 gem 'aws-sdk-s3'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
