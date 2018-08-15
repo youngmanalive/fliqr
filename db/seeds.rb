@@ -11,18 +11,84 @@
 
 ## Demo Account
 User.create(
-  fname: "Friend",
-  lname: "Account",
-  email: "demo@fliqr.com",
-  username: "demo",
-  password: "starwars"
+  fname: 'Friend',
+  lname: 'Account',
+  email: 'demo@fliqr.com',
+  username: 'Friend',
+  password: 'starwars'
 )
 
-## Photos
-# path1 = ["/Users/nate/Desktop/fliqr_photos/", "mountain.jpeg"]
-# photo2
-# photo3
-#
-# photo1 = File.open("/Users/nate/Desktop/fliqr_photos/mountain.jpeg")
-#
-# Photo.create(user_id: User.first, photo: )
+## Seed Accounts
+fnames = [
+  'Dude',
+  'Walter',
+  'Donny',
+  'Jesus',
+  'Anton',
+  'Carla',
+  'Whoopi',
+  'Ada',
+  'Meryl',
+  'Frido'
+]
+lnames = [
+  'Lebowski',
+  'Sobchak',
+  'Keraboatsos',
+  'Quintana',
+  'Chigurh',
+  'Moss',
+  'Goldberg',
+  'Lovelace',
+  'Streep',
+  'Kahlo'
+]
+emails = [
+  'the_dude@abides.com',
+  'walter@veteran.com',
+  'donald@bowling.com',
+  'bowlmaster@jesus.org',
+  'anton@friendo.com',
+  'carlajean@hotmail.com',
+  'whoopi@notreal.com',
+  'brilliant@babe.com',
+  'streep@amazing.com',
+  'frido@kahlo.net'
+]
+usernames = [
+  'the_dude',
+  'walter67',
+  'shutupdonny',
+  'jesusquin',
+  'friendo',
+  'carla_jean',
+  'whoopi_gold',
+  'smarterthanyou',
+  'streepstreet',
+  'art4lyfe'
+]
+password = 'starwars'
+
+fnames.length.times do |i|
+  User.create(
+    fname: fnames[i],
+    lname: lnames[i],
+    email: emails[i],
+    username: usernames[i],
+    password: 'starwars'
+  )
+end
+
+user_ids = User.all.pluck(:id)
+
+## Photo Seeds
+path = '/Users/nate/Desktop/fliqr_photos/'
+
+34.times do |i|
+  pic = Photo.new(img_title: 'my photo', user_id: user_ids.sample)
+  file = File.open(path + "seed#{i+1}.jpeg")
+  pic.photo.attach(io: file, filename: 'seed#{i+1}.jpeg')
+  pic.save!
+end
+
+## Comment Seeds

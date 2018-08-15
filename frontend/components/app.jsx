@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 import SessionModalContainer from './modals/session_modal_container';
@@ -10,11 +10,9 @@ import PhotoUpload from './photos/photo_upload';
 
 
 const App = () => (
-  <div>
+  <div className="app">
     <Route path='/' component={SessionModalContainer} />
-    <div className='navbar'>
-      <NavBarContainer />
-    </div>
+    <NavBarContainer />
 
     <Switch>
       <ProtectedRoute path='/home' component={Home} />
@@ -25,3 +23,7 @@ const App = () => (
 );
 
 export default App;
+
+
+// <ProtectedRoute path='/photos/:photoId' component={PhotoShowContainer} />
+// <ProtectedRoute path='/users/:userId' component={UserShowContainer} />
