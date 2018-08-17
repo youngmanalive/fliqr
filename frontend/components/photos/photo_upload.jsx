@@ -96,7 +96,7 @@ class PhotoUpload extends React.Component {
 
 
   render() {
-    return (this.state.photoUrl) ? (
+    return (this.state.photoFile) ? (
       this.uploadForm()
     ) : (
       this.photoSelect()
