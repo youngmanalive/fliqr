@@ -21,7 +21,7 @@ Once logged in, members can access the feed page. Photos from users across the a
 ### Photo Viewing
 ![Photo Show](app/assets/images/readme_images/photo_show.png)
 
-The photo view page allow a member to view a specific photo. The footer will show the photographer's name along with the photo's information. If the photo belongs to the current user, a link to delete the photo will be rendered.
+The photo view page allows a member to view a specific photo. The footer will show the photographer's name along with the photo's information. If the photo belongs to the current user, a link to delete the photo will be rendered.
 
 ### Photo Uploading
 ![Photo Selection](app/assets/images/readme_images/upload_select.png)
