@@ -30,7 +30,7 @@ For uploading, a user is first taken to an initial upload page for file selectio
 
 ```js
 render() {
-  return (this.state.photoUrl) ? (
+  return (this.state.photoFile) ? (
     this.uploadForm()
   ) : (
     this.photoSelect()
