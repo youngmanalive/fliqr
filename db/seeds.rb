@@ -20,53 +20,38 @@ User.create(
 
 ## Seed Accounts
 fnames = [
-  'Dude',
-  'Walter',
-  'Donny',
-  'Jesus',
-  'Anton',
-  'Carla',
-  'Whoopi',
-  'Ada',
-  'Meryl',
-  'Frido'
+  'Valeria',
+  'Norma',
+  'Takaondwa',
+  'Kohaku',
+  'Sandra',
+  'Joseph'
 ]
 lnames = [
-  'Lebowski',
-  'Sobchak',
-  'Keraboatsos',
-  'Quintana',
-  'Chigurh',
-  'Moss',
-  'Goldberg',
-  'Lovelace',
-  'Streep',
-  'Kahlo'
+  'Gideon',
+  'Yolonda',
+  'Mavuto',
+  'Yoshi',
+  'Willard',
+  'Ellington'
 ]
 emails = [
-  'the_dude@abides.com',
-  'walter@veteran.com',
-  'donald@bowling.com',
-  'bowlmaster@jesus.org',
-  'anton@friendo.com',
-  'carlajean@hotmail.com',
-  'whoopi@notreal.com',
-  'brilliant@babe.com',
-  'streep@amazing.com',
-  'frido@kahlo.net'
+  'valgid@yahoo.com',
+  'yoyoland@hotmail.com',
+  'takondwa@mavuto.com',
+  'k.yoshi@email.com',
+  'sandraw@aol.com',
+  'ellingjoe@gmail.com'
 ]
 usernames = [
-  'the_dude',
-  'walter67',
-  'shutupdonny',
-  'jesusquin',
-  'friendo',
-  'carla_jean',
-  'whoopi_gold',
-  'smarterthanyou',
-  'streepstreet',
-  'art4lyfe'
+  'vgideon25',
+  'yoyoland',
+  'mavuto999',
+  'koyoshi',
+  'willardpics',
+  'gojoe'
 ]
+
 password = 'starwars'
 
 fnames.length.times do |i|
@@ -82,6 +67,67 @@ end
 
 ## Photo Seeds
 
+photos_info = [
+  ['Junlge Steps', 'Charlie leading the way down'],
+  ['Treats?', 'Can\'t say no to this face!'],
+  ['Perchin', 'Hubby and wife lookin real fly'],
+  ['Gold', ''],
+  ['That Way!', 'Look over there, do you see it?'],
+  ['Snowy Remnants', 'Twas a brisk morning.'],
+  ['These Two', ''],
+  ['A Friendly Face', 'Levi posed for a perfect shot during our walk'],
+  ['Wrapped Up', 'I don\'t think she appreciated this'],
+  ['Ears Up!', ''],
+  ['Globe Life', 'It really is a small world'],
+  ['Who\'s There?', 'A quick pit stop to rest'],
+  ['Break Through', ''],
+  ['The Life', 'We will return here someday'],
+  ['Curve', ''],
+  ['Picture Perfect', 'Love how this one turned out'],
+  ['Nailed It', ''],
+  ['Gray Way', ''],
+  ['Classic', 'Not the tallest building in SF anymore! :('],
+  ['Glow', ''],
+  ['We Up High', ''],
+  ['Point Taken', ''],
+  ['Lakeside', 'Will live here someday'],
+  ['Above', 'Almost fell out of the chopper taking this'],
+  ['Still', 'We sat here for a long time. Breath taking'],
+  ['Growth', 'Newly planted!!'],
+  ['Fall', ''],
+  ['Sup Bro?!', ''],
+  ['Road Road', ''],
+  ['Let\'s Do This!', ''],
+  ['Van Lyfe', 'Killing the game!'],
+  ['Pollen', 'What you lookin at?!'],
+  ['Corgi', 'This guy was rad. New bestie!'],
+  ['Dipped out', 'Down she went'],
+  ['We Out Here', ''],
+  ['Calm Blue', ''],
+  ['Go Get It!', 'He had a blast today. Sleeping good tonight!'],
+  ['Climb', ''],
+  ['That View Though', ''],
+  ['Not Fake', ''],
+  ['Field Freinds', ''],
+  ['Family', ''],
+  ['Stand Off', 'We both stood there, frozen, for hours.'],
+  ['The Light', ''],
+  ['Swirl', ''],
+  ['Sparkles', ''],
+  ['Eees Cold', ''],
+  ['Underworld', ''],
+  ['The Beans', 'Bow down to the bean'],
+  ['Lines', ''],
+  ['Curious', ''],
+  ['Those Colors', ''],
+  ['Abstraction', ''],
+  ['Bright', ''],
+  ['Away We Go!'],
+  ['Why You So Agro?', 'Whoo, Me?!'],
+  ['All Eyes On Me!', ''],
+  ['World Famous', '']
+]
+
 ## Local Path
 # path = '/Users/nate/Desktop/fliqr_photos/'
 
@@ -90,11 +136,13 @@ path = 'app/assets/images/seeds/'
 
 user_ids = User.all.pluck(:id)
 
-34.times do |i|
-  pic = Photo.new(img_title: 'my photo', user_id: user_ids.sample)
+58.times do |i|
+  pic = Photo.new(
+    img_title: photos_info[i][0],
+    img_description: photos_info[i][1],
+    user_id: user_ids.sample
+  )
   photofile = File.open(path + "seed#{i+1}.jpeg")
   pic.file.attach(io: photofile, filename: "seed#{i+1}.jpeg")
   pic.save!
 end
-
-## Comment Seeds
