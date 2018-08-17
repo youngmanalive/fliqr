@@ -1,12 +1,12 @@
-
-
 [class^='navbar-main-'] {
   display: flex;
-  background-color: rgba(0, 0, 0, .8);
   align-items: center;
+  z-index: 1;
 }
 
 .navbar-main-splash {
+  background-color: rgba(0, 0, 0, .70);
+
   height: 64px;
   padding-left: 23px;
   padding-right: 23px;
@@ -14,6 +14,7 @@
 }
 
 .navbar-main-user {
+  background-color: rgba(0, 0, 0, .85);
   height: 50px;
   padding-left: 11%;
   padding-right: 11%;
@@ -85,7 +86,6 @@
 .navbar-user-links {
   display: flex;
   justify-content: flex-start;
-
   margin-left: 20px;
   margin-right: auto;
 
@@ -107,4 +107,16 @@
     border-radius: 2px;
   }
 
+}
+
+@media (max-width: 815px) {
+  .navbar-main-user {
+    padding-left: 2%;
+    padding-right: 2%;
+    position: fixed;
+    width: 96%;
+  }
+  .navbar-user-links {
+    margin-left: 10px;
+  }
 }

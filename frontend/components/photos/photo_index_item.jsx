@@ -1,13 +1,15 @@
 import React from 'react';
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 const PhotoIndexItem = ({ photo }) => (
   <li className='photo-container'>
-    <div className='info-container'>
-      <p className='title'>{photo.img_title}</p>
-      <p className='username'>{photo.username}</p>
-    </div>
-    <a href='#' className='photo'><img src={photo.photoUrl}/></a>
+    <Link to={`/photos/${photo.id}`}>
+      <div className='info-container'>
+        <p className='title'>{photo.img_title}</p>
+        <p className='username'>by {photo.fname} {photo.lname}</p>
+      </div>
+      <img src={photo.photoUrl}/>
+    </Link>
   </li>
 );
 
@@ -17,3 +19,5 @@ export default PhotoIndexItem;
 //   <p>{photo.img_title}</p>
 //   <p>by <strong>{photo.username}</strong></p>
 // </div>
+
+// <Link to={`/photos/${photo.id}`}></Link>

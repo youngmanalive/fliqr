@@ -2,12 +2,12 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
-import SessionModalContainer from './modals/session_modal_container';
 import NavBarContainer from './nav_bar/nav_bar_container';
-import SplashWelcomeContainer from './splash/splash_welcome_container';
-import Home from './home/home';
+import PhotoShowContainer from './photos/photo_show_container';
 import PhotoUploadContainer from './photos/photo_upload_container';
-
+import SessionModalContainer from './modals/session_modal_container';
+import SplashWelcomeContainer from './splash/splash_welcome_container';
+import PhotoIndexContainer from './photos/photo_index_container';
 
 const App = () => (
   <div className="app">
@@ -15,9 +15,11 @@ const App = () => (
     <NavBarContainer />
 
     <Switch>
-      <ProtectedRoute path='/home' component={Home} />
+      <ProtectedRoute path='/explore' component={PhotoIndexContainer} />
       <ProtectedRoute path='/upload' component={PhotoUploadContainer} />
-      <AuthRoute path="/" component={SplashWelcomeContainer} />
+      <ProtectedRoute path='/photos/:photoId' component={PhotoShowContainer} />
+      <AuthRoute exact path="/" component={SplashWelcomeContainer} />
+      <Redirect to="/" />
     </Switch>
   </div>
 );
@@ -25,5 +27,4 @@ const App = () => (
 export default App;
 
 
-// <ProtectedRoute path='/photos/:photoId' component={PhotoShowContainer} />
 // <ProtectedRoute path='/users/:userId' component={UserShowContainer} />

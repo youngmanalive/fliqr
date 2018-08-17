@@ -8,9 +8,8 @@ const userNav = (currentUser, logout) => (
   <div className='navbar-main-user'>
     {logo}
     <div className='navbar-user-links'>
-      <Link to='/home' >Explore</Link>
-      <a href='#'>My Photos</a>
-      <a href='#'>Albums</a>
+      <a href='#'>You</a>
+      <Link to='/explore' >Explore</Link>
     </div>
     <div className='navbar-user-info'>
       <Link to='/upload' className='navbar-upload-icon' />

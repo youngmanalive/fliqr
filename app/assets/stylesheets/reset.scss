@@ -1,5 +1,5 @@
 html, body, h1, h2, h3, h4, h5, h6, p,
-div, span, button, a, ul, li, input {
+div, span, button, a, ul, li, input, textarea {
   margin: 0;
   border: 0;
   padding: 0;
@@ -14,4 +14,6 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-input:focus, button:focus {outline:0;}
+input:focus, button:focus, textarea {
+  outline:0;
+}

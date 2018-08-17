@@ -43,7 +43,7 @@ class SessionModal extends React.Component {
 
 
   render() {
-    if (this.props.status === 'closed') return <div/>;
+    if (this.props.status === 'closed') return null;
 
     return (
       <div className='modal-background' onClick={this.props.close}>

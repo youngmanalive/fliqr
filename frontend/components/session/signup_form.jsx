@@ -22,7 +22,7 @@ class SignupForm extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
     this.props.signup(this.state)
-      .then(() => this.props.history.push('/home'));
+      .then(() => this.props.history.push('/explore'));
   }
 
   renderErrors() {
@@ -66,7 +66,7 @@ class SignupForm extends React.Component {
             placeholder='Email'/>
 
           <input
-            type='text'
+            type='password'
             value={this.state.password}
             onChange={this.update('password')}
             placeholder='Password'/>

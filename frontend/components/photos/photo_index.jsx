@@ -6,13 +6,31 @@ class PhotoIndex extends React.Component {
     this.props.fetchAllPhotos();
   }
 
+  shuffle(array) {
+    const shuffled = array.slice();
+    let current = shuffled.length, temp, random;
+
+    while (0 !== current) {
+      random = Math.floor(Math.random() * current);
+      current -= 1;
+      temp = shuffled[current];
+      shuffled[current] = shuffled[random];
+      shuffled[random] = temp;
+    }
+
+    return shuffled;
+  }
+
   render() {
     return (
-      <ul className='photo-index'>
-        {this.props.photos.map(photo => (
-          <PhotoIndexItem key={photo.id} photo={photo} />
-        ))}
-      </ul>
+      <div className='explore-page'>
+        <h1>Explore</h1>
+        <ul className='photo-index'>
+          {this.shuffle(this.props.photos).map(photo => (
+            <PhotoIndexItem key={photo.id} photo={photo} />
+          ))}
+        </ul>
+      </div>
     );
   }
 }

@@ -79,7 +79,6 @@ fnames.length.times do |i|
   )
 end
 
-user_ids = User.all.pluck(:id)
 
 ## Photo Seeds
 
@@ -88,6 +87,8 @@ user_ids = User.all.pluck(:id)
 
 ## Asset path
 path = 'app/assets/images/seeds/'
+
+user_ids = User.all.pluck(:id)
 
 34.times do |i|
   pic = Photo.new(img_title: 'my photo', user_id: user_ids.sample)

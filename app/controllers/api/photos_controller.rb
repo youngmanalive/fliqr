@@ -11,7 +11,8 @@ class Api::PhotosController < ApplicationController
   end
 
   def index
-    @photos = Photo.all
+    id = params[:user_id]
+    @photos = id ? Photo.where(user_id: id) : Photo.all
     render :index
   end
 
