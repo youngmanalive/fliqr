@@ -1,5 +1,9 @@
 import React from 'react';
 
 class UserProfile extends React.Component {
-  constructor() {}
+  componentDidMount() {
+    this.props.fetchUser(this.props.match.params.userId);
+  }
+
+
 }
