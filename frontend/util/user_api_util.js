@@ -1,1 +1,3 @@
-export const fetchUser = id => {};
+export const fetchUser = id => {
+  $.ajax()
+};

@@ -10,6 +10,9 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx', '*']
   },
+  watchOptions: {
+    poll: true
+  },
   module: {
      rules: [
        {
