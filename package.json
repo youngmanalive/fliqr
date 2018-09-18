@@ -21,11 +21,12 @@
     "redux": "^4.0.0",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
-    "webpack": "^4.16.5"
+    "webpack": "^4.19.1",
+    "webpack-cli": "^3.1.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch --mode=development",
+    "start": "webpack --watch --progress --mode=development",
     "postinstall": "webpack"
   },
   "engines": {
@@ -43,7 +44,5 @@
     "url": "https://github.com/youngmanalive/fliqr/issues"
   },
   "homepage": "https://github.com/youngmanalive/fliqr#readme",
-  "devDependencies": {
-    "webpack-cli": "^3.1.0"
-  }
+  "devDependencies": {}
 }
