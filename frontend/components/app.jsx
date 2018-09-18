@@ -28,3 +28,5 @@ export default App;
 
 
 // <ProtectedRoute path='/users/:userId' component={UserShowContainer} />
+// <ProtectedRoute path='/users/:userId/albums' component={AlbumIndexContainer} />
+// <ProtectedRoute path='/albums/:albumId' component={AlbumIndexContainer} />
