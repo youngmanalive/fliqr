@@ -4,11 +4,12 @@ import SplashSessionContainer from '../splash/splash_session_container';
 
 const logo = <Link to='/' className='navbar-logo'>fliqr</Link>;
 
+
 const userNav = (currentUser, logout) => (
   <div className='navbar-main-user'>
     {logo}
     <div className='navbar-user-links'>
-      <a href='#'>You</a>
+      <Link to={`/users/${currentUser.id}`}>You</Link>
       <Link to='/explore' >Explore</Link>
     </div>
     <div className='navbar-user-info'>

@@ -10,8 +10,8 @@ const receivePhoto = photo => ({ type: RECEIVE_PHOTO, photo });
 const removePhoto = photoId => ({ type: REMOVE_PHOTO, photoId });
 const receiveErrors = errors => ({ type: RECEIVE_PHOTO_ERRORS, errors });
 
-export const fetchAllPhotos = () => dispatch => (
-  PhotoApiUtil.fetchAllPhotos().then(
+export const fetchAllPhotos = id => dispatch => (
+  PhotoApiUtil.fetchAllPhotos(id).then(
     photos => dispatch(receiveAllPhotos(photos)),
     err => dispatch(receiveErrors(err.responseJSON))
   )

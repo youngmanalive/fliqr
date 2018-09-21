@@ -12,9 +12,10 @@ class Api::UsersController < ApplicationController
 
   # def index
   # end
-  #
-  # def show
-  # end
+
+  def show
+    @user = User.find(params[:id])
+  end
 
   # def update
   # end

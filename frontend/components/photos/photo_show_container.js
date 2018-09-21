@@ -3,8 +3,8 @@ import { fetchPhoto, deletePhoto } from '../../actions/photo_actions';
 import PhotoShow from './photo_show';
 
 const msp = (state, ownProps) => ({
-    currentUserId: state.session.currentUserId,
-    photo: state.entities.photos[ownProps.match.params.photoId]
+  currentUserId: state.session.currentUserId,
+  photo: state.entities.photos[ownProps.match.params.photoId]
 });
 
 const mdp = dispatch => ({

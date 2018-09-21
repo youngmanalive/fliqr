@@ -3,6 +3,7 @@ import {
   RECEIVE_PHOTO,
   REMOVE_PHOTO,
 } from '../actions/photo_actions';
+import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
 
 export default (state = {}, action) => {
@@ -16,6 +17,8 @@ export default (state = {}, action) => {
       const newState = merge({}, state);
       delete newState[action.photoId];
       return newState;
+    case LOGOUT_CURRENT_USER:
+      return {};
     default:
       return state;
   }
