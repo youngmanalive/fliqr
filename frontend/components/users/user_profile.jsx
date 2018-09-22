@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link, NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { ProtectedRoute } from '../../util/route_util';
 import ProfileHeader from './profile_components/profile_header';
 import ProfileStream from './profile_components/profile_stream';
@@ -12,66 +12,50 @@ class UserProfile extends React.Component {
   }
 
   componentDidMount() {
-    console.log("comp did mount");
     this.loadUserData();
+    window.scrollTo(0, 0);
   }
 
   componentDidUpdate(prevProps) {
-    console.log("XXXXXXXXXXX", prevProps.profileUserId, this.props.profileUserId);
     if (prevProps.profileUserId !== this.props.profileUserId) {
-      this.setState({ loading: true }, () => {
-        this.loadUserData();
-      });
+      this.setState({ loading: true }, () => this.loadUserData());
+      window.scrollTo(0, 0);
     }
   }
 
   loadUserData() {
-    console.log("loading user data");
     const userId = this.props.match.params.userId;
-    this.props.fetchUser(userId).then(() => console.log("user loaded"));
-    this.props.fetchPhotos(userId)
-      .then(() => {
-        console.log("photos loaded");
-        return this.setState({
-          loading: false,
-        });
-      });
+    this.props.fetchUser(userId);
+    this.props.fetchPhotos(userId).then(() => {
+      this.setState({ loading: false });
+    });
   }
 
   render() {
     const url = this.props.match.url;
-    const loading = <h1 className='user-profile'>Loading...</h1>;
-
-    console.log(this.props.dataReady);
-    console.log(this.prevProps)
+    const photoCount = this.props.profilePhotos.length;
 
     if (this.state.loading || !this.props.dataReady) {
-      console.log("loading");
-      return loading;
-    } 
-    // else if (!this.props.dataReady) {
-    //   this.loadUserData();
-    //   return loading;
-    // }
-
-    console.log("photos: ", this.props.profilePhotos);
+      return <h1 className='user-profile'>Loading...</h1>;
+    }
 
     console.log("rendering user profile...");
 
     return (
       <div className='user-profile'>
 
-        <ProfileHeader user={this.props.profileUser} />
+        <ProfileHeader user={this.props.profileUser} photoCount={photoCount} />
 
         <div className='user-profile-links'>
-          <NavLink exact to={`${url}`}>Photostream</NavLink>
-          <NavLink exact to={`${url}/albums`}>Albums</NavLink>
+          <NavLink exact to={`${url}`} >Photostream</NavLink>
+          <NavLink exact to={`${url}/albums`} >Albums</NavLink>
         </div>
 
         <ProtectedRoute path={`${url}/albums`} component={AlbumIndex} />
         <ProtectedRoute exact path={`${url}`} component={
-          () => <ProfileStream photos={this.props.profilePhotos} /> } />
-
+            () => <ProfileStream 
+                    photos={this.props.profilePhotos} 
+                    currentUserId={this.props.currentUser.id} /> } />
       </div>
     );
   }
