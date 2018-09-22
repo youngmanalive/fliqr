@@ -6,7 +6,7 @@ class Api::PhotosController < ApplicationController
     if @photo.save
       render :show
     else
-      render json: @photos.errors.full_messages, status: 422
+      render json: ['Error!'], status: 422
     end
   end
 
