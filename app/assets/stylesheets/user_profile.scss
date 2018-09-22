@@ -6,7 +6,155 @@
   min-height: 95vh;
 }
 
+// Header
 .user-profile-header {
-  background: white;
+  display: flex;
+  justify-content: space-between;
+  background: lightgrey;
   height: 250px;
+  padding-left: 130px;
+  padding-right: 130px;
+
+  .user-profile-header-main {
+    display: flex;
+    margin-top: auto;
+    padding-bottom: 20px;
+    
+    .user-profile-header-avatar {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background-image: url('https://image.flaticon.com/icons/svg/235/235821.svg');
+      background-size: cover;
+    }
+
+    .user-profile-header-info {
+      margin-top: auto;
+      padding: 0 0 9px 15px;
+    }
+
+    .user-profile-header-name {
+      font-size: 32px;
+      padding-bottom: 10px;
+    }
+  }
+  
+  .user-profile-header-data {
+    margin-top: auto;
+    padding-bottom: 30px;
+
+    .photo-count {
+      padding-right: 15px;
+    }
+  }
+}
+
+// Links
+.user-profile-links {
+  height: 50px;
+  display: flex;
+  padding-left: 130px;
+  padding-right: 130px;
+  border-bottom: 1px solid #d3d3d3;
+  align-items: center;
+  box-sizing: border-box;
+  position: relative;
+  
+  a {
+    margin: 0 5px;
+    padding: 12px 15px;
+    border-bottom: 3px solid transparent;
+    border-top: 3px solid transparent;
+    transition: .3s;
+  }
+  a:hover, .active {
+    border-bottom: 3px solid #0093D9;
+  }
+}
+
+// Photostream
+.user-profile-photostream {
+  background: #F3F5F6;
+  padding: 20px 0 0 0;
+  height: 100%;
+  width: 100%;
+  padding-bottom: 30px;
+  min-height: 91vh;
+}
+
+.user-profile-photostream .photo-index {
+  list-style: none;
+  margin: 0 128px;
+  line-height: 0;
+  column-count: 3;
+  column-gap: 0;
+}
+
+.user-profile-photostream .photo-container {
+  position: relative;
+  margin: 0 2px 4px 2px;
+  // transition: .1s;
+
+  img {
+    width: 100%;
+    height: auto;
+  }
+
+  .info-container {
+    opacity: 0;
+  }
+}
+
+.user-profile-photostream .photo-container:hover {
+  .info-container {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    box-sizing: border-box;
+    padding: 9px;
+    padding-top: 30px;
+    opacity: 1;
+    display: block;
+    transition: opacity .2s;
+    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5));
+
+    p {
+      margin: 10px 0;
+      text-shadow: 0 0 3px black;
+    }
+    .title {
+      font-size: 14px;
+      font-weight: 800;
+      color: white;
+      padding: 10px 0;
+    }
+    .username {
+      font-size: 11px;
+      color: lightgrey;
+    }
+    // .username:hover {
+    //   transition: color .2s;
+    //   color: white;
+    // }
+  }
+}
+
+.user-profile-no-photos {
+  font-size: 30px;
+  text-align: center;
+  padding: 50px;
+  background-color: #F3F5F6;
+}
+
+// Album Index
+.user-profile-album-index {
+  background: #F3F5F6;
+  padding: 20px 0 0 0;
+  height: 100%;
+  width: 100%;
+  min-height: 91vh;
+
+  h1 {
+    margin: 0 128px;
+  }
 }

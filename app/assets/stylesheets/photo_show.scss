@@ -10,15 +10,16 @@
   width: auto;
   margin: auto;
 
-  a {
+  span {
     position: fixed;
     margin: 15px;
     color: white;
     font-size: 14px;
   }
 
-  a:hover {
+  span:hover {
     text-decoration: underline;
+    cursor: pointer;
   }
 }
 

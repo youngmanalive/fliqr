@@ -16,8 +16,8 @@
 .navbar-main-user {
   background-color: rgba(0, 0, 0, .85);
   height: 50px;
-  padding-left: 11%;
-  padding-right: 11%;
+  padding-left: 12%;
+  padding-right: 12%;
   position: fixed;
   width: 78%;
 
@@ -45,14 +45,14 @@
   justify-content: center;
 }
 
-.navbar-session-signup, .navbar-session-logout {
+.navbar-session-signup {
   background: white;
   padding: 6px 20px;
   border-radius: 3px;
   transition: 0.3s;
 }
 
-.navbar-session-signup:hover, .navbar-session-logout:hover {
+.navbar-session-signup:hover {
   color: grey;
 }
 
@@ -62,25 +62,85 @@
   align-items: center;
 }
 
+.navbar-upload-icon, .navbar-info-icon {
+  background-color: inherit;
+  display: inline-block;
+  transition: .2s;
+  margin-right: 20px;
+}
+
 .navbar-upload-icon {
   background-image: image-url('upload-icon.png');
   background-size: cover;
-  background-color: inherit;
-  display: inline-block;
   width: 30px;
   height: 20px;
-  transition: .2s;
 }
 
-.navbar-upload-icon:hover {
+.navbar-info-icon {
+  background-image: image-url('info-icon.png');
+  background-size: contain;
+  width: 25px;
+  height: 25px;
+}
+
+.navbar-upload-icon:hover, .navbar-info-icon:hover {
   opacity: .75;
   cursor: pointer;
 }
 
-.navbar-user-name {
-  color: white;
-  font-size: 16px;
-  padding: 20px;
+.navbar-avatar-icon {
+  background-image: image-url('avatar-icon.svg');
+  background-color: inherit;
+  display: inline-block;
+  background-size: contain;
+  background-repeat: no-repeat;
+  margin-right: 20px;
+  width: 32px;
+  height: 32px;
+   
+  .navbar-session-dropdown-container {
+    display: none;
+  }
+}
+
+.navbar-avatar-icon:hover {
+  cursor: pointer;
+
+  .navbar-session-dropdown-container {
+    display: block;
+    border: 10px solid transparent;
+    position: relative;
+    top: 32px;
+    right: 150px;
+    min-width: 200px;
+    cursor: default;
+    
+    .navbar-session-dropdown {
+      background: #ffffff;
+      border: 1px solid #d3d3d3;
+      border-radius: 4px;
+      text-align: center;
+      padding: 10px;
+    }
+
+    .navbar-user-name {
+      display: block;
+      color: #000000;
+      font-size: 24px;
+      padding: 5px;
+    }
+
+    .navbar-session-logout {
+      display: inline;
+      color: #006dac;
+      font-size: 14px;
+      margin: 10px;
+    }
+
+    .navbar-session-logout:hover {
+      text-decoration: underline;
+    }
+  }
 }
 
 .navbar-user-links {
