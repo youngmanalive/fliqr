@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 class PhotoShow extends React.Component {
   componentDidMount() {
     this.props.fetchPhoto(this.props.match.params.photoId);
+    window.scrollTo(0, 0);
   }
 
   photoDate(date) {
@@ -41,17 +42,23 @@ class PhotoShow extends React.Component {
       );
     }
 
+    console.log(this.props.history.goBack);
+
     return (
       <div className='photo-show'>
         <div className='photo-show-box'>
-          <Link to='/explore'>Back to explore</Link>
+          <span onClick={() => this.props.history.goBack()}>&#x2190; Back</span>
           <img src={photo.photoUrl} />
         </div>
         <div className='photo-show-info-box'>
           <div className='photo-show-info'>
-            <div className='photo-show-user-avatar'></div>
+            <Link to={`/users/${photo.user_id}`}>
+              <div className='photo-show-user-avatar'></div>
+            </Link>
             <div className='photo-show-user-info'>
-              <span className='photo-show-username'>{photo.fname} {photo.lname}</span>
+              <Link to={`/users/${photo.user_id}`} className='photo-show-username'>
+                {photo.fname} {photo.lname}
+              </Link>
               <span className='photo-show-title'>{photo.img_title}</span>
               <span className='photo-show-description'>{photo.img_description}</span>
             </div>

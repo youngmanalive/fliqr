@@ -6,7 +6,7 @@ export default (state = [], action) => {
     case RECEIVE_PHOTO:
       return [];
     case RECEIVE_PHOTO_ERRORS:
-      return ['Photo title is required'];
+      return action.errors;
     default:
       return state;
   }

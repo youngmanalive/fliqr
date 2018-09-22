@@ -2,8 +2,14 @@ import React from 'react';
 import PhotoIndexItem from './photo_index_item';
 
 class PhotoIndex extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { loading: true };
+  }
+
   componentDidMount() {
-    this.props.fetchAllPhotos();
+    this.props.fetchAllPhotos()
+      .then(() => this.setState({ loading: false }));
   }
 
   shuffle(array) {
@@ -22,12 +28,19 @@ class PhotoIndex extends React.Component {
   }
 
   render() {
-    return (
+    const currentUserId = this.props.currentUserId;
+
+    return (this.state.loading) ? (
+      <h1 className='explore-page'>Loading...</h1>
+    ) : (
       <div className='explore-page'>
         <h1>Explore</h1>
         <ul className='photo-index'>
-          {this.shuffle(this.props.photos).map(photo => (
-            <PhotoIndexItem key={photo.id} photo={photo} />
+          {this.props.photos.map(photo => (
+            <PhotoIndexItem 
+              key={photo.id} 
+              photo={photo} 
+              currentUserId={currentUserId} />
           ))}
         </ul>
       </div>

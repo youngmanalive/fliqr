@@ -7,7 +7,9 @@ class AlbumIndex extends React.Component {
 
   render() {
     return (
-      <h1>Albums</h1>
+      <div className='user-profile-album-index'>
+        <h1>Coming Soon!</h1>
+      </div>
     );
   }
 }
