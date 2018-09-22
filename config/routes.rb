@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resource :session, only: [:create, :destroy]
     resources :users, except: [:new, :edit]
     resources :photos, except: [:new, :edit]
+    resources :comments, except: [:new, :edit, :update]
   end
 end
