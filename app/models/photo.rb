@@ -17,6 +17,7 @@ class Photo < ApplicationRecord
   has_one_attached :file
 
   belongs_to :user
+  has_many :comments
 
   def ensure_file
     unless self.file.attached?

@@ -30,6 +30,7 @@ class User < ApplicationRecord
   after_initialize :ensure_session_token
 
   has_many :photos
+  has_many :comments
 
   attr_reader :password
 
