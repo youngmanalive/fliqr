@@ -14,6 +14,6 @@ export default (state = [], action) => {
     case RECEIVE_COMMENT_ERRORS:
       return action.errors;
     default:
-      return state
+      return state;
   }
-}
+};
