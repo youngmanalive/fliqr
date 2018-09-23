@@ -26,7 +26,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack --watch --progress --mode=development",
+    "start": "webpack --watch --mode=development",
     "postinstall": "webpack"
   },
   "engines": {
