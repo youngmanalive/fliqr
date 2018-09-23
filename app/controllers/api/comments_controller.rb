@@ -11,7 +11,7 @@ class Api::CommentsController < ApplicationController
   end
 
   def index
-    @comments = Comment.where(:photo_id = params[:photo_id])
+    @comments = Comment.where(photo_id: params[:photo_id])
   end
 
   def destroy
