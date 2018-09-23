@@ -1,7 +1,7 @@
 import {
   RECEIVE_ALL_PHOTOS,
   RECEIVE_PHOTO,
-  REMOVE_PHOTO,
+  REMOVE_PHOTO
 } from '../actions/photo_actions';
 import { LOGOUT_CURRENT_USER } from '../actions/session_actions';
 import merge from 'lodash/merge';
