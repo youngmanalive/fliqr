@@ -24,9 +24,9 @@ export const createComment = formData => dispatch => (
   )
 );
 
-export const deleteComment = commentId => dispatch => (
-  CommentApiUtil.deleteComment(commentId).then(
-    () => dispatch(removeComment(commentId)),
+export const deleteComment = id => dispatch => (
+  CommentApiUtil.deleteComment(id).then(
+    () => dispatch(removeComment(id)),
     err => dispatch(receiveErrors(err.responseJSON))
   )
 );
