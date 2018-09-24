@@ -3,10 +3,10 @@ import { Link } from 'react-router-dom';
 
 const CommentIndexItem = ({ comment, deleteComment, currentUserId }) => {
   if (comment === undefined) return null;
-  
+
   const author = `${comment.fname} ${comment.lname}`;
   const authorId = comment.user_id;
-  console.log(comment.id);
+ 
   let commentDeleteButton;
   if (authorId === currentUserId) {
     commentDeleteButton = (
