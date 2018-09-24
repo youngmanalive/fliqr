@@ -29,7 +29,7 @@ const CommentIndexItem = ({ comment, deleteComment, currentUserId }) => {
         <span className='comment-body'>{comment.body}</span>
       </div>
     </div>
-  )
+  );
 };
 
 export default CommentIndexItem;
