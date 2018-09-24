@@ -35,10 +35,7 @@
   object-fit: contain;
 }
 
-
-
 ////// photo show information
-
 .photo-show-info-box {
   display: flex;
   justify-content: space-between;
@@ -53,7 +50,6 @@
 
   /// column a
   .photo-show-col-a {
-    // border: 1px solid blue;
     width: 100%;
   
     .photo-show-info {
@@ -97,23 +93,19 @@
     }
 
     .photo-show-comments-container {
-      // border: 1px solid blue;
       margin-left: 30px;
       margin-top: 20px;
       li { list-style: none; }
 
       .comment-container {
-        // border: 1px solid red;
         display: flex;
         transition: .2s;
         margin-right: 35px;
         padding: 10px;
         border-radius: 3px;
-        // width: 100%;
       }
 
       .comment-info {
-        // margin: 5px;
         padding: 0 10px;
         width: 100%;
       }
@@ -128,7 +120,6 @@
       }
 
       .comment-author-container {
-        // border: 1px solid red;
         width: 100%;
         display: flex;
         justify-content: space-between;
@@ -206,13 +197,10 @@
         cursor: pointer;
       }
     }
-
   }
-
 
   /// column b
   .photo-show-col-b {
-    // border: 1px solid green;
     width: 100%;
     padding-top: 10px;
   
@@ -224,7 +212,6 @@
   
     .photo-show-stats {
       float: left;
-      // border: 1px solid black;
       margin-right: auto;
   
       .photo-show-comment-count {
@@ -235,7 +222,6 @@
   
     .photo-show-date-delete {
       text-align: end;
-      // border: 1px solid grey;
       float: right;
   
       .photo-show-upload-date {
