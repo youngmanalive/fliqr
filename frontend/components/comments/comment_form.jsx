@@ -10,7 +10,7 @@ class CommentForm extends React.Component {
   }
 
   handleUpdate(field) {
-    return e => this.setState({ [field]: e.target.value })
+    return e => this.setState({ [field]: e.target.value });
   }
 
   handleSubmit(e) {
@@ -35,7 +35,7 @@ class CommentForm extends React.Component {
           onClick={this.handleSubmit.bind(this)}>
           Comment</button>
       </div>
-    )
+    );
   }
 }
 
