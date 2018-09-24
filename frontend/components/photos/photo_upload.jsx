@@ -43,7 +43,7 @@ class PhotoUpload extends React.Component {
       formData.append('photo[file]', this.state.photoFile);
     }
     this.props.createPhoto(formData)
-      .then(() => this.props.history.replace('/explore'));
+      .then(() => this.props.history.replace(`/users/${this.props.userId}`));
   }
 
   uploadForm() {
