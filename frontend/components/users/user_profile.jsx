@@ -39,8 +39,6 @@ class UserProfile extends React.Component {
       return <h1 className='user-profile'>Loading...</h1>;
     }
 
-    console.log("rendering user profile...");
-
     return (
       <div className='user-profile'>
 
