@@ -19,7 +19,7 @@ export const fetchAllComments = id => dispatch => (
 
 export const createComment = formData => dispatch => (
   CommentApiUtil.createComment(formData).then(
-    comment => dispatch(receiveComment, comment),
+    comment => dispatch(receiveComment(comment)),
     err => dispatch(receiveErrors(err.responseJSON))
   )
 );
