@@ -6,11 +6,11 @@ export const fetchAllComments = id => (
   })
 );
 
-export const createComment = formData => (
+export const createComment = comment => (
   $.ajax({
     method: 'POST',
     url: `api/comments`,
-    data: formData
+    data: { comment }
   })
 );
 
