@@ -1,7 +1,6 @@
 import React from 'react';
 
 class SplashSession extends React.Component {
-
   render() {
     return (
       <div className='navbar-session'>
