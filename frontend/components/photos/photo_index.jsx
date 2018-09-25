@@ -12,21 +12,6 @@ class PhotoIndex extends React.Component {
     setTimeout(() => this.setState({ loading: false }), 2500);
   }
 
-  // shuffle(array) {
-  //   const shuffled = array.slice();
-  //   let current = shuffled.length, temp, random;
-
-  //   while (0 !== current) {
-  //     random = Math.floor(Math.random() * current);
-  //     current -= 1;
-  //     temp = shuffled[current];
-  //     shuffled[current] = shuffled[random];
-  //     shuffled[random] = temp;
-  //   }
-
-  //   return shuffled;
-  // }
-
   loading() {
     return (this.state.loading) ? (
       <div className='loading-container'>
