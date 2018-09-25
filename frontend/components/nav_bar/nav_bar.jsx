@@ -3,27 +3,8 @@ import { Link } from 'react-router-dom';
 import SplashSessionContainer from '../splash/splash_session_container';
 
 const logo = <Link to='/' className='navbar-logo'>fliqr</Link>;
-
-
-// const userNav = (currentUser, logout) => (
-//   <div className='navbar-main-user'>
-//     {logo}
-//     <div className='navbar-user-links'>
-//       <Link to={`/users/${currentUser.id}`}>You</Link>
-//       <Link to='/explore' >Explore</Link>
-//     </div>
-//     <div className='navbar-user-info'>
-//       <Link to='/upload' className='navbar-upload-icon' />
-//       <div className='navbar-info-icon' />
-//       <h3 className='navbar-user-name'>Hello, {currentUser.fname}</h3>
-//       <button
-//         className='navbar-session-logout'
-//         onClick={() => logout()}>
-//         Log out
-//       </button>
-//     </div>
-//   </div>
-// );
+const gitHub = <a target='_blank' href='https://github.com/youngmanalive'>GitHub</a>;
+const linkedIn = <a target='_blank' href='https://www.linkedin.com/in/nathanharris-sf'>LinkedIn</a>;
 
 const userNav = (currentUser, logout) => (
   <div className='navbar-main-user'>
@@ -35,7 +16,21 @@ const userNav = (currentUser, logout) => (
 
     <div className='navbar-user-info'>
       <Link to='/upload' className='navbar-upload-icon' />
-      <div className='navbar-info-icon' />
+
+      <div className='navbar-info-icon'>
+        <div className='navbar-info-dropdown-container'>
+          <div className='navbar-info-dropdown'>
+            <p className='navbar-info-dropdown-header'>you're on fliqr!</p>
+            <p className='navbar-info-dropdown-body'>
+              This app was created using a Rails backend connected to a PostgreSQL database.
+              Photos are stored using Amazon's S3. A React/Redux architecture completes the frontend for single page functionality.
+            </p>
+            <p className='navbar-info-dropdown-footer'>
+              Check out my {gitHub} or {linkedIn}
+            </p>
+          </div>
+        </div>
+      </div>
 
       <div className='navbar-avatar-icon'>
         <div className='navbar-session-dropdown-container'>
@@ -45,11 +40,6 @@ const userNav = (currentUser, logout) => (
               onClick={() => logout()}>
               Sign Out
               </p>
-            {/* <button
-              className='navbar-session-logout'
-              onClick={() => logout()}>
-              Log out
-            </button> */}
           </div>
         </div>
       </div>
@@ -59,25 +49,15 @@ const userNav = (currentUser, logout) => (
   </div>
 );
 
-const splashNav = (signup) => (
+const splashNav = () => (
   <div className='navbar-main-splash'>
     {logo}
-    <div className='navbar-search'>
-      <form onSubmit={(e) => {
-          e.preventDefault();
-          signup();
-        }}>
-        <input
-          type='text'
-          placeholder='Search...' />
-      </form>
-    </div>
     <SplashSessionContainer />
   </div>
 );
 
 const NavBar = ({ currentUser, logout, signup }) => (
-  currentUser ? userNav(currentUser, logout) : splashNav(signup)
+  currentUser ? userNav(currentUser, logout) : splashNav()
 );
 
 
