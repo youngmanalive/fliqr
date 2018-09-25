@@ -76,22 +76,73 @@
   height: 20px;
 }
 
-.navbar-info-icon {
-  background-image: image-url('info-icon.png');
-  background-size: contain;
-  width: 25px;
-  height: 25px;
-}
-
-.navbar-upload-icon:hover, .navbar-info-icon:hover {
+.navbar-upload-icon:hover {
   opacity: .75;
   cursor: pointer;
 }
 
+.navbar-info-icon {
+  background-image: image-url('info-icon.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 25px;
+  height: 25px;
+
+  .navbar-info-dropdown-container {
+    display: none;
+  }
+}
+
+.navbar-info-icon:hover {
+  cursor: pointer;
+
+  * { cursor: default }
+
+  .navbar-info-dropdown-container {
+    display: block;
+    border: 20px solid transparent;
+    position: relative;
+    top: 18px;
+    right: 300px;
+    min-width: 350px;
+
+    .navbar-info-dropdown {
+      background-color: #ffffff;
+      border: 1px solid #d3d3d3;
+      border-radius: 4px;
+      text-align: center;
+      padding: 20px;
+    }
+
+    .navbar-info-dropdown-header {
+      font-family: 'Maven Pro', sans-serif;
+      font-size: 24px;
+      padding-bottom: 10px;
+    }
+
+    .navbar-info-dropdown-body {
+      padding-bottom: 10px;
+      text-align: justify;
+      font-size: 14px;
+    }
+
+    .navbar-info-dropdown-footer {
+      font-family: 'Maven Pro', sans-serif;
+    }
+
+    a {
+      color: blue;
+    }
+
+    a:hover {
+      text-decoration: underline;
+      cursor: pointer;
+    }
+  }
+}
+
 .navbar-avatar-icon {
   background-image: image-url('avatar-icon.svg');
-  background-color: inherit;
-  display: inline-block;
   background-size: contain;
   background-repeat: no-repeat;
   margin-right: 20px;
@@ -105,6 +156,8 @@
 
 .navbar-avatar-icon:hover {
   cursor: pointer;
+  
+  * { cursor: default }
 
   .navbar-session-dropdown-container {
     display: block;
@@ -113,7 +166,6 @@
     top: 32px;
     right: 150px;
     min-width: 200px;
-    cursor: default;
     
     .navbar-session-dropdown {
       background: #ffffff;
@@ -139,6 +191,7 @@
 
     .navbar-session-logout:hover {
       text-decoration: underline;
+      cursor: pointer;
     }
   }
 }
