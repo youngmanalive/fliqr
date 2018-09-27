@@ -9,7 +9,7 @@ class PhotoIndex extends React.Component {
 
   componentDidMount() {
     this.props.fetchAllPhotos().then(() => {
-      this.imagesLoaded(this.imageIndex).then(() => {
+      this.handleImageLoad(this.imageIndex).then(() => {
         const loader = this.imageIndex.querySelector('.loading-container');
         loader.style.opacity = '0';
         setTimeout(() => this.setState({ loading: false }), 500);
@@ -17,7 +17,7 @@ class PhotoIndex extends React.Component {
     });
   }
 
-  imagesLoaded(parent) {
+  handleImageLoad(parent) {
     const images = parent.querySelectorAll('img');
     const promises = [];
     for (let i = 0; i < images.length; i++) {
