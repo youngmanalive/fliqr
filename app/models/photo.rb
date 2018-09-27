@@ -18,6 +18,10 @@ class Photo < ApplicationRecord
 
   belongs_to :user
   has_many :comments
+  has_many :album_photos, dependent: :destroy
+  has_many :albums,
+    through: :album_photos,
+    source: :album
 
   def ensure_file
     unless self.file.attached?
