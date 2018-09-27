@@ -31,17 +31,24 @@ class UserProfile extends React.Component {
     });
   }
 
+  loading() {
+    return (
+      <div className='loading-container'>
+        <div className='lds-ellipsis'>
+          <div></div><div></div><div></div><div></div>
+        </div>
+      </div>
+    );
+  }
+
   render() {
     const url = this.props.match.url;
     const photoCount = this.props.profilePhotos.length;
 
-    if (this.state.loading || !this.props.dataReady) {
-      return <h1 className='user-profile'>Loading...</h1>;
-    }
+    if (this.state.loading || !this.props.dataReady) return this.loading();
 
     return (
       <div className='user-profile'>
-
         <ProfileHeader user={this.props.profileUser} photoCount={photoCount} />
 
         <div className='user-profile-links'>
