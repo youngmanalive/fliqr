@@ -14,4 +14,9 @@ class Album < ApplicationRecord
   validates :user_id, :album_title, presence: true
 
   belongs_to :user
+  # has_many :album_photos, dependent: :destroy
+  # has_many :photos
+    # through: :album_photos
+    # source: :photo
+    
 end
