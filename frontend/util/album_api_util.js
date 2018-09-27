@@ -1,4 +1,4 @@
-export const fetchAlbums = id => (
+export const fetchAllAlbums = id => (
   $.ajax({
     method: 'GET',
     url: `api/albums`,
