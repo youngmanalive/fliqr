@@ -8,8 +8,28 @@ class PhotoIndex extends React.Component {
   }
 
   componentDidMount() {
-    this.props.fetchAllPhotos();
-    setTimeout(() => this.setState({ loading: false }), 2500);
+    this.props.fetchAllPhotos().then(() => {
+      this.imagesLoaded(this.imageIndex).then(() => {
+        const loader = this.imageIndex.querySelector('.loading-container');
+        loader.style.opacity = '0';
+        setTimeout(() => this.setState({ loading: false }), 500);
+      });
+    });
+  }
+
+  imagesLoaded(parent) {
+    const images = parent.querySelectorAll('img');
+    const promises = [];
+    for (let i = 0; i < images.length; i++) {
+      promises.push(new Promise((resolve) => {
+        if (images[i].complete) {
+          resolve();
+        } else {
+          images[i].onload = resolve;
+        }
+      }));
+    }
+    return Promise.all(promises);
   }
 
   loading() {
@@ -26,7 +46,7 @@ class PhotoIndex extends React.Component {
     const currentUserId = this.props.currentUserId;
 
     return (
-      <div>
+      <div ref={el => { this.imageIndex = el; }}>
         {this.loading()}
         <div className='explore-page'>
           <h1>Explore</h1>
