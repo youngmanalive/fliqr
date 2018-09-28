@@ -56,10 +56,11 @@ class UserProfile extends React.Component {
           <NavLink exact to={`${url}/albums`} >Albums</NavLink>
         </div>
 
-        <ProtectedRoute path={`${url}/albums`} component={AlbumIndex} />
+        <ProtectedRoute exact path={`${url}/albums`} component={AlbumIndex} />
         <ProtectedRoute exact path={`${url}`} component={
             () => <ProfileStream 
-                    photos={this.props.profilePhotos} 
+                    photos={this.props.profilePhotos}
+                    profileUserId={this.props.profileUserId}
                     currentUserId={this.props.currentUser.id} /> } />
       </div>
     );
