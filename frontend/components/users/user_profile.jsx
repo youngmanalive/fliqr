@@ -19,16 +19,18 @@ class UserProfile extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.profileUserId !== this.props.profileUserId) {
       this.setState({ loading: true }, () => this.loadUserData());
+      console.log("we updatin");
       window.scrollTo(0, 0);
     }
   }
 
   loadUserData() {
     const userId = this.props.match.params.userId;
-    this.props.fetchUser(userId);
-    this.props.fetchPhotos(userId).then(() => {
-      this.setState({ loading: false });
-    });
+    Promise.all([
+      this.props.fetchUser(userId),
+      this.props.fetchPhotos(userId),
+      this.props.fetchAllAlbums(userId)
+    ]).then(() => this.setState({ loading: false }));
   }
 
   loading() {
@@ -44,28 +46,30 @@ class UserProfile extends React.Component {
   render() {
     const url = this.props.match.url;
     const photoCount = this.props.profilePhotos.length;
+    const dataReady = Boolean(this.props.profileUser);
 
-    if (this.state.loading || !this.props.dataReady) return this.loading();
+    if (this.state.loading || !dataReady) return this.loading();
 
     return (
       <div className='user-profile'>
         <ProfileHeader user={this.props.profileUser} photoCount={photoCount} />
-
         <div className='user-profile-links'>
           <NavLink exact to={`${url}`} >Photostream</NavLink>
           <NavLink exact to={`${url}/albums`} >Albums</NavLink>
         </div>
 
-        <ProtectedRoute exact path={`${url}/albums`} component={AlbumIndex} />
-        <ProtectedRoute exact path={`${url}`} component={
-            () => <ProfileStream 
-                    photos={this.props.profilePhotos}
-                    profileUserId={this.props.profileUserId}
-                    currentUserId={this.props.currentUser.id} /> } />
+        <ProtectedRoute exact path={`${url}/albums/:albumId`}
+          component={() => <AblumShow />}
+        />
+        <ProtectedRoute exact path={`${url}/albums`}
+          component={() => <AlbumIndex {...this.props} />}
+        />
+        <ProtectedRoute exact path={`${url}`} 
+          component={() => <ProfileStream {...this.props} />}
+        />
       </div>
     );
   }
 }
-
 
 export default UserProfile;
