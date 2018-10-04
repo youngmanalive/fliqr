@@ -2,18 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PhotoIndexItem from '../../photos/photo_index_item';
 
-const ProfileStream = ({ photos, profileUserId, currentUserId }) => {
-
-  console.log(profileUserId, currentUserId);
+const ProfileStream = ({ profilePhotos, profileUserId, currentUserId }) => {
 
   const uploadButton = (profileUserId != currentUserId) ? (null) : (
     <Link to='/upload'>Upload here</Link>
   );
 
-  if (!photos.length) {
+  if (!profilePhotos.length) {
     return (
       <div className='user-profile-no-photos'>
-        <h1>No photos here!</h1>
+        <h1>No photos!</h1>
         {uploadButton}
       </div>
     );
@@ -22,7 +20,7 @@ const ProfileStream = ({ photos, profileUserId, currentUserId }) => {
   return (
     <div className='user-profile-photostream'>
     <ul className='photo-index'>
-      {photos.map(photo => (
+      {profilePhotos.map(photo => (
         <PhotoIndexItem 
           key={photo.id} 
           photo={photo} 
