@@ -160,14 +160,58 @@
 }
 
 // Album Index
-.user-profile-album-index {
+.user-profile-album-index-container {
   background: #F3F5F6;
-  padding: 20px 0 0 0;
+  padding: 10px 0 0 0;
   height: 100%;
   width: 100%;
   min-height: 91vh;
 
-  h1 {
+  .user-profile-album-index {
     margin: 0 128px;
+  }
+
+  .album-index-header {
+    text-align: end;
+
+    a {
+      margin-right: 50px;
+      color: grey;
+    }
+  }
+
+  .album-index-list {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-start;
+    align-content: flex-start;
+    border: 1px solid red;
+  }
+
+  .album-index-item {
+    height: 240px;
+    width: 240px;
+    margin: 15px;
+    position: relative;
+    background: grey;
+  }
+
+  .album-index-item:before, .album-index-item:after {
+    content: "";
+    position: absolute;
+    height: 1px;
+    background: #AFB7BC;
+  }
+
+  .album-index-item:before {
+    right: 16px;
+    left: 16px;
+    top: -5px;
+  }
+
+  .album-index-item:after {
+    right: 8px;
+    left: 8px;
+    top: -3px;
   }
 }
