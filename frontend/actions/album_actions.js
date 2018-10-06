@@ -31,9 +31,9 @@ export const createAlbum = formData => dispatch => (
   )
 );
 
-export const updateAlbum = album => dispatch => (
-  AlbumApiUtil.updateAlbum(album).then(
-    album => dispatch(recieveAlbum(album)),
+export const updateAlbum = (album, id) => dispatch => (
+  AlbumApiUtil.updateAlbum(album, id).then(
+    () => dispatch(recieveAlbum(album)),
     err => dispatch(recieveAlbumErrors(err.responseJSON))
   )
 );
