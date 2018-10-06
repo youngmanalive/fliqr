@@ -1,3 +1,28 @@
+.user-profile-errors {
+  background: #ffffff;
+  height: calc(100vh - 50px);
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+
+  .error-message {
+    margin: 40px;
+    font-size: 24px;
+  }
+
+  a {
+    font-size: 18px;
+    background: #cecece;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  a:hover {
+    cursor: pointer;
+    color: #575757;
+  }
+}
+
 .user-profile {
   background: white;
   height: 100%;
@@ -65,14 +90,17 @@
 
 // Links
 .user-profile-links {
-  height: 50px;
+  position: sticky;
+  top: 50px;
   display: flex;
+  height: 50px;
   padding-left: 130px;
   padding-right: 130px;
+  background-color: #FFFFFF;
   border-bottom: 1px solid #d3d3d3;
   align-items: center;
   box-sizing: border-box;
-  position: relative;
+  z-index: 2;
   
   a {
     margin: 0 5px;
@@ -86,8 +114,8 @@
   }
 }
 
-// Photostream
-.user-profile-photostream {
+// Photostream and Album Show
+.user-profile-photostream, .album-show-container {
   background: #F3F5F6;
   padding: 20px 0 0 0;
   height: 100%;
@@ -96,7 +124,8 @@
   min-height: 91vh;
 }
 
-.user-profile-photostream .photo-index {
+.user-profile-photostream .photo-index,
+.album-show-container .photo-index {
   list-style: none;
   margin: 0 128px;
   line-height: 0;
@@ -104,7 +133,8 @@
   column-gap: 0;
 }
 
-.user-profile-photostream .photo-container {
+.user-profile-photostream .photo-container,
+.album-show-container .photo-container {
   position: relative;
   margin: 0 2px 4px 2px;
 
@@ -118,7 +148,8 @@
   }
 }
 
-.user-profile-photostream .photo-container:hover {
+.user-profile-photostream .photo-container:hover,
+.album-show-container .photo-container:hover {
   .info-container {
     position: absolute;
     bottom: 0;
@@ -151,6 +182,66 @@
     // }
   }
 }
+
+.album-show-header {
+  display: flex;
+  justify-content: flex-start;
+  padding-bottom: 10px;
+  margin: 0 130px;
+  
+  a { 
+    padding: 0;
+    margin-right: 30px;
+    font-weight: bold;
+    font-size: 15px;
+  }
+
+  .album-show-edit {
+    padding: 0;
+    color: #006dac;
+    font-weight: bold;
+    font-size: 15px;
+    padding-top: 1px;
+  }
+
+  .album-show-edit:hover {
+    text-decoration: underline;
+  }
+}
+
+.album-show-info {
+  background-color: grey;
+  margin-left: 130px;
+  margin-right: 130px;
+  margin-bottom: 5px;
+  text-align: center;
+  padding-bottom: 10px;
+
+  * { 
+    padding: 10px;
+    color: #FFFFFF;
+  }
+
+  .album-title { 
+    font-size: 60px;
+    font-weight: 200;
+    padding: 10px;
+  }
+
+  .album-description {
+    font-size: 24px;
+    font-family: "Georgia, serif";
+    font-style: italic;
+    font-weight: 300;
+  }
+
+  .album-username a:hover {
+    text-decoration: underline;
+  }
+
+}
+
+
 
 .user-profile-no-photos {
   font-size: 30px;
@@ -185,7 +276,8 @@
     display: flex;
     justify-content: flex-start;
     align-content: flex-start;
-    border: 1px solid red;
+    flex-wrap: wrap;
+    // border: 1px solid red;
   }
 
   .album-index-item {
@@ -215,3 +307,4 @@
     top: -3px;
   }
 }
+
