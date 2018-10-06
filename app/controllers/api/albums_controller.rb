@@ -21,7 +21,7 @@ class Api::AlbumsController < ApplicationController
   end
 
   def show
-    @album = Album.find(params[:id])
+    @album = Album.find_by_id(params[:id])
     
     if @album
       render :show
@@ -31,6 +31,18 @@ class Api::AlbumsController < ApplicationController
   end
 
   def update
+    @album = Album.find_by_id(params[:id])
+    @album.album_photos.destroy_all
+    photo_ids = JSON.parse(params[:photo_ids])
+
+    if @album.update(album_params)
+      photo_ids.each do |id|
+        AlbumPhoto.create(photo_id: id, album_id: @album.id)
+      end
+      render :show
+    else
+      render json: ['Error updating album'], status: 422
+    end
   end
   
   def destroy
