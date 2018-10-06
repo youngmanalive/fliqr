@@ -8,18 +8,17 @@ class AlbumIndex extends React.Component {
 
   render() {
     const { profileUserId, currentUserId, profileAlbums } = this.props;
+    const albumArray = Object.values(profileAlbums);
     const newAlbumButton = (profileUserId != currentUserId) ? (null) : (
-      <Link to={`/newalbum`}>New album</Link>
+      <Link to={`/organize`}>New album</Link>
     );
-
-    console.log(profileAlbums);
 
     return (
       <div className='user-profile-album-index-container'>
         <div className='user-profile-album-index'>
           <div className='album-index-header'>{newAlbumButton}</div>
           <div className='album-index-list'>
-            {profileAlbums.map(album => (
+            {albumArray.map(album => (
               <Link to={`${this.props.match.url}/albums/${album.id}`}
                 key={album.id}>
                 <div className='album-index-item'>
