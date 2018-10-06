@@ -8,8 +8,9 @@ const msp = (state, ownProps) => ({
   currentUserId: state.session.currentUserId,
   profileUserId: ownProps.match.params.userId,
   profileUser: state.entities.users[ownProps.match.params.userId],
-  profilePhotos: Object.values(state.entities.photos),
-  profileAlbums: Object.values(state.entities.albums)
+  profilePhotos: state.entities.photos,
+  profileAlbums: state.entities.albums,
+  errors: state.errors
 });
 
 const mdp = dispatch => ({
