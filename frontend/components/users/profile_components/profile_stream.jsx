@@ -4,11 +4,12 @@ import PhotoIndexItem from '../../photos/photo_index_item';
 
 const ProfileStream = ({ profilePhotos, profileUserId, currentUserId }) => {
 
+  const photos = Object.values(profilePhotos);
   const uploadButton = (profileUserId != currentUserId) ? (null) : (
     <Link to='/upload'>Upload here</Link>
   );
-
-  if (!profilePhotos.length) {
+  
+  if (!photos.length) {
     return (
       <div className='user-profile-no-photos'>
         <h1>No photos!</h1>
@@ -20,7 +21,7 @@ const ProfileStream = ({ profilePhotos, profileUserId, currentUserId }) => {
   return (
     <div className='user-profile-photostream'>
     <ul className='photo-index'>
-      {profilePhotos.map(photo => (
+      {photos.map(photo => (
         <PhotoIndexItem 
           key={photo.id} 
           photo={photo} 
