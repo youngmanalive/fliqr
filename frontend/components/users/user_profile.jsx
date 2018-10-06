@@ -1,9 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { ProtectedRoute } from '../../util/route_util';
+import { Link, NavLink } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import ProfileHeader from './profile_components/profile_header';
 import ProfileStream from './profile_components/profile_stream';
 import AlbumIndex from '../albums/album_index';
+import AlbumShow from '../albums/album_show';
 
 class UserProfile extends React.Component {
   constructor(props) {
@@ -19,7 +20,6 @@ class UserProfile extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.profileUserId !== this.props.profileUserId) {
       this.setState({ loading: true }, () => this.loadUserData());
-      console.log("we updatin");
       window.scrollTo(0, 0);
     }
   }
@@ -37,36 +37,54 @@ class UserProfile extends React.Component {
     return (
       <div className='loading-container'>
         <div className='lds-ellipsis'>
-          <div></div><div></div><div></div><div></div>
+          <div/><div/><div/><div/>
         </div>
       </div>
     );
   }
 
+  userNotFound() {
+    return (
+      <div className='user-profile-errors'>
+        <div className='error-message'>{this.props.errors.users[0]}</div>
+        <Link to={`/users/${this.props.currentUserId}`}>Close</Link>
+      </div>
+    );
+  }
+
   render() {
-    const url = this.props.match.url;
-    const photoCount = this.props.profilePhotos.length;
     const dataReady = Boolean(this.props.profileUser);
 
+    if (this.props.errors.users.length) return this.userNotFound();
     if (this.state.loading || !dataReady) return this.loading();
+
+    const url = this.props.match.url;
+
+    const profileHeader = <ProfileHeader 
+                            user={this.props.profileUser} 
+                            photoCount={this.props.profilePhotos.length} />;
+    const profileLinks = <div className='user-profile-links'>
+                           <NavLink exact to={`${url}`} >Photostream</NavLink>
+                           <NavLink exact to={`${url}/albums`} >Albums</NavLink>
+                         </div>;
+    const profileStream = <ProfileStream {...this.props} />;
+    const albumIndex = <AlbumIndex {...this.props} />;
+    const albumShow = <AlbumShow {...this.props} />;
+
+
 
     return (
       <div className='user-profile'>
-        <ProfileHeader user={this.props.profileUser} photoCount={photoCount} />
-        <div className='user-profile-links'>
-          <NavLink exact to={`${url}`} >Photostream</NavLink>
-          <NavLink exact to={`${url}/albums`} >Albums</NavLink>
-        </div>
+        <Switch>
+          <Route path={`${url}/albums/:albumId`} component={() => albumShow} />
+          <Route path={`${url}`} component={() => profileHeader} />
+        </Switch>
 
-        <ProtectedRoute exact path={`${url}/albums/:albumId`}
-          component={() => <AblumShow />}
-        />
-        <ProtectedRoute exact path={`${url}/albums`}
-          component={() => <AlbumIndex {...this.props} />}
-        />
-        <ProtectedRoute exact path={`${url}`} 
-          component={() => <ProfileStream {...this.props} />}
-        />
+        <Route exact path={`${url}`} render={() => profileLinks} />
+        <Route exact path={`${url}/albums`} render={() => profileLinks} />
+
+        <Route exact path={`${url}`} component={() => profileStream} />
+        <Route exact path={`${url}/albums`} component={() => albumIndex} />
       </div>
     );
   }
