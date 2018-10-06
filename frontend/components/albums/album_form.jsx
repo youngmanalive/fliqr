@@ -1,19 +1,45 @@
 import React from 'react';
 
-class AlbumCreate extends React.Component {
+class AlbumForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      album_title: '',
-      album_description: '',
-      photo_ids: {},
-      loading: true
+      loading: true,
+      editMode: Boolean(this.props.match.params.albumId)
+    };
+  }
+
+  newState() {
+    return {
+      album_title: '', album_description: '', photo_ids: {}, loading: false
+    };
+  }
+
+  editState() {
+    const photo_ids = {};
+    this.props.album.photoIds.forEach(id => { photo_ids[id] = id; });
+    return {
+      album_title: this.props.album.album_title,
+      album_description: this.props.album.album_description,
+      photo_ids,
+      loading: false
     };
   }
 
   componentDidMount() {
-    this.props.fetchAllPhotos(this.props.currentUserId)
-      .then(this.setState({ loading: false }));
+    if (this.state.editMode) {
+      Promise.all([
+        this.props.fetchAllPhotos(this.props.currentUserId),
+        this.props.fetchAlbum(this.props.match.params.albumId)
+      ]).then(() => {
+        this.setState(this.editState());
+        this.title.value = this.props.album.album_title;
+        this.description.value = this.props.album.album_description;
+      });
+    } else {
+      this.props.fetchAllPhotos(this.props.currentUserId)
+        .then(() => this.setState(this.newState()));
+    }
   }
 
   clearSelection() {
@@ -41,15 +67,9 @@ class AlbumCreate extends React.Component {
     return e => this.setState({ [field]: e.target.value });
   }
 
-  handleSelect(e, id) {
+  handleSelect(id) {
     const photo_ids = this.state.photo_ids;
-    if (photo_ids[id]) {
-      delete photo_ids[id];
-      e.currentTarget.style.border = '3px solid transparent';
-    } else {
-      photo_ids[id] = id;
-      e.currentTarget.style.border = '3px solid red';
-    }
+    if (photo_ids[id]) { delete photo_ids[id]; } else { photo_ids[id] = id; }
     this.setState({ photo_ids });
   }
 
@@ -61,11 +81,18 @@ class AlbumCreate extends React.Component {
     formData.append('photo_ids', JSON.stringify(
       Object.values(this.state.photo_ids)
     ));
-
-    this.props.createAlbum(formData)
-      .then(() => this.props.history.push(
-        `/users/${this.props.currentUserId}/albums`
-      ));
+    
+    if (this.state.editMode) {
+      this.props.updateAlbum(formData, this.props.match.params.albumId)
+        .then(() => this.props.history.push(
+          `/users/${this.props.currentUserId}/albums`
+        ));
+    } else {
+      this.props.createAlbum(formData)
+        .then(() => this.props.history.push(
+          `/users/${this.props.currentUserId}/albums`
+        ));
+    }
   }
 
   loading() {
@@ -79,15 +106,22 @@ class AlbumCreate extends React.Component {
   }
 
   render() {
+    if (this.props.match.params.albumId && this.props.album === undefined) {
+      return <div>OH MY GOD</div>;
+    }
     if (this.state.loading) return this.loading();
 
     const { photos } = this.props;
+    const selectedStyle = id => (this.state.photo_ids[id]) ?
+      ({ border: '3px solid red' }) : ({ border: '3px solid transparent' });
+      
     const submitReady = !this.state.album_title || !Object.keys(this.state.photo_ids).length;
     const revertChanges = (!this.state.album_title && !Object.keys(this.state.photo_ids).length) ?
       (null) : (<span 
                   onClick={this.clearSelection.bind(this)} 
                   className='album-create-clear'>Revert changes
                 </span>);
+
 
     return (
     <div className='album-create-container'>
@@ -117,10 +151,10 @@ class AlbumCreate extends React.Component {
       <div className='album-create-photo-select-container'>
         <div className='album-create-photo-select'>
           {photos.map(photo => (
-            <div 
+            <div style={selectedStyle(photo.id)}
               key={photo.id}
               className='album-create-photo-item' 
-              onClick={(e) => this.handleSelect(e, photo.id)}>
+              onClick={() => this.handleSelect(photo.id)}>
               <img src={photo.photoUrl} />
             </div>
           ))}
@@ -131,4 +165,4 @@ class AlbumCreate extends React.Component {
   }
 }
 
-export default AlbumCreate;
+export default AlbumForm;
