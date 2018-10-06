@@ -23,11 +23,13 @@ export const createAlbum = formData => (
   })
 );
 
-export const updateAlbum = album => (
+export const updateAlbum = (album, id) => (
   $.ajax({
     method: 'PATCH',
-    url: `api/albums/${album.id}`,
-    data: { album }
+    url: `api/albums/${id}`,
+    data: album,
+    processData: false,
+    contentType: false
   })
 );
 
