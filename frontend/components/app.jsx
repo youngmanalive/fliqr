@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
-import AlbumCreateContainer from './albums/album_create_container';
+import AlbumFormContainer from './albums/album_form_container';
 import NavBarContainer from './nav_bar/nav_bar_container';
 import PhotoIndexContainer from './photos/photo_index_container';
 import PhotoShowContainer from './photos/photo_show_container';
@@ -21,7 +21,8 @@ const App = () => (
       <ProtectedRoute path='/upload' component={PhotoUploadContainer} />
       <ProtectedRoute path='/photos/:photoId' component={PhotoShowContainer} />
       <ProtectedRoute path='/users/:userId' component={UserProfileContainer} />
-      <ProtectedRoute path='/newalbum' component={AlbumCreateContainer} />
+      <ProtectedRoute path='/organize/:albumId' component={AlbumFormContainer} />
+      <ProtectedRoute path='/organize' component={AlbumFormContainer} />
       <AuthRoute exact path='/' component={SplashWelcomeContainer} />
       <Redirect to='/' />
     </Switch>
