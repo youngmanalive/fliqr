@@ -1,0 +1,125 @@
+.album-form-container {
+  margin-top: 50px;
+  height: calc(100vh - 50px);
+  min-height: 400px;
+  width: 100%;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+}
+
+.album-form {
+  min-width: 250px;
+  max-width: 250px;
+  min-height: 300px;
+
+  form {
+    box-sizing: border-box;
+    padding: 10px;
+    height: 100%;
+
+    input, textarea {
+      background-color: #FFFED7;
+      margin: 5px;
+      padding: 3px;
+      border: 1px solid grey;
+      width: 96%;
+      box-sizing: border-box;
+    }
+    
+    input {
+      font-size: 20px;
+      font-weight: 600;
+    }
+    
+    textarea {
+      height: 70%;
+      min-height: 100px;
+      resize: none;
+    }
+
+    button {
+      font-size: 12px;
+      font-weight: bold;
+      padding: 5px 8px;
+      border-radius: 4px; 
+      margin: 5px;
+    }
+
+    button:hover {
+      cursor: pointer;
+    }
+
+    .album-form-submit {
+      background-color: #0063DC;
+      color: #fff;
+    }
+
+    .album-form-submit:hover {
+      background-color: #0257be
+    }
+
+    .album-form-submit:disabled {
+      background-color: #ddd;
+      color: #666;
+      cursor: default;
+    }
+
+    .album-form-cancel {
+      background-color: #ddd;
+      color: #666;
+    }
+
+    .album-form-cancel:hover {
+      background-color: #c9c9c9
+    }
+
+    .album-form-clear {
+      font-size: 11px;
+      color: #868686;
+      margin-left: 5px;
+    }
+
+    .album-form-clear:hover {
+      color: #0063DC;
+      cursor: pointer;
+    }
+  }
+}
+
+.album-form-photo-select-container {
+  height: auto;
+  width: 100%;
+  padding: 8px 8px 8px 0;
+  box-sizing: border-box;
+}
+
+.album-form-photo-select {
+  background-color: #F0F0F0;
+  border: 1px solid grey;
+  overflow-y: auto;
+  height: 100%;
+
+  display: flex;
+  justify-content: flex-start;
+  align-content: flex-start;
+  flex-wrap: wrap;
+
+  .album-form-photo-item {
+    height: 75px;
+    width: 75px;
+    margin: 10px;
+    border: 3px solid transparent;
+    
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+  }
+
+  .album-form-photo-item:hover {
+    cursor: pointer;
+  }
+
+}

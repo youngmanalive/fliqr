@@ -1,4 +1,7 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+import isEqual from 'lodash/isEqual';
+import merge from 'lodash/merge';
 
 class AlbumForm extends React.Component {
   constructor(props) {
@@ -7,11 +10,15 @@ class AlbumForm extends React.Component {
       loading: true,
       editMode: Boolean(this.props.match.params.albumId)
     };
+    this.initialState = null;
   }
 
   newState() {
     return {
-      album_title: '', album_description: '', photo_ids: {}, loading: false
+      album_title: '',
+      album_description: '',
+      photo_ids: {},
+      loading: false
     };
   }
 
@@ -26,6 +33,13 @@ class AlbumForm extends React.Component {
     };
   }
 
+  revertChanges() {
+    this.setState(merge({}, this.initialState), () => {
+      this.title.value = this.state.album_title;
+      this.description.value = this.state.album_description;
+    });
+  }
+
   componentDidMount() {
     if (this.state.editMode) {
       Promise.all([
@@ -35,25 +49,15 @@ class AlbumForm extends React.Component {
         this.setState(this.editState());
         this.title.value = this.props.album.album_title;
         this.description.value = this.props.album.album_description;
+        this.initialState = merge({}, this.state);
       });
     } else {
       this.props.fetchAllPhotos(this.props.currentUserId)
-        .then(() => this.setState(this.newState()));
+        .then(() => {
+          this.setState(this.newState());
+          this.initialState = merge({}, this.state);
+      });
     }
-  }
-
-  clearSelection() {
-    document.querySelectorAll('.album-create-photo-item').forEach(el => {
-      el.style.border = '3px solid transparent';
-    });
-    this.title.value = '';
-    this.description.value = '';
-
-    this.setState({
-      album_title: '',
-      album_description: '',
-      photo_ids: {}
-    });
   }
 
   handleCancel(e) {
@@ -99,16 +103,19 @@ class AlbumForm extends React.Component {
     return (
       <div className='loading-container'>
         <div className='lds-ellipsis'>
-          <div></div><div></div><div></div><div></div>
+          <div/><div/><div/><div/>
         </div>
       </div>
     );
   }
 
   render() {
-    if (this.props.match.params.albumId && this.props.album === undefined) {
-      return <div>OH MY GOD</div>;
+
+    if ((this.props.match.params.albumId && this.props.album === undefined) || 
+    ((this.props.album && this.props.album.user_id !== this.props.currentUserId))) {
+      return <Redirect to={`/users/${this.props.currentUserId}/albums`} />;
     }
+    
     if (this.state.loading) return this.loading();
 
     const { photos } = this.props;
@@ -116,44 +123,43 @@ class AlbumForm extends React.Component {
       ({ border: '3px solid red' }) : ({ border: '3px solid transparent' });
       
     const submitReady = !this.state.album_title || !Object.keys(this.state.photo_ids).length;
-    const revertChanges = (!this.state.album_title && !Object.keys(this.state.photo_ids).length) ?
+    const revertChanges = (this.initialState === null || isEqual(this.state, this.initialState)) ? 
       (null) : (<span 
-                  onClick={this.clearSelection.bind(this)} 
-                  className='album-create-clear'>Revert changes
+                  onClick={this.revertChanges.bind(this)} 
+                  className='album-form-clear'>Revert changes
                 </span>);
 
-
     return (
-    <div className='album-create-container'>
-      <div className='album-create-form'>
+    <div className='album-form-container'>
+      <div className='album-form'>
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input 
             type='text'
             ref={el => { this.title = el; }}
-            className='album-create-input-title' 
+            className='album-form-input-title' 
             placeholder='album title'
             onChange={this.handleUpdate('album_title')} />
           <textarea
             ref={el => { this.description = el; }}
-            className='album-create-input-description'
+            className='album-form-input-description'
             placeholder='album description'
             onChange={this.handleUpdate('album_description')} />
           <button 
             type='submit'
-            className='album-create-submit'
+            className='album-form-submit'
             disabled={submitReady}>SAVE</button>
           <button
-            className='album-create-cancel'
+            className='album-form-cancel'
             onClick={this.handleCancel.bind(this)}>CANCEL</button>
           {revertChanges}
         </form>
       </div>
-      <div className='album-create-photo-select-container'>
-        <div className='album-create-photo-select'>
+      <div className='album-form-photo-select-container'>
+        <div className='album-form-photo-select'>
           {photos.map(photo => (
             <div style={selectedStyle(photo.id)}
               key={photo.id}
-              className='album-create-photo-item' 
+              className='album-form-photo-item' 
               onClick={() => this.handleSelect(photo.id)}>
               <img src={photo.photoUrl} />
             </div>
