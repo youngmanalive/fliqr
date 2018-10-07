@@ -1,28 +1,3 @@
-.user-profile-errors {
-  background: #ffffff;
-  height: calc(100vh - 50px);
-  margin-top: 50px;
-  width: 100%;
-  text-align: center;
-
-  .error-message {
-    margin: 40px;
-    font-size: 24px;
-  }
-
-  a {
-    font-size: 18px;
-    background: #cecece;
-    padding: 10px;
-    border-radius: 4px;
-  }
-
-  a:hover {
-    cursor: pointer;
-    color: #575757;
-  }
-}
-
 .user-profile {
   background: white;
   height: 100%;
@@ -176,9 +151,11 @@
       font-size: 11px;
       color: lightgrey;
     }
+
+    // TODO: fix link to user profile on image hover
     // .username:hover {
     //   transition: color .2s;
-    //   color: white;
+    //   color: #ffffff;
     // }
   }
 }
@@ -241,8 +218,6 @@
 
 }
 
-
-
 .user-profile-no-photos {
   font-size: 30px;
   text-align: center;
@@ -277,7 +252,6 @@
     justify-content: flex-start;
     align-content: flex-start;
     flex-wrap: wrap;
-    // border: 1px solid red;
   }
 
   .album-index-item {
@@ -286,6 +260,19 @@
     margin: 15px;
     position: relative;
     background: grey;
+
+    div {
+      color: #ffffff;
+      font-weight: 200;
+      padding: 10px;
+    }
+    .album-title {
+      font-size: 20px;
+    }
+
+    .album-photo-count {
+      font-size: 16px;
+    }
   }
 
   .album-index-item:before, .album-index-item:after {
@@ -305,6 +292,32 @@
     right: 8px;
     left: 8px;
     top: -3px;
+  }
+}
+
+// Errors
+.user-profile-errors {
+  background: #ffffff;
+  height: calc(100vh - 50px);
+  margin-top: 50px;
+  width: 100%;
+  text-align: center;
+
+  .error-message {
+    margin: 40px;
+    font-size: 24px;
+  }
+
+  a {
+    font-size: 18px;
+    background: #cecece;
+    padding: 10px;
+    border-radius: 4px;
+  }
+
+  a:hover {
+    cursor: pointer;
+    color: #575757;
   }
 }
 
