@@ -1,4 +1,4 @@
-.album-create-container {
+.album-form-container {
   margin-top: 50px;
   height: calc(100vh - 50px);
   min-height: 400px;
@@ -8,12 +8,12 @@
   flex-direction: row;
 }
 
-.album-create-form {
+.album-form {
   // border: 5px solid blue;
   min-width: 250px;
   max-width: 250px;
   min-height: 300px;
-  
+
   form {
     box-sizing: border-box;
     padding: 10px;
@@ -52,44 +52,44 @@
       cursor: pointer;
     }
 
-    .album-create-submit {
+    .album-form-submit {
       background-color: #0063DC;
       color: #fff;
     }
 
-    .album-create-submit:hover {
+    .album-form-submit:hover {
       background-color: #0257be
     }
 
-    .album-create-submit:disabled {
+    .album-form-submit:disabled {
       background-color: #ddd;
       color: #666;
       cursor: default;
     }
 
-    .album-create-cancel {
+    .album-form-cancel {
       background-color: #ddd;
       color: #666;
     }
 
-    .album-create-cancel:hover {
+    .album-form-cancel:hover {
       background-color: #c9c9c9
     }
 
-    .album-create-clear {
+    .album-form-clear {
       font-size: 11px;
       color: #868686;
       margin-left: 5px;
     }
 
-    .album-create-clear:hover {
+    .album-form-clear:hover {
       color: #0063DC;
       cursor: pointer;
     }
   }
 }
 
-.album-create-photo-select-container {
+.album-form-photo-select-container {
   // border: 1px solid red;
   height: auto;
   width: 100%;
@@ -97,7 +97,7 @@
   box-sizing: border-box;
 }
 
-.album-create-photo-select {
+.album-form-photo-select {
   background-color: #F0F0F0;
   border: 1px solid grey;
   overflow-y: auto;
@@ -113,7 +113,7 @@
   // align-self: flex-start;
   flex-wrap: wrap;
 
-  .album-create-photo-item {
+  .album-form-photo-item {
     height: 75px;
     width: 75px;
     margin: 10px;
@@ -127,7 +127,7 @@
     }
   }
 
-  .album-create-photo-item:hover {
+  .album-form-photo-item:hover {
     cursor: pointer;
   }
 
