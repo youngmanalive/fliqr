@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { fetchUser } from '../../actions/user_actions';
 import { fetchAllPhotos } from '../../actions/photo_actions';
-import { fetchAllAlbums } from '../../actions/album_actions';
+import { fetchAllAlbums, deleteAlbum } from '../../actions/album_actions';
 import UserProfile from './user_profile';
 
 const msp = (state, ownProps) => ({
@@ -16,7 +16,8 @@ const msp = (state, ownProps) => ({
 const mdp = dispatch => ({
   fetchUser: id => dispatch(fetchUser(id)),
   fetchPhotos: id => dispatch(fetchAllPhotos(id)),
-  fetchAllAlbums: id => dispatch(fetchAllAlbums(id))
+  fetchAllAlbums: id => dispatch(fetchAllAlbums(id)),
+  deleteAlbum: id => dispatch(deleteAlbum(id))
 });
 
 export default connect(msp, mdp)(UserProfile);
