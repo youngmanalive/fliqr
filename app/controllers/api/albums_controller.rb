@@ -46,6 +46,14 @@ class Api::AlbumsController < ApplicationController
   end
   
   def destroy
+    @album = current_user.albums.find(params[:id]);
+
+    if (@album)
+      @album.destroy
+      render :show
+    else
+      render json: ['Album not found'], status: 404
+    end
   end
 
   def album_params

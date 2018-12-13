@@ -2,9 +2,16 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import PhotoIndexItem from '../photos/photo_index_item';
 
+const handleDelete = (albumId, userId, deleteAlbum, push) => {
+  if (confirm('Are you sure you want to delete this album?')) {
+    deleteAlbum(albumId).then(push(`/users/${userId}/albums`));
+  }
+};
+
 export const AlbumShow = (props) => {
   window.scrollTo(0, 0);
   const userId = parseInt(props.match.params.userId);
+  const isCurrentUser = userId === props.currentUserId;
   const albumId = parseInt(props.location.pathname.split('/')[4]);
   const album = props.profileAlbums[albumId];
   const userName = <Link to={`/users/${userId}`}>By:&nbsp;
@@ -14,8 +21,17 @@ export const AlbumShow = (props) => {
   const backButton = <Link to={`/users/${userId}/albums`}>
                        &#x2190; Back to albums list
                      </Link>;
-  const editButton = (userId !== props.currentUserId) ? (null) : (
-    <Link to={`/organize/${albumId}`} className='album-show-edit'>Edit in Organizer</Link>
+  const editButton = (!isCurrentUser) ? (null) : (
+    <Link to={`/organize/${albumId}`} className='album-show-edit'>
+      Edit in Organizer
+    </Link>
+  );
+  const deleteButton = (!isCurrentUser) ? (null) : (
+    <span 
+      className='album-show-delete'
+      onClick={() => handleDelete(albumId, userId, props.deleteAlbum, props.history.push)}>
+      Delete this album
+    </span>
   );
 
   if (album === undefined || album.user_id !== userId) {
@@ -30,12 +46,12 @@ export const AlbumShow = (props) => {
     );
   }
 
-
   return (
     <div className='album-show-container'>
       <div className='album-show-header'>
         {backButton}
         {editButton}
+        {deleteButton}
       </div>
       <div className='album-show-info'>
         <div className='album-title'>{album.album_title}</div>
@@ -44,7 +60,8 @@ export const AlbumShow = (props) => {
         <div className='album-username'>{userName}</div>
       </div>
       <ul className='photo-index'>
-        {album.photoIds.sort().map(id => (
+        {console.log(album.photoIds)}
+        {album.photoIds.map(id => (
           <PhotoIndexItem
             key={id}
             photo={props.profilePhotos[id]}

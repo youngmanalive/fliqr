@@ -8,7 +8,7 @@
 
 // Header
 .user-profile-header {
-  background: lightgrey;
+  background: #e9e9e9;
   background-image: image-url('cover-photo.jpeg');
   background-repeat: no-repeat;
   background-size: cover;
@@ -184,10 +184,22 @@
   .album-show-edit:hover {
     text-decoration: underline;
   }
+
+  .album-show-delete {
+    margin-left: auto;
+    font-weight: bold;
+    cursor: pointer;
+  }
+
+  .album-show-delete:hover {
+    color: #ff0000;
+    text-decoration: underline;
+  }
 }
 
 .album-show-info {
-  background-color: grey;
+  background-color: #c9c9c9;
+  background: linear-gradient(to bottom, #c7c7c7 0%,#7a7a7a 100%);
   margin-left: 130px;
   margin-right: 130px;
   margin-bottom: 5px;
@@ -254,44 +266,71 @@
     flex-wrap: wrap;
   }
 
-  .album-index-item {
-    height: 240px;
-    width: 240px;
+  .album-index-link {
     margin: 15px;
-    position: relative;
-    background: grey;
 
-    div {
-      color: #ffffff;
-      font-weight: 200;
-      padding: 10px;
-    }
-    .album-title {
-      font-size: 20px;
+    ::before, ::after, div {
+      transition: all 0.2s;
     }
 
-    .album-photo-count {
-      font-size: 16px;
+    .album-index-item {
+      height: 240px;
+      width: 240px;
+      position: relative;
+      background: #c7c7c7;
+      background-size: cover;
+  
+      div {
+        color: #ffffff;
+        text-shadow: 0 0 10px #000;
+        font-weight: 400;
+        position: relative;
+        top: 170px;
+        left: 20px;
+      }
+  
+      .album-title {
+        padding-bottom: 5px;
+        font-size: 20px;
+      }
+  
+      .album-photo-count {
+        font-size: 16px;
+      }
     }
-  }
+  
+    .album-index-item:before, .album-index-item:after {
+      content: "";
+      position: absolute;
+      height: 1px;
+      background: #AFB7BC;
+    }
+  
+    .album-index-item::before {
+      right: 16px;
+      left: 16px;
+      top: -5px;
+    }
+  
+    .album-index-item::after {
+      right: 8px;
+      left: 8px;
+      top: -3px;
+    }
 
-  .album-index-item:before, .album-index-item:after {
-    content: "";
-    position: absolute;
-    height: 1px;
-    background: #AFB7BC;
-  }
+    &:hover {
+      .album-index-item::before {
+        top: -8px;
+      }
 
-  .album-index-item:before {
-    right: 16px;
-    left: 16px;
-    top: -5px;
-  }
+      .album-index-item::after {
+        top: -5px;
+      }
 
-  .album-index-item:after {
-    right: 8px;
-    left: 8px;
-    top: -3px;
+      .album-index-item div {
+        color: #c4c4c4;
+      }
+    }
   }
 }
 
