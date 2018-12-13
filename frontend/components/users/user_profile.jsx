@@ -59,10 +59,11 @@ class UserProfile extends React.Component {
     if (this.state.loading || !dataReady) return this.loading();
 
     const url = this.props.match.url;
+    const photoCount = Object.keys(this.props.profilePhotos).length;
 
     const profileHeader = <ProfileHeader 
                             user={this.props.profileUser} 
-                            photoCount={this.props.profilePhotos.length} />;
+                            photoCount={photoCount} />;
     const profileLinks = <div className='user-profile-links'>
                            <NavLink exact to={`${url}`} >Photostream</NavLink>
                            <NavLink exact to={`${url}/albums`} >Albums</NavLink>
