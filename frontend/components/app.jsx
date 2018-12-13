@@ -14,7 +14,7 @@ import UserProfileContainer from './users/user_profile_container';
 const App = () => (
   <div className='app' >
     <Route path='/' component={SessionModalContainer} />
-    <NavBarContainer />
+    <Route component={NavBarContainer} />
 
     <Switch>
       <ProtectedRoute path='/explore' component={PhotoIndexContainer} />

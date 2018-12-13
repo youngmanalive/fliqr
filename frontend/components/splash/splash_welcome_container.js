@@ -5,7 +5,7 @@ import SplashWelcome from './splash_welcome';
 
 const mdp = dispatch => ({
   setModal: () => dispatch(setModal('signup')),
-  demo: () => dispatch(login({ email: 'demo@fliqr.com', password: 'starwars'}))
+  runDemo: () => dispatch(setModal('demo'))
 });
 
 export default connect(null, mdp)(SplashWelcome);

@@ -10,20 +10,27 @@ class SessionModal extends React.Component {
       <div>
         <SignupFormContainer />
         <div className='modal-options-container'>
-
           <p>Already a member? <a
             onClick={() => this.props.changeForm('login')}>
             Log In</a>
+          </p>
+          <p style={{marginTop: '10px'}}>Or try out the <a
+            onClick={() => this.props.changeForm('demo')}>
+            Demo Account</a>
           </p>
         </div>
       </div>
     ) : (
       <div>
-        <LoginFormContainer />
+        <LoginFormContainer status={this.props.status} />
         <div className='modal-options-container'>
           <p>Not Registered? <a
             onClick={() => this.props.changeForm('signup')}>
             Sign Up</a>
+          </p>
+          <p style={{marginTop: '10px'}}>Or try out the <a
+            onClick={() => this.props.changeForm('demo')}>
+            Demo Account</a>
           </p>
         </div>
       </div>
@@ -36,7 +43,7 @@ class SessionModal extends React.Component {
         <p className='modal-logo'>fliqr</p>
         <button
           className='modal-header-button'
-          onClick={this.props.close}>x</button>
+          onClick={this.props.close}>&times;</button>
       </div>
     );
   }

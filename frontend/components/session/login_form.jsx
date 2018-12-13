@@ -8,8 +8,51 @@ class LoginForm extends React.Component {
       email: '',
       password: '',
     };
+    this.demo = { email: 'demo@fliqr.com', password: 'starwars' };
+    this.demoIdx = 0;
+    this.demoInterval = null;
+
     this.update = this.update.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount() {
+    if (this.props.status === 'demo') {
+      this.runDemo();
+    }
+  }
+
+  componentDidUpdate(prevProps) {
+    const { status } = this.props;
+    if (prevProps.status !== status && status === 'demo') {
+      this.runDemo();
+    }
+  }
+
+  runDemo() {
+    this.setState({ email: '', password: '' });
+    setTimeout(() => {
+      this.demoInterval = setInterval(() => {
+        if (this.demoIdx < this.demo.email.length) {
+          this.setState({
+            email: this.state.email + this.demo.email[this.demoIdx]
+          }, () => this.demoIdx++);
+        } else {
+          clearInterval(this.demoInterval);
+          this.demoIdx = 0;
+          this.demoInterval = setInterval(() => {
+            if (this.demoIdx < this.demo.password.length) {
+              this.setState({
+                password: this.state.password + this.demo.password[this.demoIdx]
+              }, () => this.demoIdx++);
+            } else {
+              clearInterval(this.demoInterval);
+              setTimeout(() => this.handleSubmit(), 500);
+            }
+          }, 100);
+        }
+      }, 100);
+    }, 500);
   }
 
   update(field) {
@@ -17,9 +60,8 @@ class LoginForm extends React.Component {
   }
 
   handleSubmit(e) {
-    e.preventDefault();
-    this.props.login(this.state)
-      .then(() => this.props.history.push('/explore'));
+    if (e) e.preventDefault();
+    this.props.login(this.state);
   }
 
   renderErrors() {
@@ -42,19 +84,14 @@ class LoginForm extends React.Component {
             value={this.state.email}
             onChange={this.update('email')}
             placeholder='Email' />
-
           <input
             type='password'
             value={this.state.password}
             onChange={this.update('password')}
             placeholder='Password' />
-
           {this.renderErrors()}
-
           <input type="submit" value="Log In" />
-
         </form>
-
       </div>
     );
   }
