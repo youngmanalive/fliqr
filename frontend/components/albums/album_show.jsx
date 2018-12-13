@@ -60,7 +60,6 @@ export const AlbumShow = (props) => {
         <div className='album-username'>{userName}</div>
       </div>
       <ul className='photo-index'>
-        {console.log(album.photoIds)}
         {album.photoIds.map(id => (
           <PhotoIndexItem
             key={id}
