@@ -12,7 +12,7 @@ class PhotoIndex extends React.Component {
       this.handleImageLoad(this.imageIndex).then(() => {
         const loader = this.imageIndex.querySelector('.loading-container');
         loader.style.opacity = '0';
-        setTimeout(() => this.setState({ loading: false }), 500);
+        setTimeout(() => this.setState({ loading: false }), 300);
       });
     });
   }
