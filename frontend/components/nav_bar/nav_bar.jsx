@@ -1,17 +1,16 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import SplashSessionContainer from '../splash/splash_session_container';
 
-const logo = <Link to='/' className='navbar-logo'>fliqr</Link>;
 const gitHub = <a target='_blank' href='https://github.com/youngmanalive'>GitHub</a>;
 const linkedIn = <a target='_blank' href='https://www.linkedin.com/in/nathanharris-sf'>LinkedIn</a>;
 
 const userNav = (currentUser, logout) => (
   <div className='navbar-main-user'>
-    {logo}
+    <NavLink to='/explore' className='navbar-logo'>fliqr</NavLink>
     <div className='navbar-user-links'>
-      <Link to={`/users/${currentUser.id}`}>You</Link>
-      <Link to='/explore' >Explore</Link>
+      <NavLink to={`/users/${currentUser.id}`}>You</NavLink>
+      <NavLink to='/explore'>Explore</NavLink>
     </div>
 
     <div className='navbar-user-info'>
@@ -51,7 +50,7 @@ const userNav = (currentUser, logout) => (
 
 const splashNav = () => (
   <div className='navbar-main-splash'>
-    {logo}
+    <NavLink to='/' className='navbar-logo'>fliqr</NavLink>;
     <SplashSessionContainer />
   </div>
 );
