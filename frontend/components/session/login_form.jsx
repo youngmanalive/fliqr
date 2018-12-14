@@ -8,6 +8,7 @@ class LoginForm extends React.Component {
       email: '',
       password: '',
     };
+    
     this.demo = { email: 'demo@fliqr.com', password: 'starwars' };
     this.demoIdx = 0;
     this.demoInterval = null;
@@ -47,12 +48,12 @@ class LoginForm extends React.Component {
               }, () => this.demoIdx++);
             } else {
               clearInterval(this.demoInterval);
-              setTimeout(() => this.handleSubmit(), 500);
+              setTimeout(this.handleSubmit, 300);
             }
-          }, 100);
+          }, 80);
         }
-      }, 100);
-    }, 500);
+      }, 60);
+    }, 200);
   }
 
   update(field) {
