@@ -1,7 +1,7 @@
 import { 
   RECEIVE_PHOTO_ERRORS, 
   RECEIVE_PHOTO 
-} from './photo_errors_reducer';
+} from '../actions/photo_actions';
 
 export default (state = [], action) => {
   Object.freeze(state);
