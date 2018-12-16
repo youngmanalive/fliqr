@@ -6,18 +6,17 @@ class Api::PhotosController < ApplicationController
     if @photo.save
       render :show
     else
-      render json: ['Error!'], status: 422
+      render json: @photo.errors.full_messages, status: 422
     end
   end
 
   def index
     id = params[:user_id]
     @photos = id ? Photo.where(user_id: id) : Photo.all
-    render :index
   end
 
   def show
-    @photo = Photo.find(params[:id])
+    @photo = Photo.find_by_id(params[:id])
 
     if @photo
       render :show
@@ -53,7 +52,10 @@ class Api::PhotosController < ApplicationController
       :user_id,
       :img_title,
       :img_description,
-      :file
+      :file,
+      :thumb,
+      :thumb_width,
+      :thumb_height
     )
   end
 end

@@ -8,7 +8,7 @@ const PhotoIndexItem = ({ photo, currentUserId }) => {
   return (
     <li className='photo-container'>
       <Link to={`/photos/${photo.id}`}>
-        <img src={photo.photoUrl} />
+        <img src={photo.thumbUrl} />
         <div className='info-container'>
           <p className='title'>{photo.img_title}</p>
           <p className='username'>by {username}</p>

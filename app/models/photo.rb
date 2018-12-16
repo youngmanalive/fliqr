@@ -15,9 +15,10 @@ class Photo < ApplicationRecord
   validate :ensure_file
 
   has_one_attached :file
+  has_one_attached :thumb
 
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :album_photos, dependent: :destroy
   has_many :albums,
     through: :album_photos,

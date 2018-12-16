@@ -1,5 +1,5 @@
 import React from 'react';
-
+import { processImage } from '../../util/image_processing_util';
 
 class PhotoUpload extends React.Component {
   constructor(props) {
@@ -12,7 +12,13 @@ class PhotoUpload extends React.Component {
       img_title: '',
       img_description: '',
       photoFile: null,
-      photoUrl: null
+      photoUrl: null,
+      width: null,
+      height: null,
+      thumbBlob: null,
+      thumbWidth: null,
+      thumbHeight: null,
+      loading: false
     };
   }
 
@@ -23,12 +29,20 @@ class PhotoUpload extends React.Component {
   handleFile(e) {
     const file = e.currentTarget.files[0];
     const fileReader = new FileReader();
+
     fileReader.onloadend = () => {
-      this.setState({
-        photoFile: file,
-        photoUrl: fileReader.result
+      processImage (fileReader.result, imgData => {
+        const newState = Object.assign(
+          {}, this.state, imgData, {
+            photoFile: file,
+            photoUrl: fileReader.result
+          }
+        );
+
+        this.setState(newState);
       });
     };
+
     if (file) {
       fileReader.readAsDataURL(file);
     }
@@ -39,9 +53,11 @@ class PhotoUpload extends React.Component {
     const formData = new FormData();
     formData.append('photo[img_title]', this.state.img_title);
     formData.append('photo[img_description]', this.state.img_description);
-    if (this.state.photoFile) {
-      formData.append('photo[file]', this.state.photoFile);
-    }
+    formData.append('photo[file]', this.state.photoFile);
+    formData.append('photo[thumb]', this.state.thumbBlob);
+    formData.append('photo[thumb_width]', this.state.thumbWidth);
+    formData.append('photo[thumb_height', this.state.thumbHeight);
+
     this.props.createPhoto(formData)
       .then(() => this.props.history.replace(`/users/${this.props.userId}`));
   }
@@ -65,7 +81,8 @@ class PhotoUpload extends React.Component {
               <input type='submit' value='Upload Photo' />
             </form>
             <button onClick={() => this.setState(this.nullState())}>
-              Clear</button>
+              Clear
+            </button>
           </div>
           <div className='upload-preview-box'>
             <img className='upload-preview-img' src={this.state.photoUrl} />

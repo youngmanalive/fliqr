@@ -6,8 +6,9 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-
+def genTime(a, b)
+  Time.now - rand(a..b)
+end
 
 ## Demo Account
 User.create(
@@ -15,7 +16,8 @@ User.create(
   lname: 'Account',
   email: 'demo@fliqr.com',
   username: 'Friend',
-  password: 'starwars'
+  password: 'starwars',
+  created_at: genTime(5_000_000, 6_000_000)
 )
 
 ## Seed Accounts
@@ -60,7 +62,8 @@ fnames.length.times do |i|
     lname: lnames[i],
     email: emails[i],
     username: usernames[i],
-    password: 'starwars'
+    password: 'starwars',
+    created_at: genTime(5_000_000, 6_000_000)
   )
 end
 
@@ -128,21 +131,27 @@ photos_info = [
   ['World Famous', '']
 ]
 
-## Local Path
-# path = '/Users/nate/Desktop/fliqr_photos/'
-
 ## Asset path
 path = 'app/assets/images/seeds/'
 
 user_ids = User.all.pluck(:id)
 
 58.times do |i|
+  photofile = File.open(path + "seed#{i+1}.jpg")
+  thumbfile = File.open(path + "thumbs/seed#{i+1}.jpg")
+  thumb_w, thumb_h = ImageSize.path(path + "thumbs/seed#{i+1}.jpg").size
+
   pic = Photo.new(
     img_title: photos_info[i][0],
     img_description: photos_info[i][1],
-    user_id: user_ids.sample
+    user_id: user_ids.sample,
+    thumb_width: thumb_w,
+    thumb_height: thumb_h,
+    created_at: genTime(900_000, 5_000_000),
   )
-  photofile = File.open(path + "seed#{i+1}.jpeg")
-  pic.file.attach(io: photofile, filename: "seed#{i+1}.jpeg")
+
+  pic.file.attach(io: photofile, filename: "#{SecureRandom.urlsafe_base64(5)}.jpg")
+  pic.thumb.attach(io: thumbfile, filename: "#{SecureRandom.urlsafe_base64(5)}.jpg")
+
   pic.save!
 end
