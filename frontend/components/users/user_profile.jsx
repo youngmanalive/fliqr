@@ -30,7 +30,11 @@ class UserProfile extends React.Component {
       this.props.fetchUser(userId),
       this.props.fetchPhotos(userId),
       this.props.fetchAllAlbums(userId)
-    ]).then(() => this.setState({ loading: false }));
+    ]).then(() => this.setState({ loading: false }, () => {
+      const account = this.props.currentUserId == userId
+        ? "My profile" : this.props.profileUser.username;
+      document.title = `Fliqr - ${account}`;
+    }));
   }
 
   loading() {
@@ -44,6 +48,7 @@ class UserProfile extends React.Component {
   }
 
   userNotFound() {
+    document.title = 'Fliqr - User not found';
     return (
       <div className='user-profile-errors'>
         <div className='error-message'>{this.props.errors.users[0]}</div>

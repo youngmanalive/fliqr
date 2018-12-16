@@ -18,6 +18,7 @@ class LoginForm extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'Fliqr - Login';
     if (this.props.status === 'demo') {
       this.runDemo();
     }

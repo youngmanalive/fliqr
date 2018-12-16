@@ -15,6 +15,10 @@ class SignupForm extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    document.title = 'Fliqr - Signup';
+  }
+
   update(field) {
     return e => this.setState({ [field]: e.target.value });
   }
@@ -39,43 +43,34 @@ class SignupForm extends React.Component {
       <div className='user-session-form'>
         <h2>Sign Up</h2>
         <form onSubmit={this.handleSubmit}>
-
           <input
             type='text'
             value={this.state.fname}
             onChange={this.update('fname')}
             placeholder='First Name'/>
-
           <input
             type='text'
             value={this.state.lname}
             onChange={this.update('lname')}
             placeholder='Last Name'/>
-
           <input
             type='text'
             value={this.state.username}
             onChange={this.update('username')}
             placeholder='Username'/>
-
           <input
             type='text'
             value={this.state.email}
             onChange={this.update('email')}
             placeholder='Email'/>
-
           <input
             type='password'
             value={this.state.password}
             onChange={this.update('password')}
             placeholder='Password'/>
-
           {this.renderErrors()}
-
           <input type="submit" value="Sign Up" />
-
         </form>
-
       </div>
     );
   }

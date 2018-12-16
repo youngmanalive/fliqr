@@ -2,6 +2,10 @@ import React from 'react';
 
 
 class SplashWelcome extends React.Component {
+  componentDidMount() {
+    document.title = "Fliqr - Find your inspiration";
+  }
+  
   render() {
     return (
       <div>

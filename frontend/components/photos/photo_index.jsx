@@ -8,6 +8,7 @@ class PhotoIndex extends React.Component {
   }
 
   componentDidMount() {
+    document.title = 'Fliqr - Explore';
     this.props.fetchAllPhotos().then(() => {
       this.handleImageLoad(this.imageIndex).then(() => {
         const loader = this.imageIndex.querySelector('.loading-container');
