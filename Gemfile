@@ -32,6 +32,7 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'jquery-rails'
 
 gem 'newrelic_rpm'
+gem 'image_size', '~> 2.0'
 
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -42,7 +43,7 @@ group :development, :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
-  gem 'image_size', '~> 2.0'
+
 end
 
 group :development do
