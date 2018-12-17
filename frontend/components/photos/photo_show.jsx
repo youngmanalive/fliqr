@@ -6,7 +6,10 @@ import CommentForm from '../comments/comment_form';
 class PhotoShow extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = {
+      loading: true,
+      notFound: false
+    };
   }
 
   componentDidMount() {
@@ -18,7 +21,7 @@ class PhotoShow extends React.Component {
     const photoId = this.props.match.params.photoId;
 
     if (prevProps.photoId !== photoId) {
-      this.setState({ loading: true }, () => this.loadPhotoData(photoId));
+      this.setState({ loading: true, notFound: false }, () => this.loadPhotoData(photoId));
       window.scrollTo(0, 0);
     }
   }
@@ -27,7 +30,19 @@ class PhotoShow extends React.Component {
     Promise.all([
       this.props.fetchPhoto(photoId),
       this.props.fetchComments(photoId)
-    ]).then(() => this.setState({ loading: false }));
+    ]).then(
+      () => {
+        const { photo } = this.props;
+        this.setState({ loading: false }, () => (
+          document.title = `Fliqr - ${photo.img_title} - ${photo.username}`
+        ));
+      },
+      () => {
+        this.setState({ notFound: true }, () => (
+          document.title = 'Fliqr - Photo not found'
+        ));
+      }
+    );
   }
 
   uploadDate(date) {
@@ -68,7 +83,19 @@ class PhotoShow extends React.Component {
     );
   }
 
+  photoNotFound() {
+    document.title = 'Fliqr - Photo not found';
+    return (
+      <div className='user-profile-errors'>
+        <div className='error-message'>{this.props.errors[0]}</div>
+        <Link to={`/users/${this.props.currentUserId}`}>Close</Link>
+      </div>
+    );
+  }
+
   render() {
+    if (this.state.notFound) return this.photoNotFound();
+
     if (this.state.loading || !this.props.dataReady) {
       return <h1>Loading...</h1>;
     }

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PhotoIndexItem from '../photos/photo_index_item';
+import PhotoIndex from '../photos/photo_index';
 
 const handleDelete = (albumId, userId, deleteAlbum, push) => {
   if (confirm('Are you sure you want to delete this album?')) {
@@ -34,6 +34,7 @@ export const AlbumShow = (props) => {
     </span>
   );
 
+
   if (album === undefined || album.user_id !== userId) {
     return (
       <div className='user-profile-errors'>
@@ -45,6 +46,8 @@ export const AlbumShow = (props) => {
       </div>
     );
   }
+
+  const photos = album.photoIds.map(id => props.profilePhotos[id]);
 
   return (
     <div className='album-show-container'>
@@ -59,14 +62,7 @@ export const AlbumShow = (props) => {
         <div className='album-photo-count'>{album.photoIds.length} photos</div>
         <div className='album-username'>{userName}</div>
       </div>
-      <ul className='photo-index'>
-        {album.photoIds.map(id => (
-          <PhotoIndexItem
-            key={id}
-            photo={props.profilePhotos[id]}
-            currentUserId={props.currentUserId} />
-        ))}
-      </ul>
+      <PhotoIndex photos={photos} currentUserId={props.currentUserId} />
     </div>
   );
 };

@@ -4,12 +4,12 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 
 import AlbumFormContainer from './albums/album_form_container';
 import NavBarContainer from './nav_bar/nav_bar_container';
-import PhotoIndexContainer from './photos/photo_index_container';
 import PhotoShowContainer from './photos/photo_show_container';
 import PhotoUploadContainer from './photos/photo_upload_container';
 import SessionModalContainer from './modals/session_modal_container';
 import SplashWelcomeContainer from './splash/splash_welcome_container';
 import UserProfileContainer from './users/user_profile_container';
+import ExploreContainer from './explore/explore_container';
 
 const App = () => (
   <div className='app' >
@@ -17,7 +17,7 @@ const App = () => (
     <Route component={NavBarContainer} />
 
     <Switch>
-      <ProtectedRoute path='/explore' component={PhotoIndexContainer} />
+      <ProtectedRoute path='/explore' component={ExploreContainer} />
       <ProtectedRoute path='/upload' component={PhotoUploadContainer} />
       <ProtectedRoute path='/photos/:photoId' component={PhotoShowContainer} />
       <ProtectedRoute path='/users/:userId' component={UserProfileContainer} />

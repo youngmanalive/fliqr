@@ -13,7 +13,8 @@ const msp = (state, ownProps) => ({
   photo: state.entities.photos[ownProps.match.params.photoId],
   photoId: ownProps.match.params.photoId,
   comments: state.entities.comments,
-  dataReady: Boolean(state.entities.photos[ownProps.match.params.photoId])
+  dataReady: Boolean(state.entities.photos[ownProps.match.params.photoId]),
+  errors: state.errors.photos
 });
 
 const mdp = dispatch => ({

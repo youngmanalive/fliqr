@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PhotoIndexItem from '../../photos/photo_index_item';
+import PhotoIndex from '../../photos/photo_index';
 
 const ProfileStream = ({ profilePhotos, profileUserId, currentUserId }) => {
-
-  const photos = Object.values(profilePhotos);
+  const photos = Object.values(profilePhotos).reverse();
   const uploadButton = (profileUserId != currentUserId) ? (null) : (
     <Link to='/upload'>Upload here</Link>
   );
@@ -20,15 +19,8 @@ const ProfileStream = ({ profilePhotos, profileUserId, currentUserId }) => {
 
   return (
     <div className='user-profile-photostream'>
-    <ul className='photo-index'>
-      {photos.map(photo => (
-        <PhotoIndexItem 
-          key={photo.id} 
-          photo={photo} 
-          currentUserId={currentUserId} />
-      ))}
-    </ul>
-  </div>
+      <PhotoIndex photos={photos} currentUserId={currentUserId} />
+    </div>
   );
 };
 

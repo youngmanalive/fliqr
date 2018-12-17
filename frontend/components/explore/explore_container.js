@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import PhotoIndex from './photo_index';
+import Explore from './explore';
 import { fetchAllPhotos } from '../../actions/photo_actions';
 
 const msp = state => ({
@@ -11,4 +11,4 @@ const mdp = dispatch => ({
   fetchAllPhotos: () => dispatch(fetchAllPhotos())
 });
 
-export default connect(msp, mdp)(PhotoIndex);
+export default connect(msp, mdp)(Explore);

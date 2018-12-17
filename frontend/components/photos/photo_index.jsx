@@ -1,68 +1,70 @@
 import React from 'react';
-import PhotoIndexItem from './photo_index_item';
+import { Link, withRouter } from 'react-router-dom';
+import Gallery from 'react-grid-gallery';
 
 class PhotoIndex extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loading: true };
+    this.state = {
+      galleryPhotos: null
+    };
   }
 
   componentDidMount() {
-    document.title = 'Fliqr - Explore';
-    this.props.fetchAllPhotos().then(() => {
-      this.handleImageLoad(this.imageIndex).then(() => {
-        const loader = this.imageIndex.querySelector('.loading-container');
-        loader.style.opacity = '0';
-        setTimeout(() => this.setState({ loading: false }), 300);
-      });
-    });
+    const { photos, history } = this.props;
+    const galleryPhotos = this.generateArray(photos, history.push);
+
+    this.setState({ galleryPhotos });
+  }
+  
+  generateArray(photos, push) {
+    return photos.map(photo => ({
+      src: photo.photoUrl,
+      thumbnail: photo.thumbUrl,
+      thumbnailWidth: photo.thumb_width,
+      thumbnailHeight: photo.thumb_height,
+      showPhoto: () => push(`/photos/${photo.id}`),
+      customOverlay: this.customOverlay(photo)
+    }));
   }
 
-  handleImageLoad(parent) {
-    const images = parent.querySelectorAll('img');
-    const promises = [];
-    for (let i = 0; i < images.length; i++) {
-      promises.push(new Promise((resolve) => {
-        if (images[i].complete) {
-          resolve();
-        } else {
-          images[i].onload = resolve;
-        }
-      }));
-    }
-    return Promise.all(promises);
-  }
+  customOverlay(photo, currentUserId) {
+    const { img_title, user_id, fname, lname, commentIds } = photo;
+    const user = currentUserId === user_id ? 'YOU!' : `${fname} ${lname}`;
+    const comments = commentIds.length || '';
 
-  loading() {
-    return (this.state.loading) ? (
-      <div className='loading-container'>
-        <div className='lds-ellipsis'>
-          <div></div><div></div><div></div><div></div>
-        </div>
+    return (
+      <div className='photo-index-overlay'>
+        <h4>{img_title}</h4>
+        <Link to={`/users/${user_id}`}>by {user}</Link>
+        <span className='comment-count'>{comments}</span>
       </div>
-    ) : (null);
+    );
+  }
+
+  // bound to image object
+  handleClick() {
+    this.props.item.showPhoto();
   }
 
   render() {
-    const currentUserId = this.props.currentUserId;
-
     return (
-      <div ref={el => { this.imageIndex = el; }}>
-        {this.loading()}
-        <div className='explore-page'>
-          <h1>Explore</h1>
-          <ul className='photo-index'>
-            {this.props.photos.map(photo => (
-              <PhotoIndexItem 
-                key={photo.id} 
-                photo={photo} 
-                currentUserId={currentUserId} />
-            ))}
-          </ul>
+      <div className='photo-index'>
+        <div className='gallery-container'>
+        {!this.state.galleryPhotos ? null :
+          <Gallery
+            images={this.state.galleryPhotos}
+            rowHeight={280}
+            margin={2}
+            enableImageSelection={false}
+            enableLightbox={false}
+            onClickThumbnail={this.handleClick}
+          />
+        }
         </div>
       </div>
     );
   }
 }
 
-export default PhotoIndex;
+export default withRouter(PhotoIndex);

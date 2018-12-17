@@ -1,95 +1,66 @@
-.explore-page {
-  background: #F3F5F6;
-  padding: 20px 0 0 0;
-  height: 100%;
+div.photo-index {
+  margin: 0 140px;
+}
+
+div.gallery-container {
   width: 100%;
-  margin-top: 50px;
-  padding-bottom: 30px;
-  min-height: 91vh;
-
-  h1 {
-    margin: 0 130px;
-    padding: 7px 0;
-    font-size: 24px;
-    font-weight: 200;
-  }
 }
 
-.explore-page .photo-index {
-  list-style: none;
-  margin: 0 128px;
-  line-height: 0;
-  column-count: 3;
-  column-gap: 0;
+div.custom-overlay {
+  transition: all 0.3s;
 }
 
-.explore-page .photo-container {
-  position: relative;
-  margin: 0 2px 4px 2px;
+div.photo-index-overlay {
+  background: linear-gradient(to bottom, rgba(0,0,0,0) 0%,rgba(0,0,0,0.65) 90%,rgba(0,0,0,0.65) 100%);
+  box-sizing: border-box;
+  min-height: 100px;
+  overflow: hidden;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  padding: 4px;
 
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  .info-container {
-    opacity: 0;
-  }
-}
-
-.explore-page .photo-container:hover {
-  .info-container {
+  h4 {
     position: absolute;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 9px;
-    padding-top: 30px;
-    opacity: 1;
-    display: block;
-    transition: opacity .2s;
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5));
-
-    p {
-      margin: 10px 0;
-      text-shadow: 0 0 3px black;
-    }
-    .title {
-      font-size: 14px;
-      font-weight: 800;
-      color: white;
-      padding: 10px 0;
-    }
-    .username {
-      font-size: 11px;
-      color: lightgrey;
-    }
-    // .username:hover {
-    //   transition: color .2s;
-    //   color: white;
-    // }
+    bottom: 25px;
+    left: 10px;
+    font-size: 12px;
+    font-weight: bold;
   }
-}
 
-@media (max-width: 1150px) {
-  .explore-page .photo-index {
-    list-style: none;
-    margin: 0 128px;
-    line-height: 0;
-    column-count: 2;
-    column-gap: 0;
-  }
-}
+  a {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    pointer-events: all;
+    font-size: 10px;
+    font-weight: 100;
+    color: #cfcfcf;
 
-@media (max-width: 815px) {
-  .explore-page h1 {
-    margin: 0 5px
+    &:hover {
+      text-decoration: underline;
+      color: #fff;
+    }
   }
-  .explore-page .photo-index {
-    list-style: none;
-    margin: 0 3px;
-    line-height: 0;
-    column-count: 2;
-    column-gap: 0;
+
+  .comment-count {
+    position: absolute;
+    bottom: 13px;
+    right: 13px;
+    font-size: 12px;
+  }
+  
+  .comment-count::before {
+    content: '';
+    display: inline-block;
+    background-image: image-url('comment-icon.svg');
+    position: relative;
+    width: 15px;
+    height: 15px;
+    top: 4px;
+    right: 5px;
+    background-size: contain;
+    background-repeat: no-repeat;
   }
 }

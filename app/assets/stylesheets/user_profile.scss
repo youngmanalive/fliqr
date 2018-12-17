@@ -1,10 +1,11 @@
 .user-profile {
-  background: white;
+  background: #F3F5F6;
   height: 100%;
   width: 100%;
   margin-top: 50px;
   min-height: 95vh;
 }
+
 
 // Header
 .user-profile-header {
@@ -13,7 +14,6 @@
   background-repeat: no-repeat;
   background-size: cover;
   height: 250px;
- 
 
   .user-profile-header-gradient {
     display: flex;
@@ -28,7 +28,6 @@
     color: #FFFFFF;
   }
   
-
   .user-profile-header-main {
     display: flex;
     margin-top: auto;
@@ -63,6 +62,7 @@
   }
 }
 
+
 // Links
 .user-profile-links {
   position: sticky;
@@ -89,74 +89,14 @@
   }
 }
 
+
 // Photostream and Album Show
-.user-profile-photostream, .album-show-container {
-  background: #F3F5F6;
-  padding: 20px 0 0 0;
-  height: 100%;
-  width: 100%;
-  padding-bottom: 30px;
-  min-height: 91vh;
-}
+.user-profile-photostream,
+.album-show-container {
+  padding-top: 20px;
 
-.user-profile-photostream .photo-index,
-.album-show-container .photo-index {
-  list-style: none;
-  margin: 0 128px;
-  line-height: 0;
-  column-count: 3;
-  column-gap: 0;
-}
-
-.user-profile-photostream .photo-container,
-.album-show-container .photo-container {
-  position: relative;
-  margin: 0 2px 4px 2px;
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-
-  .info-container {
-    opacity: 0;
-  }
-}
-
-.user-profile-photostream .photo-container:hover,
-.album-show-container .photo-container:hover {
-  .info-container {
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-    box-sizing: border-box;
-    padding: 9px;
-    padding-top: 30px;
-    opacity: 1;
-    display: block;
-    transition: opacity .2s;
-    background: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,.5));
-
-    p {
-      margin: 10px 0;
-      text-shadow: 0 0 3px black;
-    }
-    .title {
-      font-size: 14px;
-      font-weight: 800;
-      color: white;
-      padding: 10px 0;
-    }
-    .username {
-      font-size: 11px;
-      color: lightgrey;
-    }
-
-    // TODO: fix link to user profile on image hover
-    // .username:hover {
-    //   transition: color .2s;
-    //   color: #ffffff;
-    // }
+  .photo-index {
+    margin: 0 129px;
   }
 }
 
@@ -197,6 +137,7 @@
   }
 }
 
+
 .album-show-info {
   background-color: #c9c9c9;
   background: linear-gradient(to bottom, #c7c7c7 0%,#7a7a7a 100%);
@@ -205,6 +146,7 @@
   margin-bottom: 5px;
   text-align: center;
   padding-bottom: 10px;
+  border: 2px solid #F3F5F6;
 
   * { 
     padding: 10px;
@@ -230,12 +172,6 @@
 
 }
 
-.user-profile-no-photos {
-  font-size: 30px;
-  text-align: center;
-  padding: 50px;
-  background-color: #F3F5F6;
-}
 
 // Album Index
 .user-profile-album-index-container {
@@ -334,6 +270,14 @@
   }
 }
 
+// User has no photos
+.user-profile-no-photos {
+  font-size: 30px;
+  text-align: center;
+  padding: 50px;
+  background-color: #F3F5F6;
+}
+
 // Errors
 .user-profile-errors {
   background: #ffffff;
@@ -357,6 +301,95 @@
   a:hover {
     cursor: pointer;
     color: #575757;
+  }
+}
+
+
+// Media queries
+@media screen and (max-width: 1300px) {
+  .user-profile-links,
+  .user-profile-header .user-profile-header-gradient {
+    padding: 0 100px;
+  }
+
+  .user-profile-photostream {
+    .photo-index {
+      margin: 0 100px
+    }
+  }
+
+  .user-profile-album-index-container {
+    .user-profile-album-index {
+      margin: 0 100px;
+    }
+  }
+
+  .album-show-container {
+    .album-show-header,
+    .album-show-info,
+    .photo-index {
+      margin: 0 100px;
+    }
+  }
+}
+
+@media (max-width: 1100px) {
+  .user-profile-links,
+  .user-profile-header .user-profile-header-gradient {
+    padding: 0 50px;
+  }
+
+  .user-profile-photostream {
+    .photo-index {
+      margin: 0 50px
+    }
+  }
+
+  .user-profile-album-index-container {
+    .user-profile-album-index {
+      margin: 0 50px;
+    }
+  }
+
+  .album-show-container {
+    .album-show-header,
+    .album-show-info,
+    .photo-index {
+      margin: 0 50px;
+    }
+  }
+}
+
+@media (max-width: 815px) {
+  .user-profile-links,
+  .user-profile-header .user-profile-header-gradient {
+    padding: 0 25px;
+  }
+
+  .user-profile-photostream {
+    .photo-index { 
+      margin: 0 10px
+    }
+  }
+
+  .user-profile-album-index-container {
+    .user-profile-album-index {
+      margin: 0 25px;
+    }
+  }
+
+  .album-show-container {
+    .album-show-header,
+    .album-show-info,
+    .photo-index {
+      margin: 0 25px;
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  .user-profile-photostream {
+    .photo-index { margin: 0 5px }
   }
 }
 

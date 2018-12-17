@@ -5,7 +5,7 @@
 }
 
 .navbar-main-splash {
-  background-color: rgba(0, 0, 0, .70);
+  background-color: rgba(0, 0, 0, .7);
 
   height: 64px;
   padding-left: 23px;
@@ -14,7 +14,7 @@
 }
 
 .navbar-main-user {
-  background-color: rgba(0, 0, 0, .85);
+  background-color: rgba(0, 0, 0, .9);
   height: 50px;
   padding-left: 12%;
   padding-right: 12%;
@@ -26,7 +26,6 @@
   a.active { pointer-events: none; }
 }
 
-
 .navbar-logo {
   opacity: 1;
   color: white;
@@ -34,7 +33,6 @@
   margin-bottom: 3px;
   font-family: 'Maven Pro', sans-serif;
 }
-
 
 [class^="navbar-session-"]:hover, .navbar-logo:hover {
   cursor: pointer;
