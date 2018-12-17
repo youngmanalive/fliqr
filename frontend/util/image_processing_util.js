@@ -32,8 +32,6 @@ export const processImage = (dataURL, callback) => {
     const newDataURL = canvas.toDataURL("image/jpeg");
     const thumbBlob = dataURLtoBlob(newDataURL);
 
-    window.thumb = thumbBlob;
-
     const imgData = {
       originalWidth: img.width,
       originalHeight: img.height,

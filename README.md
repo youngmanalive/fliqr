@@ -1,10 +1,22 @@
+**UPDATES** - *I've recently made some heavy, site-wide improvements and haven't updated this README yet. Snapshots/descriptions may be somewhat outdated.*
+
+- *Check out the [live site](https://fliqr.herokuapp.com/) for new features like user profiles, comments, and albums.*
+
+- *Photos layout has been completely revamped across the app using a 'justified row' system - major improvement offering a smooth and responsive presentation.*
+
+- *Photo uploading now includes a thumbnail generator to save along with original - Improves performance and speed of gallery loading.*
+
+*More updates to come! Thanks! :)*
+
+---
+
 # fliqr
 
 ![Splash Page](app/assets/images/readme_images/splash.png)
 
 [Live site](https://fliqr.herokuapp.com/)
 
-Fliqr is a photo-based web application built to clone the features and design of [Flickr](https://www.flickr.com). Photographs can be uploaded and viewed by other users. Fliqr was created with a Ruby on Rails backend, using a PostgreSQL database. A React/Redux architecture completes the frontend experience. Photos are stored by implementing Rails Active Storage alongside Amazon's S3. The application has several pending features and improvements.
+Fliqr is a photo-based web application built to clone the features and design of [Flickr](https://www.flickr.com). Features include photo uploading/viewing, albums, user profiles, comments, user auth. etc. Fliqr was created with a Ruby on Rails backend, using a PostgreSQL database. A React/Redux architecture completes the frontend experience. Photos are stored by implementing Rails Active Storage into Amazon's S3. The application has several pending features and improvements.
 
 # Features
 
@@ -56,11 +68,13 @@ Member's must sign up and be logged in to access the site's features.
 - Ruby on Rails
 - PostgreSQL
 - Active Storage / Amazon S3
+- SCSS
 - Webpack
 - Heroku
 
-### Future Features
+### Future Directions
 
+- User profile customization (avatar, cover photo, etc.)
 - Tags
 - Likes
 - Follows
