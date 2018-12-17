@@ -24,7 +24,7 @@ class PhotoIndex extends React.Component {
       thumbnailWidth: photo.thumb_width,
       thumbnailHeight: photo.thumb_height,
       showPhoto: () => push(`/photos/${photo.id}`),
-      customOverlay: this.customOverlay(photo)
+      customOverlay: this.customOverlay(photo, this.props.currentUserId)
     }));
   }
 
