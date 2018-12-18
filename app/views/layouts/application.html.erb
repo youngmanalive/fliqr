@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Fliqr</title>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-130583836-2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-130583836-2');
+    </script>
     <%= csrf_meta_tags %>
+    <title>Fliqr</title>
     <%= favicon_link_tag asset_path('favicon.ico'), :rel => 'icon', :type => "image/x-icon" %>
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro:700|Rubik|Open+Sans:600" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
   </head>
-
   <body>
     <%= yield %>
   </body>
