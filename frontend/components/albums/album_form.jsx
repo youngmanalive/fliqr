@@ -34,10 +34,7 @@ class AlbumForm extends React.Component {
   }
 
   revertChanges() {
-    this.setState(merge({}, this.initialState), () => {
-      this.title.value = this.state.album_title;
-      this.description.value = this.state.album_description;
-    });
+    this.setState(merge({}, this.initialState));
   }
 
   componentDidMount() {
@@ -46,10 +43,9 @@ class AlbumForm extends React.Component {
         this.props.fetchAllPhotos(this.props.currentUserId),
         this.props.fetchAlbum(this.props.match.params.albumId)
       ]).then(() => {
-        this.setState(this.editState());
-        this.title.value = this.props.album.album_title;
-        this.description.value = this.props.album.album_description;
-        this.initialState = merge({}, this.state);
+        this.setState(this.editState(), () => {
+          this.initialState = merge({}, this.state);
+        });
       });
     } else {
       this.props.fetchAllPhotos(this.props.currentUserId)
@@ -135,15 +131,15 @@ class AlbumForm extends React.Component {
         <form onSubmit={this.handleSubmit.bind(this)}>
           <input 
             type='text'
-            ref={el => { this.title = el; }}
             className='album-form-input-title' 
             placeholder='album title'
-            onChange={this.handleUpdate('album_title')} />
+            onChange={this.handleUpdate('album_title')}
+            value={this.state.album_title} />
           <textarea
-            ref={el => { this.description = el; }}
             className='album-form-input-description'
             placeholder='album description'
-            onChange={this.handleUpdate('album_description')} />
+            onChange={this.handleUpdate('album_description')}
+            value={this.state.album_description} />
           <button 
             type='submit'
             className='album-form-submit'
@@ -161,7 +157,7 @@ class AlbumForm extends React.Component {
               key={photo.id}
               className='album-form-photo-item' 
               onClick={() => this.handleSelect(photo.id)}>
-              <img src={photo.photoUrl} />
+              <img src={photo.thumbUrl} />
             </div>
           ))}
         </div>
