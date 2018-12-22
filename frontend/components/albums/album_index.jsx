@@ -14,7 +14,7 @@ const AlbumIndex = (props) => {
         <div className='album-index-header'>{newAlbumButton}</div>
         <div className='album-index-list'>
           {albumArray.map(album => {
-            let style = { backgroundImage: `url(${profilePhotos[album.photoIds[0]].photoUrl})` };
+            let style = { backgroundImage: `url(${profilePhotos[album.photoIds[0]].thumbUrl})` };
             return (
               <Link className='album-index-link' to={`${props.match.url}/albums/${album.id}`}
                 key={album.id}>
