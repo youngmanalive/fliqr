@@ -9,16 +9,15 @@ class PhotoUpload extends React.Component {
 
   nullState() {
     return {
-      img_title: '',
-      img_description: '',
+      imgTitle: '',
+      imgDescription: '',
       photoFile: null,
       photoUrl: null,
-      width: null,
-      height: null,
       thumbBlob: null,
       thumbWidth: null,
       thumbHeight: null,
-      loading: false
+      loading: false,
+      errors: null
     };
   }
 
@@ -31,7 +30,8 @@ class PhotoUpload extends React.Component {
     const fileReader = new FileReader();
 
     fileReader.onloadend = () => {
-      processImage (fileReader.result, imgData => {
+      // create thumbnail
+      processImage(fileReader.result, imgData => {
         const newState = Object.assign(
           {}, this.state, imgData, {
             photoFile: file,
@@ -50,34 +50,54 @@ class PhotoUpload extends React.Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append('photo[img_title]', this.state.img_title);
-    formData.append('photo[img_description]', this.state.img_description);
-    formData.append('photo[file]', this.state.photoFile);
-    formData.append('photo[thumb]', this.state.thumbBlob);
-    formData.append('photo[thumb_width]', this.state.thumbWidth);
-    formData.append('photo[thumb_height', this.state.thumbHeight);
+    this.setState({ loading: true, errors: null }, () => {
+      const formData = new FormData();
+      formData.append('photo[img_title]', this.state.imgTitle);
+      formData.append('photo[img_description]', this.state.imgDescription);
+      formData.append('photo[file]', this.state.photoFile);
+      formData.append('photo[thumb]', this.state.thumbBlob);
+      formData.append('photo[thumb_width]', this.state.thumbWidth);
+      formData.append('photo[thumb_height', this.state.thumbHeight);
 
-    this.props.createPhoto(formData)
-      .then(() => this.props.history.replace(`/users/${this.props.userId}`));
+      this.props.createPhoto(formData)
+        .then(
+          () => this.props.history.replace(`/users/${this.props.userId}`),
+          err => this.setState({ loading: false, errors: err.errors })
+        );
+    });
+  }
+
+  loading() {
+    return (
+      <div className='loading-container'>
+        <div className='lds-ellipsis'>
+          <div/><div/><div/><div/>
+        </div>
+      </div>
+    );
   }
 
   uploadForm() {
+    const hasErrors = Boolean(this.state.errors);
+    const errorStyle = hasErrors ? { border: '1px solid red' } : {};
+    
     return(
       <div className='upload'>
+        {this.state.loading ? this.loading() : null}
         <div className='upload-page-submit'>
           <div className='upload-form-box'>
             <h1 className='upload-form-title'>Edit photo:</h1>
             <form onSubmit={this.handleSubmit.bind(this)}>
               <input
+                style={errorStyle}
                 type='text'
-                value={this.state.img_title}
+                value={this.state.imgTitle}
                 placeholder='Add a title'
-                onChange={this.handleUpdate('img_title')} />
+                onChange={this.handleUpdate('imgTitle')} />
               <textarea
-                value={this.state.img_description}
+                value={this.state.imgDescription}
                 placeholder='Add a description'
-                onChange={this.handleUpdate('img_description')} />
+                onChange={this.handleUpdate('imgDescription')} />
               <input type='submit' value='Upload Photo' />
             </form>
             <button onClick={() => this.setState(this.nullState())}>
@@ -86,8 +106,8 @@ class PhotoUpload extends React.Component {
           </div>
           <div className='upload-preview-box'>
             <img className='upload-preview-img' src={this.state.photoUrl} />
-            <div className='upload-preview-title'>{this.state.img_title}</div>
-            <div className='upload-preview-description'>{this.state.img_description}</div>
+            <div className='upload-preview-title'>{this.state.imgTitle}</div>
+            <div className='upload-preview-description'>{this.state.imgDescription}</div>
           </div>
         </div>
       </div>
@@ -110,7 +130,6 @@ class PhotoUpload extends React.Component {
       </div>
     );
   }
-
 
   render() {
     return (this.state.photoFile) ? (
