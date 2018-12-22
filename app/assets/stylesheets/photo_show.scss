@@ -41,7 +41,7 @@
   justify-content: space-between;
   margin: 20px auto 100px auto;
   min-height: 150px;
-  width: 1080px;
+  max-width: 1080px;
 
   span {
     display: block;
@@ -241,6 +241,29 @@
         background-color: #fcbcbc;
         cursor: pointer;
       }
+    }
+  }
+}
+
+
+@media screen and (max-width: 1000px) {
+  .photo-show-info-box {
+    .photo-show-col-a {
+      width: 540px;
+      margin: auto;
+
+      .photo-show-info {
+        position: relative;
+        left: 70px;
+      }
+
+      .photo-show-user-info {
+        border: 0;
+      }
+    }
+
+    .photo-show-col-b {
+      display: none;
     }
   }
 }
