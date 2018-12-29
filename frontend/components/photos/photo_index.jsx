@@ -1,30 +1,57 @@
 import React from 'react';
-import { Link, withRouter } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import Gallery from 'react-grid-gallery';
+import PhotoViewContainer from './photo_view_container';
 
 class PhotoIndex extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      galleryPhotos: null
+      galleryPhotos: null,
+      viewIdx: null
     };
+
+    this.setViewer = this.setViewer.bind(this);
   }
 
   componentDidMount() {
-    const { photos, history } = this.props;
-    const galleryPhotos = this.generateArray(photos, history.push);
+    const { photos } = this.props;
+    const galleryPhotos = this.generateArray(photos, this.setViewer);
 
     this.setState({ galleryPhotos });
   }
+
+  componentDidUpdate(prevProps, prevState) {
+    const { galleryPhotos, viewIdx } = this.state;
+    const prevIdx = prevState.viewIdx;
+
+    if (prevIdx !== null && prevIdx === viewIdx) {
+      if (this.props.photos[viewIdx].commentIds !== prevProps.photos[viewIdx].commentIds) {
+        galleryPhotos[viewIdx].commentIds = this.props.photos[viewIdx].commentIds;
+        const photo = galleryPhotos[viewIdx];
+        galleryPhotos[viewIdx].customOverlay = this.customOverlay(photo, this.props.currentUserId);
+        this.setState({ galleryPhotos });
+      }
+    }
+    
+  }
   
-  generateArray(photos, push) {
-    return photos.map(photo => ({
+  generateArray(photos, setViewer) {
+    return photos.map((photo) => ({
+      id: photo.id,
       src: photo.photoUrl,
       thumbnail: photo.thumbUrl,
       thumbnailWidth: photo.thumb_width,
       thumbnailHeight: photo.thumb_height,
-      showPhoto: () => push(`/photos/${photo.id}`),
-      customOverlay: this.customOverlay(photo, this.props.currentUserId)
+      img_title: photo.img_title,
+      img_description: photo.img_description,
+      fname: photo.fname,
+      lname: photo.lname,
+      created_at: photo.created_at,
+      commentIds: photo.commentIds,
+      user_id: photo.user_id,
+      customOverlay: this.customOverlay(photo, this.props.currentUserId),
+      setViewer
     }));
   }
 
@@ -42,29 +69,41 @@ class PhotoIndex extends React.Component {
     );
   }
 
-  // bound to image object
+  // bound to each image object
   handleClick() {
-    this.props.item.showPhoto();
+    this.props.item.setViewer(this.props.index);
+  }
+
+  setViewer(idx = null) {
+    this.setState({ viewIdx: idx });
   }
 
   render() {
     return (
       <div className='photo-index'>
         <div className='gallery-container'>
-        {!this.state.galleryPhotos ? null :
-          <Gallery
-            images={this.state.galleryPhotos}
-            rowHeight={280}
-            margin={2}
-            enableImageSelection={false}
-            enableLightbox={false}
-            onClickThumbnail={this.handleClick}
-          />
-        }
+          {!this.state.galleryPhotos ? null :
+            <React.Fragment>
+              <Gallery
+                images={this.state.galleryPhotos}
+                rowHeight={280}
+                margin={2}
+                enableImageSelection={false}
+                enableLightbox={false}
+                onClickThumbnail={this.handleClick}
+              />
+              <PhotoViewContainer
+                gallery={this.state.galleryPhotos} 
+                viewIdx={this.state.viewIdx}
+                setViewer={this.setViewer}
+                isModal={true}
+              />
+            </React.Fragment>
+          }
         </div>
       </div>
     );
   }
 }
 
-export default withRouter(PhotoIndex);
+export default PhotoIndex;

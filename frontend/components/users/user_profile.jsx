@@ -20,7 +20,7 @@ class UserProfile extends React.Component {
   componentDidUpdate(prevProps) {
     if (prevProps.profileUserId !== this.props.profileUserId) {
       this.setState({ loading: true }, () => this.loadUserData());
-      window.scrollTo(0, 0);
+      window.scrollTo(0, 0);  
     }
   }
 
@@ -77,20 +77,18 @@ class UserProfile extends React.Component {
     const albumIndex = <AlbumIndex {...this.props} />;
     const albumShow = <AlbumShow {...this.props} />;
 
-
-
     return (
       <div className='user-profile'>
         <Switch>
-          <Route path={`${url}/albums/:albumId`} component={() => albumShow} />
-          <Route path={`${url}`} component={() => profileHeader} />
+          <Route path={`${url}/albums/:albumId`} render={() => albumShow} />
+          <Route path={`${url}`} render={() => profileHeader} />
         </Switch>
 
         <Route exact path={`${url}`} render={() => profileLinks} />
         <Route exact path={`${url}/albums`} render={() => profileLinks} />
 
-        <Route exact path={`${url}`} component={() => profileStream} />
-        <Route exact path={`${url}/albums`} component={() => albumIndex} />
+        <Route exact path={`${url}`} render={() => profileStream} />
+        <Route exact path={`${url}/albums`} render={() => albumIndex} />
       </div>
     );
   }

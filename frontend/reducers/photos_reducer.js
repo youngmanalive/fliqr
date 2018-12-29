@@ -21,6 +21,13 @@ export default (state = {}, action) => {
     case RECEIVE_COMMENT:
       newState[action.comment.photo_id].commentIds.push(action.comment.id);
       return newState;
+    case REMOVE_COMMENT:
+      const { photo_id, id } = action.comment;
+      const commentIds = newState[photo_id].commentIds;
+      const index = commentIds.indexOf(id);
+      commentIds.splice(index, 1);
+      newState[photo_id].commentIds = commentIds;
+      return newState;
     case LOGOUT_CURRENT_USER:
       return {};
     default:

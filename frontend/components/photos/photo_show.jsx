@@ -37,11 +37,7 @@ class PhotoShow extends React.Component {
           document.title = `Fliqr - ${photo.img_title} - ${photo.username}`
         ));
       },
-      () => {
-        this.setState({ notFound: true }, () => (
-          document.title = 'Fliqr - Photo not found'
-        ));
-      }
+      () => this.setState({ notFound: true })
     );
   }
 
