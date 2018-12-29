@@ -19,6 +19,7 @@ class Api::CommentsController < ApplicationController
 
     if @comment
       @comment.destroy
+      render json: { "id": @comment.id, "photo_id": @comment.photo_id }
     else
       render json: ['Comment not found'], status: 404
     end
