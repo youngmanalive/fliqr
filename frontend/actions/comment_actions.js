@@ -7,7 +7,7 @@ export const RECEIVE_COMMENT_ERRORS = 'RECEIVE_COMMENT_ERRORS';
 
 const receiveAllComments = comments => ({ type: RECEIVE_ALL_COMMENTS, comments });
 const receiveComment = comment => ({ type: RECEIVE_COMMENT, comment });
-const removeComment = commentId => ({ type: REMOVE_COMMENT, commentId });
+const removeComment = comment => ({ type: REMOVE_COMMENT, comment });
 const receiveErrors = errors => ({ type: RECEIVE_COMMENT_ERRORS, errors });
 
 export const fetchAllComments = id => dispatch => (
@@ -26,7 +26,7 @@ export const createComment = formData => dispatch => (
 
 export const deleteComment = id => dispatch => (
   CommentApiUtil.deleteComment(id).then(
-    () => dispatch(removeComment(id)),
+    res => dispatch(removeComment(res)),
     err => dispatch(receiveErrors(err.responseJSON))
   )
 );
