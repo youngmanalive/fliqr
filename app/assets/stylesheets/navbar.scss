@@ -2,6 +2,7 @@
   display: flex;
   align-items: center;
   z-index: 4;
+  position: relative;
 }
 
 .navbar-main-splash {
@@ -14,7 +15,7 @@
 }
 
 .navbar-main-user {
-  background-color: rgba(0, 0, 0, .9);
+  background-color: rgba(0, 0, 0, .8);
   height: 50px;
   padding-left: 12%;
   padding-right: 12%;
