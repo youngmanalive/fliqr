@@ -16,7 +16,6 @@
     background: #202123;
     padding-top: 50px;
     color: white;
-    user-select: none;
   }
 
   .photo-container {
@@ -30,6 +29,7 @@
     
     img {
       box-sizing: border-box;
+      user-select: none;
       display: block;
       min-height: 300px;
       max-height: inherit;
@@ -43,12 +43,13 @@
 
 .photo-modal-button {
   position: absolute;
+  user-select: none;
   font-size: 30px;
   cursor: pointer;
   transition: transform .2s;
 
   &:hover {
-    transform: scale(1.2);
+    transform: scale(1.3);
   }
 
   &.close {
@@ -58,13 +59,13 @@
 
   &.previous {
     top: 50%;
-    left: 15px;
+    left: 20px;
     padding: 20px 20px 20px 0;
   }
 
   &.next {
     top: 50%;
-    right: 15px;
+    right: 20px;
     padding: 20px 0 20px 20px;
   }
 }
@@ -94,9 +95,7 @@
 
 
 
-
-
-.no-scroll {
+html.no-scroll {
   overflow: hidden;
 }
 
