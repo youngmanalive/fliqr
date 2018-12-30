@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import ProfileHeader from './profile_components/profile_header';
 import ProfileStream from './profile_components/profile_stream';
 import AlbumIndex from '../albums/album_index';
@@ -58,37 +58,35 @@ class UserProfile extends React.Component {
   }
 
   render() {
-    const dataReady = Boolean(this.props.profileUser);
+    const {
+      match: { url },
+      location,
+      profileUser,
+      profilePhotos,
+      errors
+    } = this.props;
 
-    if (this.props.errors.users.length) return this.userNotFound();
-    if (this.state.loading || !dataReady) return this.loading();
+    if (errors.users.length) return this.userNotFound();
+    if (this.state.loading || !profileUser) return this.loading();
 
-    const url = this.props.match.url;
-    const photoCount = Object.keys(this.props.profilePhotos).length;
+    const isAlbumShow = location.pathname.split('/').length >= 5;
+    const photoCount = Object.keys(profilePhotos).length;
 
-    const profileHeader = <ProfileHeader 
-                            user={this.props.profileUser} 
-                            photoCount={photoCount} />;
-    const profileLinks = <div className='user-profile-links'>
-                           <NavLink exact to={`${url}`} >Photostream</NavLink>
-                           <NavLink exact to={`${url}/albums`} >Albums</NavLink>
-                         </div>;
-    const profileStream = <ProfileStream {...this.props} />;
-    const albumIndex = <AlbumIndex {...this.props} />;
-    const albumShow = <AlbumShow {...this.props} />;
+    if (isAlbumShow) return (
+      <div className='user-profile'>
+        <AlbumShow {...this.props} />
+      </div>
+    );
 
     return (
       <div className='user-profile'>
-        <Switch>
-          <Route path={`${url}/albums/:albumId`} render={() => albumShow} />
-          <Route path={`${url}`} render={() => profileHeader} />
-        </Switch>
-
-        <Route exact path={`${url}`} render={() => profileLinks} />
-        <Route exact path={`${url}/albums`} render={() => profileLinks} />
-
-        <Route exact path={`${url}`} render={() => profileStream} />
-        <Route exact path={`${url}/albums`} render={() => albumIndex} />
+        <ProfileHeader user={profileUser} photoCount={photoCount} />
+        <div className='user-profile-links'>
+          <NavLink exact to={`${url}`}>Photostream</NavLink>
+          <NavLink exact to={`${url}/albums`}>Albums</NavLink>
+        </div>
+        <Route exact path={`${url}`} render={() => <ProfileStream {...this.props} />} />
+        <Route exact path={`${url}/albums`} render={() => <AlbumIndex {...this.props} />} />
       </div>
     );
   }
