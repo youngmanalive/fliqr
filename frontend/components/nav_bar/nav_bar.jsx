@@ -9,13 +9,11 @@ const userNav = (currentUser, logout) => (
   <div className='navbar-main-user'>
     <NavLink to='/explore' className='navbar-logo'>fliqr</NavLink>
     <div className='navbar-user-links'>
-      <NavLink to={`/users/${currentUser.id}`}>You</NavLink>
+      <NavLink exact to={`/users/${currentUser.id}`}>You</NavLink>
       <NavLink to='/explore'>Explore</NavLink>
     </div>
-
     <div className='navbar-user-info'>
       <Link to='/upload' className='navbar-upload-icon' />
-
       <div className='navbar-info-icon'>
         <div className='navbar-info-dropdown-container'>
           <div className='navbar-info-dropdown'>
@@ -30,21 +28,15 @@ const userNav = (currentUser, logout) => (
           </div>
         </div>
       </div>
-
       <div className='navbar-avatar-icon'>
         <div className='navbar-session-dropdown-container'>
           <div className='navbar-session-dropdown'>
             <p className='navbar-user-name'>Hello, {currentUser.fname}!</p>
-            <p className='navbar-session-logout'
-              onClick={() => logout()}>
-              Sign Out
-              </p>
+            <p className='navbar-session-logout' onClick={() => logout()}>Sign Out</p>
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 );
 
