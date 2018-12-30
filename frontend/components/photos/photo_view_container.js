@@ -1,5 +1,6 @@
 import PhotoView from './photo_view';
 import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import { fetchPhoto, deletePhoto } from '../../actions/photo_actions';
 import { 
   fetchAllComments,
@@ -14,7 +15,8 @@ const mapStateToProps = (state, ownProps) => {
   return {
     photoId,
     fetchedPhoto,
-    comments: state.entities.comments
+    currentUserId: state.session.currentUserId,
+    errors: state.errors.photos
   };
 };
 
@@ -26,4 +28,4 @@ const mapDispatchToProps = dispatch => ({
   deleteComment: id => dispatch(deleteComment(id))
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(PhotoView);
+export default connect(mapStateToProps, mapDispatchToProps)(withRouter(PhotoView));

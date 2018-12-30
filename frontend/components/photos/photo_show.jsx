@@ -117,7 +117,7 @@ class PhotoShow extends React.Component {
       <div className='photo-show'>
         <div className='photo-show-box'>
           <span onClick={() => this.props.history.goBack()}>&#x2190; Back</span>
-          <img src={photo.photoUrl} />
+          <img src={photo.src} />
         </div>
         <div className='photo-show-info-box'>
           <div className='photo-show-col-a'>

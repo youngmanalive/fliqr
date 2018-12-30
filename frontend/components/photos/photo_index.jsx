@@ -25,7 +25,10 @@ class PhotoIndex extends React.Component {
     const { galleryPhotos, viewIdx } = this.state;
     const prevIdx = prevState.viewIdx;
 
-    if (prevIdx !== null && prevIdx === viewIdx) {
+    if (galleryPhotos.length !== this.props.photos.length) {
+      const newGallery = this.generateArray(this.props.photos, this.setViewer);
+      this.setState({ viewIdx: null, galleryPhotos: newGallery });
+    } else if (prevIdx !== null && prevIdx === viewIdx) {
       if (this.props.photos[viewIdx].commentIds !== prevProps.photos[viewIdx].commentIds) {
         galleryPhotos[viewIdx].commentIds = this.props.photos[viewIdx].commentIds;
         const photo = galleryPhotos[viewIdx];
@@ -33,13 +36,12 @@ class PhotoIndex extends React.Component {
         this.setState({ galleryPhotos });
       }
     }
-    
   }
   
   generateArray(photos, setViewer) {
     return photos.map((photo) => ({
       id: photo.id,
-      src: photo.photoUrl,
+      src: photo.src,
       thumbnail: photo.thumbUrl,
       thumbnailWidth: photo.thumb_width,
       thumbnailHeight: photo.thumb_height,

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import CommentIndex from '../comments/comment_index_container';
 
 class PhotoView extends React.Component {
@@ -10,11 +11,13 @@ class PhotoView extends React.Component {
       isModal: false,
       viewIdx: null,
       fetchedPhoto: null,
-      commentCount: null
+      commentCount: null,
+      notFound: false
     };
 
     this.handlePrevious = this.handlePrevious.bind(this);
     this.handleNext = this.handleNext.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
   }
 
   componentDidMount() {
@@ -33,11 +36,14 @@ class PhotoView extends React.Component {
       });
     } else {
       this.props.fetchPhoto(this.props.photoId)
-        .then(() => this.setState({
-          fetchedPhoto: this.props.fetchedPhoto,
-          commentCount: this.props.fetchedPhoto.commentIds.length,
-          loading: false
-        }));
+        .then(
+          () => this.setState({
+            fetchedPhoto: this.props.fetchedPhoto,
+            commentCount: this.props.fetchedPhoto.commentIds.length,
+            loading: false
+          }),
+          () => this.setState({ loading: false, notFound: true })
+        );
     }
   }
 
@@ -115,38 +121,71 @@ class PhotoView extends React.Component {
     );
   }
 
-  render() {
-    const { isModal, viewIdx, loading, fetchedPhoto, commentCount } = this.state;
+  photoNotFound() {
+    document.title = 'Fliqr - Photo not found';
+    return (
+      <div className='user-profile-errors'>
+        <div className='error-message'>{this.props.errors[0]}</div>
+        <Link to={`/users/${this.props.currentUserId}`}>Close</Link>
+      </div>
+    );
+  }
 
+  handleDelete(id) {
+    const { isModal, deletePhoto, history, currentUserId } = this.props;
+    if (confirm("Are you sure you want to delete this photo? You cannot undo this!")) {
+      deletePhoto(id).then(() => {
+        if (!isModal) history.replace(`/users/${currentUserId}`);
+        else this.props.setViewer();
+      });
+    }
+  }
+
+  render() {
+    const { isModal, viewIdx, loading, fetchedPhoto, commentCount, notFound } = this.state;
+
+    if (notFound) return this.photoNotFound();
     if (loading) return this.loading();
 
-    let closeModal, previous, next;
+    const photo = isModal ? this.props.gallery[viewIdx] : fetchedPhoto;
+
+    let closeModal, previous, next, deletePhoto;
 
     if (isModal) {
-      if (viewIdx === null) return null;
+      if (!photo || viewIdx === null) return null;
       closeModal = <button className='photo-modal-button close' onClick={() => this.props.setViewer()}>&times;</button>;
-      previous = <button className='photo-modal-button previous' onClick={this.handlePrevious}>&#8592;</button>;
-      next = <button className='photo-modal-button next' onClick={this.handleNext}>&#8594;</button>;
+      previous = <button className='photo-modal-button previous' onClick={this.handlePrevious}>&#10094;</button>;
+      next = <button className='photo-modal-button next' onClick={this.handleNext}>&#10095;</button>;
     }
 
-    const photo = !fetchedPhoto ? this.props.gallery[viewIdx] : fetchedPhoto;
-    const imgSrc = isModal ? this.props.gallery[viewIdx].src : fetchedPhoto.photoUrl;
+    if (this.props.currentUserId === photo.user_id) {
+      deletePhoto = (
+        <button 
+          className='photo-delete-bttn'
+          onClick={() => this.handleDelete(photo.id, photo.user_id)}>
+          Delete this photo
+        </button>
+      );
+    }
+
     const uploadDate = this.uploadDate(photo.created_at);
     const commentStat = `${commentCount} comment${commentCount === 1 ? '' : 's'}`;
-
+    
     return (
       <div className='fliqr-photo-viewer'>
         <div className='photo-viewer'>
           {closeModal}{previous}{next}
           <div className='photo-container'>
-            <img src={imgSrc} />
+            <img src={photo.src} />
           </div>
         </div>
         <div className='photo-viewer-info'>
           <CommentIndex photoId={photo.id} />
           <div>
+            {deletePhoto}
             <h1>{commentStat}</h1>
             <h1>{uploadDate}</h1>
+            <h1>Shareable link: {`fliqr.herokuapp.com/#/photos/${photo.id}`}</h1>
           </div>
         </div>
       </div>
