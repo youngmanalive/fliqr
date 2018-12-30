@@ -47,7 +47,15 @@ export const AlbumShow = (props) => {
     );
   }
 
-  const photos = album.photoIds.map(id => props.profilePhotos[id]);
+  let photoCount = 0;
+
+  const photos = album.photoIds.reduce((result, id) => {
+    if (props.profilePhotos[id]) {
+      result.push(props.profilePhotos[id]);
+      photoCount++;
+    }
+    return result;
+  }, []);
 
   return (
     <div className='album-show-container'>
@@ -59,7 +67,7 @@ export const AlbumShow = (props) => {
       <div className='album-show-info'>
         <div className='album-title'>{album.album_title}</div>
         <div className='album-description'>{album.album_description}</div>
-        <div className='album-photo-count'>{album.photoIds.length} photos</div>
+        <div className='album-photo-count'>{photoCount} photos</div>
         <div className='album-username'>{userName}</div>
       </div>
       <PhotoIndex photos={photos} currentUserId={props.currentUserId} />

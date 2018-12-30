@@ -14,13 +14,21 @@ const AlbumIndex = (props) => {
         <div className='album-index-header'>{newAlbumButton}</div>
         <div className='album-index-list'>
           {albumArray.map(album => {
-            let style = { backgroundImage: `url(${profilePhotos[album.photoIds[0]].thumbUrl})` };
+            let style, photoCount = 0;
+
+            for (let i = 0; i < album.photoIds.length; i++) {
+              if (profilePhotos[album.photoIds[i]]) {
+                if (!style) style = { backgroundImage: `url(${profilePhotos[album.photoIds[i]].thumbUrl})` };
+                photoCount++;
+              } 
+            }
+
             return (
               <Link className='album-index-link' to={`${props.match.url}/albums/${album.id}`}
                 key={album.id}>
                 <div className='album-index-item' style={style}>
                   <div className='album-title'>{album.album_title}</div>
-                  <div className='album-photo-count'>{album.photoIds.length} photos</div>
+                  <div className='album-photo-count'>{photoCount} photos</div>
                 </div>
               </Link>
             );
