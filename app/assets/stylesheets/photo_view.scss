@@ -152,6 +152,11 @@
       border-radius: 5px;
       color: white;
       cursor: pointer;
+      transition: all .2s;
+
+      &:hover {
+        background-color: #00aaff;
+      }
     }
   }
 }
@@ -236,7 +241,7 @@
     min-width: 395px;
     min-height: 80px;
     padding: 10px;
-    border-radius: 3px;
+    border-radius: 5px;
     font-size: 14px;
     resize: none;
     text-align: left;
@@ -249,7 +254,7 @@
     color: white;
     font-weight: 400;
     font-size: 16px;
-    border-radius: 3px;
+    border-radius: 5px;
     transition: all .2s;
   }
 

@@ -13,25 +13,29 @@
 }
 
 @media screen and (max-width: 1300px) {
-  .explore-page {
-    h1, .photo-index { margin: 0 100px }
+  .explore-page > h1,
+  .explore-page .photo-index {
+    margin: 0 100px;
   }
 }
 
 @media (max-width: 1100px) {
-  .explore-page {
-    h1, .photo-index { margin: 0 50px }
+  .explore-page > h1,
+  .explore-page .photo-index {
+    margin: 0 50px;
   }
 }
 
 @media (max-width: 815px) {
-  .explore-page {
-    h1, .photo-index { margin: 0 10px }
+  .explore-page > h1,
+  .explore-page .photo-index {
+    margin: 0 10px;
   }
 }
 
 @media (max-width: 600px) {
-  .explore-page {
-    h1, .photo-index { margin: 0 5px }
+  .explore-page > h1,
+  .explore-page .photo-index {
+    margin: 0 5px;
   }
 }

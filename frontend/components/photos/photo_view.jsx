@@ -175,19 +175,15 @@ class PhotoView extends React.Component {
 
     if (this.props.currentUserId === photo.user_id) {
       deletePhoto = (
-        <button 
-          className='photo-delete-bttn'
-          onClick={() => this.handleDelete(photo.id, photo.user_id)}>
-          Delete this photo
+        <button onClick={() => this.handleDelete(photo.id, photo.user_id)}>
+          Delete
         </button>
       );
     }
 
     const shareLink = (
-      <button 
-        className="photo-view-share-link"
-        onClick={() => this.copyToClipbard(photo.id)}>
-        Share Link
+      <button onClick={() => this.copyToClipbard(photo.id)}>
+        Share
       </button>
     );
 
