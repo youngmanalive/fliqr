@@ -42,12 +42,12 @@ const userNav = (currentUser, logout) => (
 
 const splashNav = () => (
   <div className='navbar-main-splash'>
-    <NavLink to='/' className='navbar-logo'>fliqr</NavLink>;
+    <NavLink to='/' className='navbar-logo'>fliqr</NavLink>
     <SplashSessionContainer />
   </div>
 );
 
-const NavBar = ({ currentUser, logout, signup }) => (
+const NavBar = ({ currentUser, logout }) => (
   currentUser ? userNav(currentUser, logout) : splashNav()
 );
 
