@@ -15,6 +15,14 @@
     <link href="https://fonts.googleapis.com/css?family=Maven+Pro:700|Rubik|Open+Sans:600" rel="stylesheet">
     <%= stylesheet_link_tag    'application', media: 'all' %>
     <%= javascript_include_tag 'application' %>
+    <% if logged_in? %>
+      <script type='text/javascript'>
+        window.currentUser = <%= render(
+          "api/users/user.json.jbuilder",
+            user: current_user
+          ).html_safe %>
+      </script>
+    <% end %>
   </head>
   <body>
     <%= yield %>
