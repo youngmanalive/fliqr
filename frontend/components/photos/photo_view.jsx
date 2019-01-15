@@ -71,11 +71,15 @@ class PhotoView extends React.Component {
     } else if (prevProps.photoId !== photoId) {
       this.setState({ loading: true }, () => {
         this.props.fetchPhoto(photoId)
-          .then(() => this.setState({
-            fetchedPhoto: this.props.fetchedPhoto,
-            commentCount: this.props.fetchedPhoto.commentIds.length,
-            loading: false
-          }));
+          .then(
+            () => this.setState({
+              fetchedPhoto: this.props.fetchedPhoto,
+              commentCount: this.props.fetchedPhoto.commentIds.length,
+              loading: false,
+              notFound: false
+            }),
+            () => this.setState({ loading: false, notFound: true })
+          );
       });
     } else if (fetchedPhoto && this.state.fetchedPhoto) {
       if (fetchedPhoto.commentIds.length !== this.state.fetchedPhoto.commentIds.length) {
@@ -140,6 +144,7 @@ class PhotoView extends React.Component {
 
   copyToClipbard(id) {
     const link = `${window.location.origin}/#/photos/${id}`;
+    let copySuccess = false;
 
     if (document.execCommand) {
       let el = document.createElement('textarea');
@@ -148,11 +153,14 @@ class PhotoView extends React.Component {
       el.style = {position: "absolute", width: 0, height: 0, opacity: 0};
       document.body.appendChild(el);
       el.select();
-      document.execCommand("copy");
+      if (document.execCommand("copy")) copySuccess = true;
       document.body.removeChild(el);
-      alert("Copied to clipboard! " + link);
+    } 
+
+    if (copySuccess) {
+      alert("Successfully copied to clipboard!\n\n" + link);
     } else {
-      alert("Copy and paste this link! " + link);
+      prompt("Copy this link:", link);
     }
   }
 
