@@ -1,12 +1,12 @@
 .fliqr-photo-viewer {
   z-index: 2;
   position: fixed;
-  background: white;
+  background: #F3F5F6;
   width: 100%;
   height: 100%;
   left: 0;
   top: 0;
-  overflow: scroll;
+  overflow: auto scroll;
 
   .photo-viewer {
     position: relative;
@@ -31,7 +31,8 @@
       box-sizing: border-box;
       user-select: none;
       display: block;
-      min-height: 300px;
+      min-height: 400px;
+      min-width: 500px;
       max-height: inherit;
       max-width: 100%;
       padding: 35px 50px;
@@ -54,45 +55,209 @@
 
   &.close {
     top: 60px;
-    right: 20px;
+    right: 25px;
   }
 
   &.previous {
     top: 50%;
-    left: 20px;
+    left: 25px;
     padding: 20px 20px 20px 0;
   }
 
   &.next {
     top: 50%;
-    right: 20px;
+    right: 25px;
     padding: 20px 0 20px 20px;
   }
 }
 
-
-
 .photo-viewer-info {
-  border: 1px solid green;
   display: flex;
   justify-content: center;
-  width: 60%;
+  width: 65%;
   margin: auto;
-  min-height: 200px;
+  min-height: 500px;
+  min-width: 900px;
 
   > div {
     width: 50%;
+    padding: 20px;
+  }
+  vertical-align: top;
+
+  .photo-user-avatar {
+    flex-grow: 0;
+    top: -10px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-image: image-url('avatar-icon.svg');
+    background-size: cover;
+    margin: 5px 10px 0 5px;
+  }
+
+  .photo-user-avatar:hover {
+    cursor: pointer;
+  }
+
+  .photo-info-container {
+    display: flex;
+    justify-content: space-around;
+    padding-bottom: 5px;
+
+    border-bottom: 1px solid #b1b1b1;
+  }
+
+  .photo-user-info {
+    box-sizing: border-box;
+    flex-grow: 1;
+    padding: 5px;
+
+    > * {
+      padding-bottom: 8px;
+    }
+
+    .photo-username {
+      display: block;
+      font-size: 18px;
+      font-weight: bold;
+      transition: color .2s;
+    }
+    .photo-username:hover {
+      text-decoration: underline;
+      cursor: pointer;
+      color: #2B6DA7;
+    }
+
+    .photo-title {
+      font-weight: bold;
+    }
+  }
+
+  .photo-view-stats {
+    > div {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px;
+      border-bottom: 1px solid #b1b1b1;
+    }
+
+    > button {
+      display: block;
+      padding: 5px 15px;
+      background: #0091dc;
+      text-align: right;
+      float: right;
+      margin: 15px 10px;
+      border-radius: 5px;
+      color: white;
+      cursor: pointer;
+    }
   }
 }
 
-.photo-viewer-comment-container {
-  border: 1px solid red;
+.photo-view-comment-index {
+  margin-top: 20px;
+
+  .comment-container {
+    display: flex;
+    transition: .2s;
+    margin-left: 30px;
+    padding: 10px;
+    border-radius: 3px;
+  }
+
+  .comment-info {
+    padding: 0 10px;
+    width: 100%;
+  }
+
+  .comment-author-avatar {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    padding-right: 5px;
+    background-image: image-url('avatar-icon.svg');
+    background-size: cover;
+  }
+
+  .comment-author-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .comment-author {
+    font-size: 14px;
+    color: #006dac;
+  }
+
+  .comment-author:hover {
+    text-decoration: underline;
+  }
   
-  ul {
-    list-style: none;
+  .comment-delete-button {
+    opacity: 0;
+    transition: .2s;
+    font-size: 14px;
+    padding: 0;
+  }
+
+  .comment-delete-button:hover {
+    cursor: pointer;
+    color: #424242;
+    text-decoration: underline
+  }
+
+  .comment-container:hover {
+    background-color: #FFFFFF;
+
+    .comment-delete-button {
+      opacity: 1;
+    }
+  }
+
+  .comment-body {
+    font-size: 14px;
+    padding: 5px 0;
+    margin: 0;
   }
 }
 
+.photo-show-comment-form {
+  display: inline-block;
+  padding: 30px;
+  text-align: right;
+
+  .comment-form {
+    background-color: #FFFFFF;
+    border: 1px solid #9b9b9b;
+    min-width: 395px;
+    min-height: 80px;
+    padding: 10px;
+    border-radius: 3px;
+    font-size: 14px;
+    resize: none;
+    text-align: left;
+  }
+
+  .comment-submit {
+    padding: 9px 20px;
+    margin-top: 10px;
+    background-color: #0091dc;
+    color: white;
+    font-weight: 400;
+    font-size: 16px;
+    border-radius: 3px;
+    transition: all .2s;
+  }
+
+  .comment-submit:hover {
+    background-color: #00aaff;
+    cursor: pointer;
+  }
+}
 
 
 html.no-scroll {
@@ -100,8 +265,10 @@ html.no-scroll {
 }
 
 .lds-dual-ring {
-  border: 1px solid black;
-  display: inline-block;
+  display: block;
+  position: relative;
+  top: 25px;
+  margin: auto;
   width: 64px;
   height: 64px;
 }
@@ -124,5 +291,18 @@ html.no-scroll {
   }
   100% {
     transform: rotate(360deg);
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .photo-viewer-info .photo-view-stats {
+    width: auto;
+    div { flex-direction: column; }
+    h1 { padding-bottom: 10px; }
+
+    button {
+      display: block;
+      float: none;
+    }
   }
 }

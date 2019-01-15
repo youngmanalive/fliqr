@@ -30,10 +30,8 @@ class PhotoIndex extends React.Component {
       this.setState({ viewIdx: null, galleryPhotos: newGallery });
     } else if (prevIdx !== null && prevIdx === viewIdx) {
       if (this.props.photos[viewIdx].commentIds !== prevProps.photos[viewIdx].commentIds) {
-        galleryPhotos[viewIdx].commentIds = this.props.photos[viewIdx].commentIds;
-        const photo = galleryPhotos[viewIdx];
-        galleryPhotos[viewIdx].customOverlay = this.customOverlay(photo, this.props.currentUserId);
-        this.setState({ galleryPhotos });
+        const newGallery = this.generateArray(this.props.photos, this.setViewer);
+        this.setState({ galleryPhotos: newGallery });
       }
     }
   }

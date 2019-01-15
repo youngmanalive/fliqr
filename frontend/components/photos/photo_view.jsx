@@ -53,7 +53,6 @@ class PhotoView extends React.Component {
 
   componentDidUpdate(prevProps, prevState) {
     const {isModal, viewIdx, photoId, fetchedPhoto, gallery } = this.props;
-    
     if (isModal && prevProps.viewIdx !== viewIdx) {
       this.setState({ 
           viewIdx,
@@ -66,11 +65,9 @@ class PhotoView extends React.Component {
         }
       });
     } else if (isModal && viewIdx !== null) {
-      setTimeout(() => {
         if (prevState.commentCount !== gallery[viewIdx].commentIds.length) {
           this.setState({ commentCount: gallery[viewIdx].commentIds.length });
         }
-      });
     } else if (prevProps.photoId !== photoId) {
       this.setState({ loading: true }, () => {
         this.props.fetchPhoto(photoId)
@@ -141,6 +138,24 @@ class PhotoView extends React.Component {
     }
   }
 
+  copyToClipbard(id) {
+    const link = `${window.location.origin}/#/photos/${id}`;
+
+    if (document.execCommand) {
+      let el = document.createElement('textarea');
+      el.value = link;
+      el.setAttribute("readonly", "");
+      el.style = {position: "absolute", width: 0, height: 0, opacity: 0};
+      document.body.appendChild(el);
+      el.select();
+      document.execCommand("copy");
+      document.body.removeChild(el);
+      alert("Copied to clipboard! " + link);
+    } else {
+      alert("Copy and paste this link! " + link);
+    }
+  }
+
   render() {
     const { isModal, viewIdx, loading, fetchedPhoto, commentCount, notFound } = this.state;
 
@@ -168,9 +183,17 @@ class PhotoView extends React.Component {
       );
     }
 
+    const shareLink = (
+      <button 
+        className="photo-view-share-link"
+        onClick={() => this.copyToClipbard(photo.id)}>
+        Share Link
+      </button>
+    );
+
     const uploadDate = this.uploadDate(photo.created_at);
-    const commentStat = `${commentCount} comment${commentCount === 1 ? '' : 's'}`;
-    
+    const commentStat = `${commentCount} Comment${commentCount === 1 ? '' : 's'}`;
+
     return (
       <div className='fliqr-photo-viewer'>
         <div className='photo-viewer'>
@@ -180,12 +203,26 @@ class PhotoView extends React.Component {
           </div>
         </div>
         <div className='photo-viewer-info'>
-          <CommentIndex photoId={photo.id} />
           <div>
+            <div className='photo-info-container'>
+              <Link to={`/users/${photo.user_id}`} className='photo-user-avatar' />
+              <div className='photo-user-info'>
+                <Link to={`/users/${photo.user_id}`} className='photo-username'>
+                  {photo.fname} {photo.lname}
+                </Link>
+                <h2 className='photo-title'>{photo.img_title}</h2>
+                <h2 className='photo-description'>{photo.img_description}</h2>
+              </div>
+            </div>
+            <CommentIndex photoId={photo.id} />
+          </div>
+          <div className='photo-view-stats'>
+            <div>
+              <h1>{commentStat}</h1>
+              <h1>{uploadDate}</h1>
+            </div>
             {deletePhoto}
-            <h1>{commentStat}</h1>
-            <h1>{uploadDate}</h1>
-            <h1>Shareable link: {`fliqr.herokuapp.com/#/photos/${photo.id}`}</h1>
+            {shareLink}
           </div>
         </div>
       </div>
