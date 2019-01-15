@@ -30,19 +30,15 @@ class CommentIndex extends React.Component {
     const { comments } = this.props;
     return(
       <div className='photo-viewer-comment-container'>
-        <div className='photo-show-comments-container'>
-          <ul>
-            {comments.map(comment => (
-              <li key={comment.id}>
-                <CommentIndexItem
-                  comment={comment}
-                  currentUserId={this.props.currentUserId}
-                  deleteComment={this.props.deleteComment}
-                />
-              </li>
-            ))}
-          </ul>
-        </div>
+        <ul className='photo-view-comment-index'>
+          {comments.map(comment => (
+            <CommentIndexItem key={comment.id}
+              comment={comment}
+              currentUserId={this.props.currentUserId}
+              deleteComment={this.props.deleteComment}
+            />
+          ))}
+        </ul>
         <CommentForm 
           createComment={this.props.createComment}
           photoId={this.props.photoId}

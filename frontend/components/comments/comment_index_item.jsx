@@ -18,17 +18,16 @@ const CommentIndexItem = ({ comment, deleteComment, currentUserId }) => {
   }
 
   return (
-    <div className='comment-container'>
+    <li className='comment-container'>
       <div className='comment-author-avatar'/>
       <div className='comment-info'>
         <div className='comment-author-container'>
           <Link to={`/users/${authorId}`} className='comment-author'>{author}</Link>
-          <span className='comment-post-date'></span>
           {commentDeleteButton}
         </div>
         <span className='comment-body'>{comment.body}</span>
       </div>
-    </div>
+    </li>
   );
 };
 
